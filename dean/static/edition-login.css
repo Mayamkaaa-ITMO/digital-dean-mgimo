@@ -1,0 +1,240 @@
+body:has(#main[data-section="login"]) > .ui-header .context { display: none; }
+body:has(#main[data-section="login"]) {
+  background:
+    radial-gradient(ellipse at 17% 32%, #e6ebf6 0, transparent 51%),
+    radial-gradient(ellipse at 87% 54%, #eae5f1 0, transparent 48%),
+    var(--back);
+}
+body:has(#main[data-section="login"]) > .ui-header { background: transparent; }
+
+#main[data-section="login"] .dean-login-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 430px) minmax(0, 452px);
+  align-items: center;
+  justify-content: center;
+  justify-items: center;
+  gap: clamp(12px, 3vw, 40px);
+  margin-block: clamp(5px, 4vh, 40px);
+}
+
+.dean-login-visual {
+  position: relative;
+  isolation: isolate;
+  display: grid;
+  width: 100%;
+  min-height: 445px;
+  place-items: center;
+  pointer-events: none;
+}
+
+.dean-login-visual::before, .dean-login-visual::after {
+  position: absolute;
+  z-index: -1;
+  content: "";
+}
+.dean-login-visual::before {
+  width: min(95%, 390px);
+  aspect-ratio: 1;
+  border: 1px solid #c5cde4;
+  border-radius: 35% 35% 28% 28%;
+  background:
+    radial-gradient(circle at 13% 31%, #5f75ae 0 3px, transparent 4px),
+    radial-gradient(circle at 85% 68%, #79639c 0 4px, transparent 5px),
+    linear-gradient(90deg, #626f9a15 1px, transparent 1px) 50% 50% / 24px 24px,
+    linear-gradient(#626f9a15 1px, transparent 1px) 50% 50% / 24px 24px,
+    linear-gradient(135deg, #f4f7fd 0%, #e6eaf7 48%, #ede5f4 100%);
+  transform: rotate(-9deg);
+  box-shadow: 0 20px 48px #302a5820;
+}
+.dean-login-visual::after {
+  inset: 13% 10% 15%;
+  border: 1px solid #b5bed9;
+  border-radius: 48% 35% 52% 38%;
+  transform: rotate(22deg);
+}
+
+.vishka-login-mascot {
+  width: min(70%, 345px);
+  aspect-ratio: 13 / 15;
+  perspective: 900px;
+  filter: drop-shadow(0 13px 30px #1d346852);
+}
+
+.vishka-login-pose {
+  position: relative;
+  height: 100%;
+  transform-style: preserve-3d;
+  transition: transform 240ms cubic-bezier(.2,.66,.3,1);
+}
+
+.vishka-login-pose svg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  backface-visibility: hidden;
+}
+
+.vishka-back, [data-private-pose] .vishka-login-pose { transform: rotateY(180deg); }
+
+html[data-interface="railway"] #main[data-section="login"] .dean-login-layout .dean-login {
+  width: min(100%, 452px);
+  max-width: none;
+  margin: 0;
+  padding: clamp(20px, 2.5vw, 32px);
+  border: 1px solid var(--line);
+  border-radius: 20px;
+  background: var(--surface);
+  box-shadow: 0 10px 30px #17233410;
+}
+
+html[data-interface="railway"] #main[data-section="login"] .dean-login-layout h1 {
+  margin: 0;
+  font-size: clamp(27px, 2.6vw, 34px);
+  letter-spacing: -.025em;
+  line-height: 1.17;
+}
+
+.dean-login-caption {
+  margin: 7px 0 clamp(16px, 2.5vh, 24px);
+  color: var(--muted);
+  font-size: 14px;
+}
+
+#main[data-section="login"] .dean-login-layout .login-form {
+  justify-items: stretch;
+  gap: 5px;
+}
+
+#main[data-section="login"] .dean-login-layout .login-form > label {
+  font-size: 14px;
+  font-weight: 750;
+}
+
+#main[data-section="login"] .dean-login-layout .login-form > label[for="login-password"] { margin-top: 6px; }
+
+html[data-interface="railway"] #main[data-section="login"] .dean-login-layout .login-form input:not([type="checkbox"]) {
+  display: block;
+  width: 100%;
+  height: 48px;
+  margin-top: 5px;
+  padding-inline: 13px;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  color: var(--ink);
+  background: var(--layer);
+  font-size: 16px;
+  font-weight: 550;
+}
+
+#main[data-section="login"] .dean-login-layout .login-form .password-row {
+  position: relative;
+  display: block;
+}
+
+html[data-interface="railway"] #main[data-section="login"] .dean-login-layout .login-form .password-row input {
+  margin: 0;
+  padding-inline-end: 48px;
+}
+
+html[data-interface="railway"] #main[data-section="login"] .dean-login-layout [data-show-password]:not([hidden]) {
+  position: absolute;
+  inset: 2px 2px 2px auto;
+  display: grid;
+  width: 44px;
+  min-width: 0;
+  min-height: 44px;
+  place-items: center;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: var(--muted);
+  font-size: 0;
+}
+
+.dean-login-layout [data-show-password]::before {
+  content: "";
+  width: 18px;
+  height: 18px;
+  background: currentColor;
+  mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='1.8'%3E%3Cpath d='M2 12s3.5-6 10-6 10 6 10 6-3.5 6-10 6-10-6-10-6Z'/%3E%3Ccircle cx='12' cy='12' r='2.4'/%3E%3C/svg%3E") center / contain no-repeat;
+}
+
+.dean-login-layout [data-show-password][aria-pressed="true"]::before {
+  mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='1.8' stroke-linecap='round'%3E%3Cpath d='M3 3l18 18M10.5 6.1a10 10 0 0 1 1.5-.1c6.5 0 10 6 10 6a15.5 15.5 0 0 1-2.6 3.1M6.1 7.9A16 16 0 0 0 2 12s3.5 6 10 6a10.2 10.2 0 0 0 4.1-.9M9.6 12a2.4 2.4 0 0 0 2.4 2.4'/%3E%3C/svg%3E");
+}
+
+#main[data-section="login"] .dean-login-layout .login-remember {
+  align-items: center;
+  min-height: 43px;
+  padding-block: 4px;
+}
+
+#main[data-section="login"] .dean-login-layout .login-remember small { display: none; }
+
+html[data-interface="railway"] #main[data-section="login"] .dean-login-layout .login-form > button {
+  min-height: 49px;
+  border-radius: 10px;
+  font-size: 14px;
+}
+
+#main[data-section="login"] .dean-login-layout .login-divider {
+  margin-block: 13px 6px;
+  font-size: 12px;
+}
+
+#main[data-section="login"] .dean-login-layout .dean-providers {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 8px;
+}
+
+html[data-interface="railway"] #main[data-section="login"] .dean-login-layout .dean-provider {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  min-height: 48px;
+  padding: 6px 10px;
+  border-color: var(--line);
+  border-radius: 10px;
+  background: var(--surface);
+  color: var(--ink);
+  font-size: 13px;
+}
+
+html[data-interface="railway"] #main[data-section="login"] .dean-login-layout .dean-provider:not(:disabled):hover {
+  background: var(--layer);
+}
+
+#main[data-section="login"] .dean-login-layout .dean-provider > img {
+  display: block;
+  width: 24px;
+  height: 24px;
+}
+
+.dean-login-provider-hint {
+  margin: 3px 0 0;
+  text-align: center;
+  color: var(--muted);
+  font-size: 12px;
+}
+
+#main[data-section="login"] .dean-login-extra { margin-top: 12px; }
+.dean-login-layout .guest-entry { margin-top: 12px; text-align: center; }
+.dean-login-layout .guest-entry > a { display: inline-grid; place-items: center; min-height: 44px; }
+@media (max-width: 660px) {
+  #main[data-section="login"] .dean-login-layout { grid-template-columns: minmax(0, 452px); }
+  .dean-login-visual { min-height: clamp(110px, 32vw, 156px); }
+  .dean-login-visual::before { width: min(90%, 255px); aspect-ratio: 2.3; border-radius: 35px; }
+  .dean-login-visual::after { inset: 9% max(12%, calc(50% - 115px)); transform: rotate(-7deg); }
+  .vishka-login-mascot { width: clamp(93px, 27vw, 145px); }
+  html[data-interface="railway"] #main[data-section="login"] .dean-login-layout .dean-login {
+    width: 100%;
+    padding: 18px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .vishka-login-pose { transition: none; }
+}

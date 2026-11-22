@@ -1,0 +1,930 @@
+:is(time, .dean-date-number, .rw-date-parts, .rw-lead-time, .dean-result-score, [data-sheet-time]) {
+  font-variant-numeric: lining-nums tabular-nums;
+  letter-spacing: 0;
+}
+
+html[data-interface="railway"][data-theme="raspay"] {
+  color-scheme: light;
+  --back: #f4f3f4;
+  --rail: #f3f3f6;
+  --surface: #fff;
+  --panel: #fff;
+  --layer: #f3f3f6;
+  --line: #dfe3e8;
+  --edge: #929ba7;
+  --ink: #17171a;
+  --muted: #565661;
+  --accent: #28262d;
+  --on-accent: #fff;
+  --active: #17171a;
+  --tint: #e9e9ee;
+  --focus: #395979;
+  --lead: #27262c;
+  --lead-hover: #35343a;
+  --lead-ink: #fff;
+  --lead-muted: #eeeaf1;
+  --lead-line: #4b4951;
+  --lead-change: #ffcfb9;
+  --warning: #873f27;
+  --warning-bg: #f8e7de;
+  --good: #305e50;
+  --good-bg: #e4f0e9;
+  --danger: #872932;
+  --danger-bg: #f9e8e9;
+  --study-ink: #564274;
+  --study-bg: #ece7f5;
+  --assistant-card: #f7f5f9;
+  --assistant-edge: #e2d9e8;
+  --assistant-arrow: #463651;
+  --assistant-meta: #566273;
+  --chat-outgoing: #f0eaf5;
+  --inset: clamp(16px, 5vw, 20px);
+}
+html[data-theme="raspay"] .dean-header-assistant {
+  background: var(--assistant-card); color: var(--assistant-arrow);
+}
+html[data-theme="raspay"] .rw-dock :is([aria-current], .is-current) > .rw-icon {
+  color: var(--ink); background: var(--tint);
+}
+html[data-theme="raspay"] .rw-rail nav [aria-current="location"] {
+  color: var(--surface); background: var(--active);
+}
+html[data-theme="raspay"] .dean-chat {
+  --back: var(--assistant-card);
+  --line: var(--assistant-edge);
+  --ink: #242a32;
+  --muted: var(--assistant-meta);
+  --accent: var(--assistant-arrow);
+  --tint: var(--chat-outgoing);
+  background: var(--assistant-card);
+  font-family: Manrope, Nunito, system-ui, sans-serif;
+}
+@font-face {
+  font-family: Manrope; src: url("/static/manrope.ttf") format("truetype");
+  font-style: normal; font-weight: 200 800; font-display: optional;
+}
+html[data-theme="raspay"] .dean-chat :is(.dean-chat-header, .dean-chat-composer) { background: var(--assistant-card); }
+html[data-theme="raspay"] .dean-chat :is(textarea, button, summary) { font-family: inherit; }
+html[data-theme="raspay"] .dean-chat .dean-assistant-form button[type="submit"] {
+  color: var(--assistant-arrow); background: var(--chat-outgoing); border-color: transparent;
+}
+html[data-theme="raspay"] .dean-chat .dean-assistant-form button[type="submit"]:hover {
+  color: #fff; background: var(--assistant-arrow);
+}
+html[data-theme="raspay"] body[data-private]:has(#main:is([data-section="today"], [data-section="schedule"], [data-section="grades"])) {
+  background: var(--surface);
+}
+@media (min-width: 1000px) {
+  html[data-interface="railway"][data-theme="raspay"] { --inset: 28px; }
+  html[data-theme="raspay"] body[data-student-shell] .rw-rail > nav:first-of-type { margin-top: 25px; }
+  html[data-theme="raspay"] body[data-student-shell]:not(:has(#main[data-section="profile"])) .ui-header .logout { display: none; }
+  html[data-theme="raspay"] main#main > h1 { font-size: 40px; }
+}
+@media (max-width: 999px) {
+  html[data-theme="raspay"] main#main > h1 { font-size: 33px; }
+  html[data-theme="raspay"] body[data-student-shell] > main#main { padding-block-start: 14px; }
+  html[data-theme="raspay"] body[data-student-shell] > .ui-header .rw-brand { white-space: nowrap; }
+  html[data-theme="raspay"] body:has(.rw-more[open]) { overflow: hidden; }
+  html[data-theme="raspay"] .rw-dock:has(.rw-more[open]) { z-index: 25; }
+  html[data-theme="raspay"] .rw-dock:has(.rw-more[open])::before {
+    content: ""; position: fixed; inset: 0; z-index: 1; background: #54606d70;
+  }
+  html[data-theme="raspay"] .rw-more-sheet {
+    z-index: 2; inset-inline: 0; bottom: 0; max-height: 76dvh; overscroll-behavior: contain;
+    border-radius: 23px 23px 0 0; padding: 10px 20px max(20px, env(safe-area-inset-bottom));
+  }
+  html[data-theme="raspay"] .rw-more-sheet::before {
+    content: ""; display: block; width: 36px; height: 4px; margin: 0 auto 9px;
+    border-radius: 4px; background: #bdc5cf;
+  }
+  .rw-more-deanery { margin-top: 20px; }
+  html[data-theme="raspay"] .rw-more-title .rw-more-dismiss {
+    flex: none; width: 44px; min-height: 44px; padding: 0; background: var(--layer); border: 0; font-size: 1.35rem;
+  }
+  .rw-more-deanery h3 { margin: 0 0 8px; font-size: 1.12rem; }
+  .rw-more-deanery > div { border: 1px solid var(--line); border-radius: 14px; }
+  html[data-theme="raspay"] .rw-more-deanery a { padding-inline: 12px; background: var(--surface); }
+  html[data-theme="raspay"] .rw-more-deanery a + a { border-top: 1px solid var(--line); }
+  html[data-theme="raspay"] .rw-more-deanery a .rw-icon {
+    width: 33px; height: 33px; padding: 7px; border-radius: 9px; color: var(--warning); background: var(--warning-bg);
+  }
+  html[data-theme="raspay"] .rw-more-sheet > .rw-more-assistant { display: block; margin-top: 14px; }
+  html[data-theme="raspay"] .rw-more-assistant a {
+    justify-content: center; border: 1px solid var(--line); border-radius: 12px; background: var(--surface);
+  }
+  html[data-theme="raspay"] .rw-more-assistant a .rw-icon { display: none; }
+  html[data-theme="raspay"] .rw-more-sheet .rw-more-essentials { margin-top: 14px; }
+  html[data-theme="raspay"] .rw-more-essentials a {
+    min-width: 0; min-height: 48px; background: var(--surface); border: 1px solid var(--line);
+  }
+  .rw-more-essentials a .rw-icon { flex: none; }
+  .rw-more-essentials a span { min-width: 0; overflow-wrap: anywhere; }
+  html[data-interface="railway"] .rw-more-essentials .rw-notification-dot {
+    position: static; flex: 0 0 7px; margin-inline-start: auto;
+  }
+  .rw-more-sheet .logout { margin: 12px 0 0; }
+}
+@media (max-width: 999px) and (prefers-reduced-motion: no-preference) {
+  html[data-theme="raspay"] .rw-more[open] .rw-more-sheet { animation: dean-more-in 210ms cubic-bezier(.2,.75,.35,1); }
+  @keyframes dean-more-in { from { transform: translateY(18px); opacity: .45; } to { transform: translateY(0); opacity: 1; } }
+}
+
+.dean-header-assistant, .dean-demo-link {
+  display: inline-flex; align-items: center; gap: 6px; min-height: 44px;
+  border-radius: 10px; padding: 0 8px; color: var(--ink); font-weight: 800; text-decoration: none;
+}
+.dean-header-assistant img { display: block; flex: none; }
+:is(.dean-header-assistant, .dean-demo-link):hover { background: var(--tint); }
+.dean-global-search {
+  display: inline-grid; place-items: center; width: 40px; height: 44px; border-radius: 9px; color: var(--ink);
+}
+.dean-global-search:hover { background: var(--tint); }
+.dean-header-assistant { background: var(--layer); padding-inline: 10px; }
+.dean-brand-mark {
+  display: inline-grid; flex: none; place-items: center; width: 34px; height: 34px;
+  border: 1px solid #dce1f0; border-radius: 10px; background: #eef1fb;
+}
+.dean-brand-mark img { display: block; width: 25px; height: 25px; }
+html[data-interface="railway"] :is(a.dean-secondary-action, a.dean-chat-link) {
+  display: inline-flex; align-items: center; justify-content: center; gap: 6px;
+  min-height: 44px; padding: 7px 12px; border: 1px solid var(--line); border-radius: 10px;
+  color: var(--ink); background: var(--surface); font-size: .875rem; font-weight: 750;
+  text-decoration: none; line-height: 1.25;
+}
+html[data-interface="railway"] :is(a.dean-secondary-action, a.dean-chat-link):hover {
+  border-color: var(--edge); background: var(--layer);
+}
+.dean-secondary-action .rw-icon { width: 16px; height: 16px; flex: none; }
+.dean-document-actions { display: flex; flex-wrap: wrap; gap: 7px; margin-block-start: 8px; }
+.rows > li.dean-linked-row { padding: 0; }
+html[data-interface="railway"] .rows > li.dean-linked-row { padding: 0; }
+.dean-linked-row > a {
+  display: grid; flex: 1; align-content: center; gap: 2px; min-width: 0; min-height: 44px;
+  padding: 10px 8px; border-radius: 8px; overflow-wrap: anywhere; text-decoration: none;
+}
+.dean-linked-row > a:is(:hover, :focus-visible) { background: var(--tint); }
+.dean-linked-row > a strong { text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 3px; }
+.dean-linked-row > a .meta { font-weight: 500; }
+.dean-document-text { overflow-wrap: anywhere; }
+.dean-document-text p:last-child { margin-bottom: 0; }
+.dean-chat-message .dean-chat-link { margin-top: 4px; }
+html[data-interface="railway"] .rw-rail nav:has(.rw-rail-shortcuts [aria-current]) .rw-rail-primary [aria-current="location"] {
+  color: var(--muted); background: transparent;
+}
+html[data-interface="railway"] .rw-rail .dean-rail-footer { margin-top: auto; }
+@media (min-width: 1000px) {
+  html[data-interface="railway"] { --aside-width: 200px; }
+  html[data-interface="railway"] body[data-browser-demo][data-private] .ui-identity .brand { display: none; }
+  html[data-interface="railway"] body[data-browser-demo][data-private] .ui-identity .context {
+    color: var(--ink); font-weight: 800; font-size: .9rem; margin: 0;
+  }
+  html[data-interface="railway"] body[data-browser-demo][data-private] :is(.ui-profile-icon, .rw-notification-button) {
+    position: relative; display: inline-flex; align-items: center; justify-content: center; min-width: 38px; min-height: 40px;
+  }
+  html[data-interface="railway"] body[data-browser-demo][data-private] .ui-profile > span:first-child { display: none; }
+}
+
+html[data-interface][data-theme] #main[data-section="today"] h1 {
+  font-family: inherit; font-size: clamp(2.05rem, 3.3vw, 3.05rem);
+  line-height: 1.08; font-weight: 850; color: var(--ink); margin: 0 0 6px;
+}
+html[data-interface][data-theme] #main[data-section="today"] .rw-page-heading .subtitle {
+  position: static; width: auto; height: auto; margin: 0; overflow: visible;
+  clip-path: none; white-space: normal;
+}
+html[data-interface][data-theme] #main[data-section="today"] .dean-today-date { display: none; }
+html[data-interface] #main[data-section="today"] .rw-page-heading { margin-bottom: 18px; }
+html[data-interface] .dean-today-agenda { padding: 0; border: 0; background: transparent; margin: 0 0 14px; }
+.dean-today-agenda .panel-head { align-items: center; gap: 10px; margin: 0 0 6px; }
+.dean-today-agenda .panel-head h2 { font-size: clamp(1.12rem, 2vw, 1.35rem); }
+.dean-today-agenda .panel-head a {
+  display: inline-flex; align-items: center; min-height: 44px; font-size: .83rem; font-weight: 800;
+}
+.dean-today-agenda .empty { margin: 0 14px 14px; }
+.dean-agenda-list { display: grid; gap: 9px; list-style: none; padding: 0; margin: 0; }
+.dean-agenda-list > li { margin: 0; padding: 0; }
+.dean-agenda-list > li > a {
+  display: grid; grid-template-columns: minmax(58px, 5.8rem) minmax(0, 1fr) auto; gap: clamp(10px, 2vw, 22px);
+  align-items: center; min-height: 78px; padding: 12px clamp(12px, 2vw, 21px);
+  color: var(--ink); text-decoration: none; background: var(--surface);
+  border: 1px solid var(--line); border-radius: 17px;
+}
+.dean-agenda-list > li > a:hover { background: var(--layer); }
+.dean-agenda-list > li > a:focus-visible { outline-offset: -3px; }
+.dean-agenda-description small { color: var(--muted); font-size: .84rem; }
+.dean-agenda-description { display: grid; min-width: 0; gap: 2px; line-height: 1.25; }
+.dean-agenda-description > strong { font-size: clamp(.96rem, 1.75vw, 1.18rem); line-height: 1.25; }
+html[data-interface] .dean-dashboard-content > .rw-priority { margin-block: 16px; }
+.dean-quick-actions { margin-block: 18px; }
+.dean-quick-actions > div { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; margin-top: 8px; }
+.dean-quick-actions a {
+  display: grid; align-content: start; justify-items: start; gap: 4px; padding: 10px 12px;
+  min-height: 75px; border: 1px solid var(--line); background: var(--surface); color: var(--ink);
+  border-radius: 15px; text-decoration: none;
+}
+.dean-quick-actions a:hover { background: var(--tint); }
+.dean-quick-actions .dean-subject-icon { min-width: 28px; width: 28px; height: 28px; }
+.dean-quick-actions .rw-icon { width: 16px; height: 16px; }
+.dean-today-urgent p { margin: 0; color: var(--muted); }
+html[data-theme="raspay"] .dean-today-feature { margin-block: 0 23px; }
+html[data-interface="railway"][data-theme="raspay"] .dean-today-feature .rw-lead {
+  grid-template-columns: minmax(0, 1fr) auto;
+  grid-template-areas: "caption arrow" "time time" "details details";
+  align-items: start; gap: 12px; padding: 16px 18px 20px; min-height: 202px;
+}
+html[data-theme="raspay"] .dean-today-feature .rw-lead-caption { grid-area: caption; font-weight: 750; }
+html[data-theme="raspay"] .dean-today-feature .rw-lead > .rw-icon { grid-area: arrow; color: var(--lead-muted); }
+html[data-interface="railway"][data-theme="raspay"] .dean-today-feature .rw-lead-time {
+  grid-area: time; justify-items: start; border: 0; padding: 0;
+}
+html[data-theme="raspay"] .dean-today-feature .rw-lead-time strong { font-size: 40px; }
+html[data-theme="raspay"] .dean-today-feature .rw-lead-time span { display: inline; color: #833f29; }
+html[data-theme="raspay"] .dean-today-feature .rw-lead-details { grid-area: details; gap: 5px; }
+html[data-theme="raspay"] .dean-today-feature .rw-lead-details > strong { font-size: clamp(21px, 4vw, 28px); }
+html[data-theme="raspay"] .dean-today-feature .rw-lead-location {
+  display: flex; align-items: center; gap: 7px; margin-top: 5px; color: var(--lead-ink); font-weight: 750;
+}
+html[data-theme="raspay"] .dean-today-feature .rw-lead-location .rw-icon { width: 17px; height: 17px; }
+html[data-theme="raspay"] .dean-today-feature .rw-lead-change { display: inline; color: #833f29; }
+html[data-theme="raspay"] .dean-today-agenda .dean-agenda-list {
+  gap: 0; padding-inline: 11px; border: 1px solid var(--line); border-radius: 16px; background: var(--surface);
+}
+html[data-theme="raspay"] .dean-today-agenda .dean-agenda-list li + li { border-top: 1px solid var(--line); }
+html[data-theme="raspay"] .dean-today-agenda .dean-agenda-list a {
+  grid-template-columns: auto minmax(0, 1fr) auto; gap: 9px; min-height: 62px;
+  padding: 9px 0; border: 0; border-radius: 8px;
+}
+html[data-theme="raspay"] .dean-today-agenda .dean-agenda-list a > .rw-icon { width: 15px; height: 15px; color: var(--muted); }
+.dean-agenda-icon {
+  display: grid; place-items: center; width: 34px; height: 34px; border-radius: 10px;
+  color: #395979; background: #e7edf8;
+}
+.dean-agenda-icon .rw-icon { width: 17px; height: 17px; }
+.dean-agenda-icon[data-agenda-kind^="Практ"] { background: #f8eedc; color: #775428; }
+.dean-agenda-icon[data-agenda-kind^="Лаб"] { background: var(--study-bg); color: var(--study-ink); }
+html[data-interface="railway"][data-theme="raspay"] #main[data-section="today"] .rw-priority {
+  padding: 0; border: 0; background: transparent;
+}
+html[data-interface="railway"][data-theme="raspay"] .dean-today-feature .rw-lead {
+  --lead: #fbf8f6; --lead-hover: #f9f2ec; --lead-ink: #17171a;
+  --lead-muted: #566273; --lead-line: #e6e2e8; --lead-change: #833f29;
+}
+@media (max-width: 1039px) {
+  html[data-interface="railway"][data-theme="raspay"] .dean-today-feature .rw-lead-time {
+    grid-area: time; justify-items: start; width: fit-content;
+    padding: 8px 13px; border: 0; border-radius: 12px; background: #f7ebe2; color: #833f29;
+  }
+}
+@media (min-width: 1040px) {
+  html[data-interface="railway"][data-theme="raspay"] .dean-today-feature .rw-lead {
+    grid-template-columns: clamp(116px, 13vw, 178px) minmax(0, 1fr) auto;
+    grid-template-areas: "caption caption arrow" "time details details";
+    gap: 16px clamp(18px, 2.5vw, 34px); min-height: 229px; padding: 16px 18px 24px;
+  }
+  html[data-interface="railway"][data-theme="raspay"] .dean-today-feature .rw-lead-time {
+    padding: 18px; border-radius: 15px; background: #f7ebe2; color: #833f29;
+  }
+  html[data-theme="raspay"] .dean-today-feature .rw-lead-time strong { font-size: clamp(31px, 3.3vw, 46px); }
+  html[data-theme="raspay"] .dean-today-feature .rw-lead-details { gap: 9px; }
+  html[data-theme="raspay"] .dean-today-feature .rw-lead-details > strong { font-size: clamp(24px, 2.55vw, 34px); }
+  html[data-theme="raspay"] .dean-today-feature .rw-lead > .rw-icon { color: var(--lead-change); }
+}
+html[data-interface="railway"] #main[data-section="today"] .rw-priority-link .rw-icon:first-child {
+  color: var(--accent); background: var(--tint);
+}
+@media (min-width: 1040px) {
+  .dean-dashboard-content:has(.dean-today-agenda) + .dean-chat-embedded { height: clamp(370px, 61dvh, 552px); }
+  html:not([data-chat-collapsed]) .dean-dashboard-layout:has(.dean-today-agenda) {
+    grid-template-columns: minmax(0, 1fr) minmax(290px, 34%);
+  }
+  html:not([data-chat-collapsed]) #main[data-section="schedule"] .dean-dashboard-layout {
+    grid-template-columns: minmax(0, 1fr) minmax(280px, 27.5%);
+  }
+  #main[data-section="schedule"] .dean-chat-embedded { height: clamp(370px, calc(100dvh - 125px), 740px); }
+  .dean-chat-embedded { container: dean-chat / inline-size; }
+  html[data-interface="railway"] .dean-chat-embedded .dean-chat-tools { gap: 4px; }
+  html[data-interface="railway"] .dean-chat-embedded .dean-chat-tools :is(a, button, summary) { min-width: 34px; }
+}
+@container dean-chat (max-width: 345px) {
+  .dean-chat-embedded .dean-chat-header { display: grid; grid-template-columns: auto minmax(0, 1fr); gap: 4px 8px; }
+  .dean-chat-embedded .dean-chat-tools {
+    grid-column: 1 / -1;
+    justify-self: end;
+  }
+}
+
+.dean-demo-roles { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 14px; margin-block: 20px 24px; }
+.dean-demo-card {
+  display: flex; flex-direction: column; align-items: flex-start; min-width: 0; padding: clamp(14px, 2vw, 24px);
+  border: 1px solid var(--line); border-radius: 17px; background: var(--surface);
+}
+.dean-demo-card h2 { margin: 12px 0 4px; }
+.dean-demo-card p { margin: 0 0 14px; color: var(--muted); flex: 1; }
+.dean-demo-card form { margin: 0; padding: 0; }
+.dean-demo-action {
+  display: inline-flex; align-items: center; min-height: 44px; padding: 0 14px; border-radius: 9px;
+  color: var(--on-accent); background: var(--active); font-weight: 800; text-decoration: none;
+}
+.dean-demo-action:hover { color: var(--on-accent); text-decoration: underline; }
+.dean-demo-current { color: var(--muted); }
+.dean-demo-scenarios { list-style: none; padding: 0; margin: 0; }
+.dean-demo-scenarios li { display: flex; align-items: center; justify-content: space-between; gap: 10px; padding: 10px 0; }
+.dean-demo-scenarios li > div { min-width: 0; }
+.dean-demo-scenarios li + li { border-top: 1px solid var(--line); }
+.dean-demo-scenarios p { margin: 2px 0 0; font-size: .86rem; color: var(--muted); }
+.dean-demo-scenarios li > span { flex: none; white-space: nowrap; font-size: .78rem; font-weight: 800; color: var(--muted); }
+
+html[data-interface] .dean-directory-grid .rw-service-tile {
+  border: 1px solid var(--line); background: var(--surface); min-height: 114px;
+}
+html[data-interface] .dean-directory-grid .rw-service-tile:hover { background: var(--tint); }
+html[data-interface] .dean-lab-tiles .rw-service-tile {
+  border: 1px solid var(--line); background: var(--surface); min-height: 126px;
+}
+html[data-interface] .dean-lab-tiles .rw-service-tile:hover { background: var(--tint); }
+.dean-lab-tiles .rw-tile-icon { color: var(--accent); }
+
+.dean-service-board {
+  display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px;
+}
+.dean-service-board h2 { grid-column: 1 / -1; margin: 0; font-size: 1.45rem; }
+.dean-service-board [data-service="heading-study"] { margin-block-start: 12px; }
+.dean-service-card {
+  --card-fill: #fff;
+  --card-icon: #395979;
+  display: flex; flex-direction: column; justify-content: space-between; align-items: flex-start;
+  min-width: 0; min-height: 102px; gap: 9px; padding: 12px;
+  background: var(--card-fill); color: #1b1d22; border: 1px solid #e2dfe3; border-radius: 16px;
+  text-decoration: none;
+}
+.dean-service-card:is(:hover, :focus-visible) { border-color: var(--card-icon); }
+.dean-service-card strong { display: block; font-size: 1rem; font-weight: 850; line-height: 1.16; }
+.dean-service-card strong + span { display: block; margin-top: 4px; font-size: .8rem; color: #535d68; line-height: 1.25; }
+.dean-service-mark { display: inline-grid; place-items: center; color: var(--card-icon); }
+.dean-service-mark .rw-icon { width: 22px; height: 22px; }
+.dean-service-card[data-service="booking"] {
+  --card-fill: #e8ece1; --card-icon: #305e50;
+  grid-column: 1 / -1; min-height: 143px; padding: 15px; justify-content: center;
+}
+.dean-service-card[data-service="booking"] .dean-service-mark {
+  width: 35px; height: 35px; border-radius: 10px; background: #e4f0e9;
+}
+.dean-service-card[data-service="booking"] strong { font-size: 1.28rem; }
+.dean-service-open {
+  display: inline-flex; align-items: center; gap: 7px; margin-top: 10px;
+  font-size: .85rem; font-weight: 850; color: var(--card-icon);
+}
+.dean-service-open .rw-icon { width: 16px; height: 16px; }
+.dean-service-card[data-service="quick"] { --card-fill: #f8ebdd; --card-icon: #795031; }
+.dean-service-card:is([data-service="map"], [data-service="documents"]) { --card-fill: #e7eef8; }
+.dean-service-card:is([data-service="requests"], [data-service="grades"]) {
+  --card-fill: #eeeaf7; --card-icon: #564274;
+}
+.dean-service-board:not(:has([data-service="quick"])) [data-service="map"] { grid-column: 1 / -1; }
+.dean-service-card[data-service="library"] {
+  --card-icon: #305d65;
+  grid-column: 1 / -1; min-height: 58px; flex-direction: row; justify-content: flex-start; align-items: center;
+}
+.dean-service-card[data-service="library"] .dean-service-mark {
+  width: 34px; height: 34px; border-radius: 9px; background: #e6eff1;
+}
+.dean-other-services { margin-top: 24px; }
+.dean-other-services > summary { display: list-item; padding-block: 9px; font-weight: 850; }
+.dean-other-services[open] > summary { margin-bottom: 12px; }
+.dean-service-extra { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 18px; margin-block: 17px 0; }
+.dean-service-extra a { min-height: 40px; display: inline-flex; align-items: center; }
+@media (min-width: 1000px) {
+  .dean-service-board { grid-template-columns: repeat(12, minmax(0, 1fr)); column-gap: 12px; }
+  .dean-service-card[data-service="booking"] { grid-area: 2 / 1 / span 2 / span 7; min-height: 234px; padding: 20px; }
+  .dean-service-card[data-service="booking"] strong { font-size: 1.55rem; }
+  .dean-service-card[data-service="quick"] { grid-area: 2 / 8 / 3 / -1; }
+  .dean-service-card[data-service="map"] { grid-area: 3 / 8 / 4 / -1; }
+  .dean-service-board:not(:has([data-service="quick"])) [data-service="map"] { grid-area: 2 / 8 / 4 / -1; }
+  .dean-service-card:is([data-service="quick"], [data-service="map"]) {
+    position: relative; min-height: 107px; justify-content: center; padding: 17px 80px 17px 20px;
+  }
+  .dean-service-card:is([data-service="quick"], [data-service="map"]) .dean-service-mark {
+    position: absolute; inset: 50% 21px auto auto; transform: translateY(-50%);
+  }
+  .dean-service-card:is([data-service="quick"], [data-service="map"]) .dean-service-mark .rw-icon { width: 46px; height: 46px; }
+  .dean-service-card:is([data-service="requests"], [data-service="documents"], [data-service="library"], [data-service="grades"]) {
+    grid-row: 5; grid-column: span 3; min-height: 143px; padding: 18px;
+  }
+  .dean-service-card[data-service="library"] {
+    grid-column: 7 / span 3; flex-direction: column; justify-content: space-between; align-items: flex-start;
+    --card-fill: #e6eff1;
+  }
+  .dean-service-card[data-service="library"] .dean-service-mark { width: auto; height: auto; }
+  .dean-service-board [data-service="heading-study"] { grid-row: 4; margin-block-start: 22px; }
+}
+@media (prefers-reduced-motion: no-preference) {
+  .dean-service-card { transition: border-color 140ms ease-out, background 140ms ease-out, transform 140ms ease-out; }
+  .dean-service-card:active { transform: scale(.987); }
+}
+
+.dean-service-groups {
+  display: grid; grid-template-columns: minmax(0, 1fr); gap: 22px;
+}
+.dean-service-group { min-width: 0; }
+.dean-service-group[data-tone="documents"] { --service-color: var(--warning); --service-bg: var(--warning-bg); }
+.dean-service-group[data-tone="campus"] { --service-color: var(--good); --service-bg: var(--good-bg); }
+.dean-service-group[data-tone="study"] { --service-color: var(--study-ink); --service-bg: var(--study-bg); }
+.dean-service-group h2 { margin-block: 0 9px; }
+.dean-service-group ul {
+  margin: 0; padding: 0; list-style: none;
+  border: 1px solid var(--line); border-radius: 15px; background: var(--surface);
+}
+.dean-service-group li { position: relative; margin: 0; }
+.dean-service-group li + li::before {
+  content: ""; position: absolute; inset: 0 13px auto 54px; border-top: 1px solid var(--line);
+}
+.dean-service-group li a {
+  display: grid; grid-template-columns: auto minmax(0, 1fr) auto; align-items: center;
+  min-height: 53px; gap: 10px; padding: 8px 12px; border-radius: 12px;
+  color: var(--ink); font-weight: 780; text-decoration: none;
+}
+.dean-service-group li a:is(:hover, :active) { background: var(--layer); }
+.dean-service-group li a:focus-visible { outline-offset: -2px; }
+.dean-service-icon {
+  display: grid; place-items: center; width: 33px; height: 33px; border-radius: 9px;
+  color: var(--service-color, var(--accent)); background: var(--service-bg, var(--tint));
+}
+.dean-service-group li .rw-icon { width: 17px; height: 17px; }
+.dean-service-group li a > .rw-icon { width: 15px; color: var(--muted); }
+@media (min-width: 720px) {
+  .dean-service-groups { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+@media (prefers-reduced-motion: no-preference) {
+  .dean-service-group li a { transition: background-color 160ms ease; }
+  .dean-service-group li a > .rw-icon { transition: transform 160ms ease; }
+  .dean-service-group li a:hover > .rw-icon { transform: translateX(2px); }
+}
+
+.dean-search-control {
+  display: grid; grid-template-columns: 44px minmax(0, 1fr); flex: 1 1 18rem;
+  border: 1px solid var(--line); border-radius: 12px; overflow: hidden; min-width: 0; background: var(--surface);
+}
+#main[data-section="services"] .dean-directory-search { margin-block-start: 12px; }
+html[data-interface] .dean-search-control button.quiet,
+html[data-interface] .dean-search-control input {
+  border: 0; margin: 0; min-height: 44px; border-radius: 0; background: var(--surface);
+}
+html[data-interface] .dean-search-control input { padding-left: 0; width: 100%; font-weight: 650; }
+html[data-interface] .dean-search-control :focus-visible { outline-offset: -3px; }
+html[data-interface] #main[data-section="requests"] .dean-directory-tabs {
+  display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 4px;
+  width: 100%; padding: 4px; margin-block: 14px 11px; border-radius: 13px; background: var(--layer);
+  position: sticky; top: max(calc(var(--dean-topbar-height, 0px) + 8px), env(safe-area-inset-top));
+  z-index: 5; align-self: start;
+}
+html[data-interface] #main[data-section="requests"] .dean-directory-tabs a {
+  justify-content: center; text-align: center; color: var(--ink); border-radius: 9px;
+}
+html[data-interface] #main[data-section="requests"] .dean-directory-tabs [aria-current] {
+  background: var(--surface); border: 1px solid var(--line);
+}
+.dean-request-category-title { margin-top: 14px; }
+html[data-interface] .dean-directory-grid { margin-top: 9px; }
+html[data-interface] .dean-directory-grid .rw-service-tile strong { font-size: .96rem; overflow-wrap: anywhere; }
+.dean-directory-grid .rw-tile-arrow, .dean-directory-grid .rw-service-tile > span:not([class]) { display: none; }
+.dean-subject-icon, .dean-directory-grid .rw-tile-icon {
+  display: inline-grid; place-items: center; min-width: 36px; width: 36px; height: 36px;
+  background: var(--tint); color: var(--accent); border-radius: 9px;
+}
+.dean-friendly-empty { display: grid; place-items: center; gap: 6px; padding: 18px 14px; text-align: center; color: var(--muted); }
+.dean-friendly-empty p { margin: 0; }
+.dean-grade-summary {
+  display: grid; gap: 3px; margin-block: 12px; border-radius: 15px; padding: 15px 18px;
+  color: var(--lead-ink); background: var(--lead);
+}
+.dean-grade-summary > strong { font-size: clamp(1.7rem, 4vw, 2.5rem); line-height: 1.2; font-variant-numeric: tabular-nums; }
+.dean-grade-summary small { font-size: .85rem; color: var(--lead-muted); }
+html[data-interface] .dean-grade-rows > li {
+  display: grid; grid-template-columns: auto minmax(0, 1fr) auto;
+  gap: 9px; align-items: center; font-variant-numeric: lining-nums tabular-nums;
+}
+.dean-booking-types { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 8px; margin-block: 12px; }
+.dean-booking-types a {
+  display: grid; align-content: center; justify-items: start; gap: 4px; min-height: 64px; min-width: 0;
+  border: 1px solid var(--line); border-radius: 11px; padding: 8px;
+  color: var(--ink); background: var(--surface); text-decoration: none; font-weight: 800; font-size: .83rem;
+}
+.dean-booking-types a:is([aria-current], :hover) { border-color: var(--accent); background: var(--tint); }
+.dean-booking-types [data-kind="room"] .rw-icon { color: var(--accent); }
+.dean-booking-types [data-kind="consultation"] .rw-icon { color: var(--good); }
+.dean-booking-types [data-kind="sport"] .rw-icon { color: var(--study-ink); }
+.dean-campus-pass { display: grid; justify-items: center; text-align: center; gap: 8px; width: min(100%, 430px); margin-inline: auto; }
+.dean-campus-pass img { display: block; height: auto; max-width: 100%; background: #fff; border-radius: 7px; }
+.dean-campus-pass h2, .dean-campus-pass p { margin: 0; }
+
+html[data-theme="raspay"] #main:is([data-section="grades"], [data-section="requests"]) > h1 { margin-bottom: 20px; }
+.dean-grades-grid { display: grid; gap: 15px; }
+.dean-grade-overview { display: contents; }
+.dean-grade-selector { justify-content: flex-start; margin: 0; }
+.dean-grade-selector label { flex: 1 1 190px; margin: 0; }
+.dean-grade-selector select { margin-top: 4px; }
+.dean-grade-selector button { align-self: end; margin: 0; }
+.dean-grade-results .dean-grade-rows {
+  margin-top: 10px; padding: 0 12px; border: 1px solid var(--line); border-radius: 15px; background: var(--surface);
+}
+.dean-grade-results .dean-grade-rows > li { min-height: 64px; padding-block: 9px; }
+.dean-grade-results .dean-grade-rows > li > strong {
+  max-width: 13ch; text-align: center; background: var(--tint); border-radius: 8px; padding: 4px 8px; font-size: .81rem;
+}
+.dean-grade-results .dean-grade-rows > li[data-grade-state="scheduled"] :is(.dean-subject-icon, strong) {
+  color: var(--warning); background: var(--warning-bg);
+}
+.dean-grade-results .dean-grade-rows a { text-decoration: none; }
+.dean-grade-results .dean-grade-rows a:hover { text-decoration: underline; }
+.dean-grade-results .meta { margin-block: 12px 0; }
+.dean-grade-session { margin-top: 15px; }
+.dean-grade-session > summary { font-weight: 800; }
+.dean-grade-next { order: 1; margin: 0; min-width: 0; }
+
+.dean-request-controls { display: grid; gap: 12px; margin-bottom: 15px; min-width: 0; }
+.dean-request-controls form { margin: 0; }
+html[data-interface] #main[data-section="requests"] .dean-directory-tabs { width: 100%; background: #edeaf0; }
+html[data-interface] #main[data-section="requests"] .dean-directory-tabs [aria-current] {
+  color: var(--ink); background: var(--surface); border: 1px solid #e2dfe3;
+}
+.dean-request-catalog { display: grid; gap: 18px; }
+.dean-request-catalog > section { min-width: 0; }
+.dean-request-catalog .rw-tile-icon { background: #f4e7ee; color: #794260; }
+.dean-request-popular .rw-priority-link { margin-top: 10px; }
+.dean-request-popular .rw-priority-link > .rw-icon:first-child { background: #f4e7ee; color: #794260; }
+
+.dean-request-services { margin-block: 4px 18px; }
+.dean-request-services h2 { margin: 0 0 12px; }
+.dean-service-choices {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 246px), 1fr));
+  gap: 10px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.dean-service-choices > li { display: flex; min-width: 0; }
+.dean-service-choice {
+  --choice-bg: var(--study-bg);
+  --choice-ink: var(--study-ink);
+  display: grid;
+  align-content: start;
+  gap: 7px;
+  width: 100%;
+  min-height: 128px;
+  padding: 13px 14px 14px;
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  background: var(--surface);
+  color: var(--ink);
+  text-decoration: none;
+  transition: background-color .15s, border-color .15s;
+}
+.dean-service-choice[data-category="documents"] { --choice-bg: #e7eef8; --choice-ink: #395979; }
+.dean-service-choice[data-category="support"] { --choice-bg: #f5e7ef; --choice-ink: #794260; }
+.dean-service-choice[data-category="campus"] { --choice-bg: var(--good-bg); --choice-ink: var(--good); }
+.dean-service-choice[data-category="practice"] { --choice-bg: var(--warning-bg); --choice-ink: var(--warning); }
+.dean-service-choice:is(:hover, :focus-visible) {
+  border-color: var(--choice-ink);
+  background: color-mix(in srgb, var(--surface), var(--choice-bg) 35%);
+}
+.dean-service-choice-meta {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 7px;
+  color: var(--choice-ink);
+  font-size: .78rem;
+  font-weight: 750;
+}
+.dean-service-choice-icon {
+  display: grid;
+  place-items: center;
+  flex: 0 0 31px;
+  height: 31px;
+  border-radius: 8px;
+  background: var(--choice-bg);
+}
+.dean-service-choice-icon .rw-icon { width: 17px; height: 17px; }
+.dean-service-duration {
+  margin-inline-start: auto;
+  padding: 3px 6px;
+  border-radius: 6px;
+  background: var(--layer);
+  color: var(--muted);
+  white-space: nowrap;
+}
+.dean-service-choice-title {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 6px;
+  font-size: 1rem;
+  line-height: 1.32;
+}
+.dean-service-choice-title strong { overflow-wrap: anywhere; }
+.dean-service-choice-title .rw-icon { flex: none; width: 17px; height: 17px; color: var(--choice-ink); }
+.dean-service-choice-description { color: var(--muted); font-size: .875rem; line-height: 1.4; }
+@media (prefers-reduced-motion: reduce) {
+  .dean-service-choice { transition: none; }
+}
+
+.dean-booking-search { display: grid; gap: 4px; }
+.dean-booking-filters > summary { width: max-content; padding: 5px 0; color: var(--muted); font-size: .98rem; }
+.dean-booking-types a, .dean-booking-row { --booking-tint: #e4f0e9; --booking-color: #305e50; }
+.dean-booking-types [data-kind="consultation"], .dean-booking-row[data-kind="consultation"] {
+  --booking-tint: #e7eef8; --booking-color: #395979;
+}
+.dean-booking-types [data-kind="sport"], .dean-booking-row[data-kind="sport"] {
+  --booking-tint: #f8e7de; --booking-color: #873f27;
+}
+.dean-booking-types [data-kind="activity"] { --booking-tint: #eeeaf7; --booking-color: #564274; }
+html[data-theme="raspay"] .dean-booking-types a {
+  position: relative; display: grid; justify-items: start; align-content: center; text-align: start;
+  gap: 8px; min-height: 103px; padding: 12px; background: var(--booking-tint); color: var(--ink);
+}
+html[data-theme="raspay"] .dean-booking-types a:is([aria-current], :hover) { border-color: var(--booking-color); }
+html[data-theme="raspay"] .dean-booking-types a .rw-icon { color: var(--booking-color); }
+.dean-booking-types a .rw-icon:last-child { position: absolute; inset: 13px 10px auto auto; width: 15px; height: 15px; }
+.dean-booking-types a strong, .dean-booking-row strong { font-size: 1.07rem; line-height: 1.3; }
+.dean-booking-types a small, .dean-booking-row small {
+  display: block; margin-top: 4px; color: var(--muted); font-size: .94rem; line-height: 1.35;
+}
+.dean-booking-listing { margin-top: 22px; }
+.dean-booking-listing .dean-booking-grid { display: grid; gap: 10px; margin-top: 10px; }
+.dean-booking-row {
+  display: grid; grid-template-columns: auto minmax(0, 1fr) auto; align-items: center; gap: 11px;
+  padding: 11px; min-height: 68px; border-radius: 14px; border: 1px solid var(--line);
+  background: var(--surface); color: var(--ink); text-decoration: none; overflow-wrap: anywhere;
+}
+.dean-booking-row:hover { border-color: var(--booking-color); }
+.dean-booking-mark {
+  display: grid; place-items: center; width: 34px; height: 34px; border-radius: 10px;
+  background: var(--booking-tint); color: var(--booking-color);
+}
+.dean-booking-row .dean-booking-time { max-width: 13ch; text-align: end; font-weight: 750; }
+
+html[data-theme="raspay"] .dean-campus-pass {
+  position: relative; padding: 16px; border-radius: 20px; background: #f7eee3; border-color: #e2dfe3;
+}
+.dean-campus-pass-code {
+  display: grid; justify-items: center; width: min(100%, 278px); padding: 13px;
+  background: var(--surface); border: 1px solid #e2dfe3; border-radius: 17px;
+}
+.dean-campus-pass-info { display: contents; }
+.dean-campus-pass-label { grid-row: 1; color: #795031; font-weight: 850; }
+.dean-campus-pass-info .rw-icon { color: #795031; margin-top: 6px; }
+.dean-pass-refresh {
+  display: inline-flex; align-items: center; justify-content: center; min-height: 44px;
+  padding: 5px 25px; border: 1px solid var(--line); border-radius: 11px;
+  background: var(--surface); color: var(--ink); text-decoration: none; font-weight: 800;
+}
+.dean-pass-refresh:hover { border-color: #795031; }
+
+@media (min-width: 1000px) {
+  .dean-grades-grid { grid-template-columns: minmax(0, 2.1fr) minmax(0, 1fr); gap: 16px 24px; align-items: start; }
+  .dean-grade-selector { grid-area: 1 / 1; }
+  .dean-grade-overview { grid-area: 1 / 2 / span 2; display: grid; gap: 16px; }
+  .dean-grade-summary { margin: 0; min-height: 135px; }
+  .dean-grade-results { grid-area: 2 / 1; }
+  .dean-request-layout {
+    display: grid; grid-template-columns: minmax(0, 2fr) minmax(0, 3fr);
+    grid-template-rows: minmax(69px, auto) auto; column-gap: 12px; align-items: start;
+  }
+  .dean-request-layout .dean-directory-tabs { grid-area: 1 / 1 / 3 / 2; }
+  .dean-request-layout .dean-request-controls { grid-area: 1 / 2; margin-block: 14px 15px; }
+  .dean-request-results { grid-area: 2 / 1 / 3 / -1; min-width: 0; }
+  .dean-request-catalog { grid-template-columns: minmax(0, 2.1fr) minmax(0, 1fr); gap: 24px; }
+  html[data-interface] .dean-request-catalog .dean-directory-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .dean-booking-listing .dean-booking-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  html[data-theme="raspay"] .dean-campus-pass {
+    width: min(100%, 704px); min-height: 355px; padding: 27px;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1.2fr); gap: 30px; align-items: center;
+  }
+  .dean-campus-pass-info { display: grid; justify-items: start; gap: 10px; text-align: start; }
+  .dean-campus-pass-info .dean-pass-refresh { margin-top: 14px; }
+}
+
+.dean-lesson-sheet {
+  position: fixed; inset: auto 0 0; width: min(100%, 42rem); max-width: none;
+  max-height: min(85dvh, calc(100dvh - env(safe-area-inset-top) - 8px)); margin: 0 auto;
+  border: 1px solid var(--line); border-radius: 22px 22px 0 0; padding: 8px 18px max(22px, env(safe-area-inset-bottom));
+  background: var(--surface); color: var(--ink); overflow: auto; overscroll-behavior-y: contain;
+}
+.dean-lesson-sheet::backdrop { background: #46536466; }
+.dean-sheet-grip { display: grid; justify-items: center; align-items: center; height: 24px; touch-action: none; }
+.dean-sheet-grip::before { content: ""; width: 38px; height: 4px; border-radius: 4px; background: #bdc5cf; }
+.dean-lesson-sheet header {
+  display: flex; align-items: center; justify-content: space-between; gap: 10px; border: 0; background: transparent;
+}
+.dean-sheet-badges { display: flex; align-items: center; flex-wrap: wrap; gap: 6px; }
+.dean-sheet-badges > span { border-radius: 7px; padding: 3px 10px; font-size: .8rem; font-weight: 800; }
+.dean-lesson-sheet [data-sheet-kind] { background: #f8eedc; color: #775428; }
+.dean-lesson-sheet [data-sheet-kind][data-tone="lecture"] { background: #e2edf8; color: #395979; }
+.dean-lesson-sheet [data-sheet-kind][data-tone="lab"] { background: var(--study-bg); color: var(--study-ink); }
+.dean-lesson-sheet :is([data-sheet-status], [data-sheet-old-room]) { background: var(--warning-bg); color: var(--warning); }
+html[data-interface="railway"] .dean-lesson-sheet [data-sheet-close] {
+  min-width: 44px; min-height: 44px; padding: 0; margin: 0; font-size: 1.35rem; border: 0;
+  border-radius: 13px; background: var(--layer); color: var(--muted);
+}
+.dean-lesson-sheet h2 { margin: 14px 0 17px; font-size: clamp(1.43rem, 6vw, 1.75rem); }
+.dean-sheet-facts { padding: 2px 13px; border-radius: 15px; background: var(--layer); }
+.dean-sheet-facts p { display: flex; align-items: center; min-height: 41px; gap: 10px; margin: 0; }
+.dean-sheet-facts p + p { border-top: 1px solid var(--line); }
+.dean-sheet-facts .rw-icon { width: 16px; height: 16px; color: var(--muted); }
+.dean-lesson-sheet [data-sheet-old-room] { padding: 10px 13px; border-radius: 12px; margin: 13px 0 0; font-weight: 750; }
+.dean-lesson-sheet .dean-sheet-map-note { margin: 8px 4px 0; }
+.dean-lesson-sheet nav { display: grid; gap: 5px; margin-top: 15px; }
+.dean-lesson-sheet nav > a {
+  display: inline-flex; align-items: center; justify-content: center; gap: 6px; min-height: 47px; text-align: center;
+}
+.dean-lesson-sheet nav > .rw-primary-link { min-height: 50px; border-radius: 14px; }
+.dean-lesson-sheet .dean-sheet-detail:not(.rw-primary-link) { color: var(--muted); }
+.dean-lesson-sheet [hidden] { display: none; }
+@media (prefers-reduced-motion: no-preference) {
+  .dean-lesson-sheet[open] { animation: dean-sheet-enter 240ms cubic-bezier(.2,.75,.35,1); }
+  .dean-lesson-sheet[open]::backdrop { animation: dean-backdrop-enter 180ms ease-out; }
+  @keyframes dean-backdrop-enter { from { opacity: 0; } }
+  @keyframes dean-sheet-enter { from { transform: translateY(100%); } }
+  .dean-friendly-empty img { animation: dean-mascot-arrive .36s ease-out both; }
+  @keyframes dean-mascot-arrive { from { transform: translateY(4px); opacity: .45; } }
+}
+
+@media (max-width: 999px) {
+  html[data-interface="railway"] body[data-private] .rw-mobile-brand { display: block; }
+  html[data-interface="railway"] body[data-private] .ui-identity .context { display: none; }
+  html[data-interface="railway"] body[data-browser-demo][data-private]:not([data-responsive-shell]) .ui-tools > :not(.dean-header-assistant) { display: none; }
+  html[data-interface="railway"] body[data-browser-demo][data-private] .top.wrap {
+    flex-wrap: nowrap; padding-inline: var(--inset); min-height: 64px;
+  }
+  html[data-interface="railway"] body[data-browser-demo][data-private] > .ui-header { background: var(--back); border-bottom: 0; }
+  html[data-interface="railway"] body[data-browser-demo][data-private] .rw-mobile-brand .dean-brand-name { display: inline; }
+  html[data-interface="railway"] body[data-browser-demo][data-private] .rw-mobile-brand .dean-brand-short { display: none; }
+  html[data-interface="railway"] body[data-browser-demo][data-private] .rw-mobile-brand .rw-brand { font-size: .87rem; }
+  html[data-interface="railway"] body[data-browser-demo][data-private] { --dock-height: 74px; }
+  html[data-interface="railway"] body[data-browser-demo][data-private] .rw-dock {
+    min-height: calc(var(--dock-height) + env(safe-area-inset-bottom)); align-items: start; padding-top: 4px;
+  }
+  html[data-interface="railway"] body[data-browser-demo][data-private] .rw-dock > a,
+  html[data-interface="railway"] body[data-browser-demo][data-private] .rw-dock > .rw-more > summary { min-height: 56px; }
+}
+@media (max-width: 780px) {
+  .dean-header-assistant { padding-inline: 5px; }
+  .dean-header-assistant span, body[data-private] .dean-demo-link { font-size: .76rem; }
+  .dean-demo-roles { grid-template-columns: 1fr; gap: 8px; }
+  .dean-demo-card { display: grid; grid-template-columns: auto minmax(0, 1fr); gap: 2px 10px; }
+  .dean-demo-card > :not(:first-child) { grid-column: 2; }
+  .dean-demo-card h2 { margin: 5px 0 0; }
+  .dean-demo-card p { margin-bottom: 7px; }
+  .dean-demo-card .dean-demo-action { justify-self: start; }
+  .dean-agenda-list > li > a { grid-template-columns: 63px minmax(0, 1fr) auto; }
+  html[data-interface] .dean-directory-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 7px; }
+  html[data-interface] .dean-directory-grid .rw-service-tile { padding: 8px; }
+  html[data-interface] .dean-directory-grid .rw-service-tile strong { font-size: .84rem; }
+  .dean-booking-types { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .dean-grade-selector { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 8px; }
+  .dean-grade-selector select { width: 100%; }
+  #main[data-section="requests"] .dean-service-choices { grid-template-columns: minmax(0, 1fr); }
+  #my-requests .results > li { align-items: flex-start; gap: 8px; }
+  #my-requests .results > li .tag { align-self: flex-start; }
+  .dean-document-actions { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px; }
+  .dean-document-actions a { justify-content: center; text-align: center; }
+  html[data-interface="railway"] :is(.dean-search-control input, .dean-grade-selector select) { font-size: 16px; }
+}
+@media (max-width: 420px) {
+  .dean-booking-row { grid-template-columns: auto minmax(0, 1fr); column-gap: 10px; row-gap: 2px; }
+  .dean-booking-row .dean-booking-time { grid-column: 2; max-width: none; text-align: start; }
+}
+@media (max-width: 390px) {
+  html[data-interface="railway"] .dean-header-assistant { justify-content: center; min-width: 40px; }
+  .dean-agenda-list > li > a { grid-template-columns: 56px minmax(0, 1fr) auto; }
+  html[data-interface="railway"] input[type="file"] { font-size: .82rem; padding: 6px; }
+  html[data-interface="railway"] input[type="file"]::file-selector-button {
+    font: inherit; margin-inline-end: 7px; padding: 5px 7px;
+  }
+}
+@media (max-width: 350px) {
+  .dean-quick-actions a { padding-inline: 9px; font-size: .9rem; }
+  html[data-interface] .dean-directory-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  html[data-interface] .dean-grade-rows > li { grid-template-columns: auto minmax(0, 1fr); }
+  html[data-interface] .dean-grade-rows > li > strong { grid-column: 2; justify-self: start; }
+}
+@media (min-width: 600px) and (max-width: 1100px) {
+  .dean-booking-availability { min-height: calc(2lh + 19px); }
+}
+
+.dean-nav-toggle, .dean-nav-close, .dean-nav-shade, .dean-nav-account { display: none; }
+html[data-interface="railway"] body[data-responsive-shell] .ui-tools .account-actions .dean-demo-profile {
+  display: flex; flex-direction: column; justify-content: center; gap: 3px;
+  width: auto; min-width: 46px; text-decoration: none;
+}
+html[data-interface="railway"] body[data-responsive-shell] .dean-demo-profile .ui-profile-icon {
+  min-width: 0; min-height: 0;
+}
+.dean-demo-profile-login { font-size: .65rem; font-weight: 700; line-height: 1.1; white-space: nowrap; }
+.dean-header-photo { display: block; border-radius: 50%; object-fit: cover; border: 1px solid var(--line); }
+.dean-confirmation {
+  display: grid; grid-template-columns: 54px minmax(0, 1fr) auto; align-items: center; gap: 12px;
+  margin-block: 0 16px; padding: 14px; border: 1px solid var(--line); border-radius: 14px;
+  background: color-mix(in srgb, #cedff8 27%, var(--surface));
+}
+.dean-confirmation strong { font-size: clamp(1rem, 2vw, 1.25rem); }
+.dean-confirmation button { width: 44px; height: 44px; padding: 0; font-size: 1.3rem; }
+@media (prefers-reduced-motion: no-preference) {
+  .dean-confirmation img { animation: dean-mascot-arrive .36s ease-out both; }
+}
+
+@media (min-width: 1000px) {
+  html:has(body[data-responsive-shell]) { scrollbar-gutter: stable; }
+}
+@media (max-width: 999px) {
+  html:has(body[data-responsive-shell]) {
+    --dean-topbar-height: calc(67px + env(safe-area-inset-top));
+    overscroll-behavior-y: none;
+    scroll-padding-block: var(--dean-topbar-height) env(safe-area-inset-bottom);
+  }
+  html[data-interface="railway"] body[data-responsive-shell][data-private] { min-height: 0; --dock-height: 0px; }
+  html[data-interface="railway"] body[data-responsive-shell] > main#main {
+    padding-bottom: max(12px, env(safe-area-inset-bottom));
+  }
+  html[data-interface="railway"] body[data-responsive-shell] > .ui-header {
+    position: sticky; top: 0;
+    background: var(--surface); border-bottom: 1px solid var(--line);
+  }
+  html[data-interface="railway"] body[data-responsive-shell] > .ui-header .top {
+    gap: 4px; min-height: calc(var(--dean-topbar-height) - 1px);
+    padding-top: calc(6px + env(safe-area-inset-top));
+    padding-left: max(var(--inset), env(safe-area-inset-left));
+    padding-right: max(var(--inset), env(safe-area-inset-right));
+  }
+  body[data-responsive-shell] .ui-identity { flex: 1; min-width: 0; }
+  html[data-interface="railway"] body[data-responsive-shell] .ui-identity .context {
+    display: block; margin: 0; font-weight: 800; overflow: hidden;
+    white-space: nowrap; text-overflow: ellipsis;
+  }
+  body[data-responsive-shell] .ui-tools { gap: 0; margin-inline-start: auto; }
+  body[data-responsive-shell] .dean-header-assistant { min-width: 44px; }
+  body[data-responsive-shell] .ui-tools :is(.logout, .dean-demo-link),
+  body[data-responsive-shell] .ui-identity .brand { display: none; }
+  html[data-interface="railway"] body[data-responsive-shell] .ui-profile > span:first-child { display: none; }
+  html[data-interface="railway"] body[data-responsive-shell] .ui-profile-icon { display: inline-flex; }
+  html[data-interface="railway"] body[data-responsive-shell] :is(.dean-nav-toggle, .dean-nav-close, .ui-profile, .rw-notification-button, .dean-global-search) {
+    position: relative; display: inline-grid; place-items: center; flex: none;
+    width: 44px; height: 44px; border-radius: 9px; color: var(--ink); text-decoration: none;
+  }
+  body[data-responsive-shell] :is(.dean-nav-toggle, .dean-nav-close, .ui-profile):hover { background: var(--tint); }
+  html[data-interface="railway"] body[data-responsive-shell] .rw-rail:is(:target, [data-nav-open]) {
+    position: fixed; z-index: 62; inset: var(--dean-drawer-top, 0px) auto auto 0; width: min(19rem, 88vw);
+    height: var(--dean-drawer-height, 100dvh);
+    display: flex; flex-direction: column; gap: 14px; overflow-y: auto; overscroll-behavior-y: contain;
+    padding: max(14px, env(safe-area-inset-top)) 12px max(14px, env(safe-area-inset-bottom));
+    padding-left: max(12px, env(safe-area-inset-left));
+    background: var(--rail); border-inline-end: 1px solid var(--line);
+  }
+  html[data-interface="railway"] body[data-responsive-shell] .rw-rail > .rw-brand {
+    align-self: flex-start; max-width: calc(100% - 48px); min-height: 44px;
+  }
+  html[data-interface="railway"] body[data-responsive-shell] .dean-nav-close {
+    position: absolute; inset: max(14px, env(safe-area-inset-top)) 12px auto auto; font-size: 1.5rem;
+  }
+  .rw-rail:is(:target, [data-nav-open]) + .dean-nav-shade {
+    display: block; position: fixed; z-index: 61; inset: 0; background: #17171a66;
+  }
+  html:has(body[data-responsive-shell] .rw-rail:is(:target, [data-nav-open])),
+  html:has(body[data-responsive-shell] .dean-lesson-sheet[open]) { overflow: hidden; }
+  body[data-responsive-shell][data-drawer-lock] {
+    position: fixed; inset: var(--dean-drawer-scroll) 0 auto; width: 100%;
+  }
+  body[data-responsive-shell]:has(.rw-rail:is(:target, [data-nav-open])) > .ui-header { visibility: hidden; }
+  body[data-responsive-shell] .dean-nav-account {
+    display: flex; flex-wrap: wrap; align-items: center; gap: 8px; border-top: 1px solid var(--line); padding: 8px;
+  }
+  body[data-responsive-shell] .dean-nav-account form { margin: 0; }
+}
+@media (max-width: 780px) {
+  html:has(body[data-responsive-shell] > #main[data-section="assistant"]) { overflow: hidden; }
+  html[data-interface="railway"] body[data-responsive-shell]:has(> #main[data-section="assistant"]) { min-height: 0; }
+  html[data-interface="railway"] body[data-responsive-shell] > main#main[data-section="assistant"] { padding: 0; }
+  body[data-responsive-shell] .dean-chat-page {
+    height: max(0px, calc(var(--chat-viewport, 100dvh) - var(--dean-topbar-height)));
+  }
+  body[data-responsive-shell] .dean-chat-page .dean-assistant-form textarea { font-size: 16px; }
+}
+@media (min-width: 781px) {
+  body[data-responsive-shell] .dean-lesson-sheet {
+    inset: 0; width: min(calc(100% - 40px), 42rem); margin: auto; border-radius: 20px; padding: 16px 22px 22px;
+  }
+  body[data-responsive-shell] .dean-sheet-grip { display: none; }
+}
+@media (min-width: 781px) and (prefers-reduced-motion: no-preference) {
+  body[data-responsive-shell] .dean-lesson-sheet[open] { animation-name: dean-sheet-fade; }
+  @keyframes dean-sheet-fade { from { opacity: .65; } }
+}
+@media (max-width: 440px) {
+  html[data-interface="railway"] body[data-responsive-shell] .ui-identity { display: none; }
+}
+@media (max-width: 999px) and (prefers-reduced-motion: no-preference) {
+  .rw-rail:is(:target, [data-nav-open]) { animation: dean-rail-in 160ms ease-out; }
+  @keyframes dean-rail-in { from { translate: -12px 0; opacity: .65; } }
+}
+

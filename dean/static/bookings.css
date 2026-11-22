@@ -1,0 +1,256 @@
+.dean-room-agenda {
+  margin-block-start: 22px;
+  min-inline-size: 0;
+}
+.dean-booking-occupancy { margin-block: 10px 16px; }
+.dean-booking-occupancy a { min-height: 44px; }
+
+.dean-room-day {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: end;
+  justify-content: space-between;
+  gap: 12px 24px;
+}
+
+.dean-room-day form,
+.dean-room-day nav {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: end;
+  gap: 8px;
+  margin: 0;
+}
+
+.dean-room-day form label { margin: 0; }
+.dean-room-day form button { margin: 0; }
+.dean-room-day nav a {
+  display: inline-flex;
+  align-items: center;
+  min-height: 42px;
+  padding: 7px 11px;
+  color: var(--study-ink);
+  background: var(--study-bg);
+  border-radius: 10px;
+  font-weight: 750;
+  font-size: .88rem;
+  text-decoration: none;
+}
+
+.dean-room-day nav a:hover { text-decoration: underline; }
+.dean-room-date {
+  font-weight: 850;
+  margin-block: 16px 8px;
+}
+
+.dean-room-legend {
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px 14px;
+  margin: 0 0 12px;
+  padding: 0;
+  font-size: .86rem;
+}
+
+.dean-room-legend li { display: flex; align-items: center; gap: 6px; }
+.dean-room-legend li::before {
+  content: "";
+  inline-size: .8rem;
+  block-size: .8rem;
+  border: 1px solid var(--mark-ink);
+  background: var(--mark-bg);
+  border-radius: .22rem;
+}
+
+.dean-room-legend [data-state="open"],
+.dean-room-table [data-state="open"],
+.dean-slot-card[data-state="open"] {
+  --mark-ink: var(--good);
+  --mark-bg: var(--good-bg);
+}
+
+.dean-room-legend [data-state="own"],
+.dean-room-table [data-state="own"],
+.dean-slot-card[data-state="own"] {
+  --mark-ink: var(--study-ink);
+  --mark-bg: var(--study-bg);
+}
+
+.dean-room-legend [data-state="busy"],
+.dean-room-table [data-state="busy"],
+.dean-slot-card[data-state="busy"] {
+  --mark-ink: var(--warning);
+  --mark-bg: var(--warning-bg);
+}
+
+.dean-room-legend [data-state="closed"],
+.dean-room-table [data-state="closed"],
+.dean-slot-card[data-state="closed"] {
+  --mark-ink: var(--muted);
+  --mark-bg: var(--layer);
+}
+
+.dean-room-scroll {
+  overflow-x: auto;
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  scrollbar-color: var(--edge) var(--layer);
+}
+
+html[data-interface] .dean-room-scroll .dean-room-table {
+  display: table;
+  width: max-content;
+  min-width: 100%;
+  max-width: initial;
+  overflow: visible;
+  border-spacing: 0;
+  border-collapse: separate;
+  margin: 0;
+  font-variant-numeric: lining-nums tabular-nums;
+}
+
+.dean-room-table caption {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
+.dean-room-table :is(th, td) {
+  padding: 7px 6px;
+  text-align: center;
+  vertical-align: middle;
+  border: 0;
+  border-block-end: 1px solid var(--line);
+}
+
+.dean-room-table thead th {
+  font-size: .83rem;
+  color: var(--muted);
+  font-weight: 750;
+  background: var(--layer);
+}
+
+.dean-room-table :is(thead, tbody) th:first-child {
+  position: sticky;
+  inset-inline-start: 0;
+  z-index: 1;
+  min-width: 9.5rem;
+  max-width: 11rem;
+  padding: 10px;
+  text-align: start;
+  border-inline-end: 1px solid var(--line);
+}
+
+.dean-room-table tbody th {
+  background: var(--surface);
+  font-size: .88rem;
+}
+
+.dean-room-table tbody th a { color: var(--ink); text-underline-offset: .15em; }
+.dean-room-table tbody th small {
+  display: block;
+  margin-top: 3px;
+  color: var(--muted);
+  font-weight: 600;
+  overflow-wrap: anywhere;
+}
+
+.dean-room-table td {
+  min-width: 5.7rem;
+  color: var(--mark-ink);
+  font-size: .77rem;
+  font-weight: 750;
+  white-space: nowrap;
+  background: var(--mark-bg);
+  border-inline-end: 1px solid var(--surface);
+}
+
+.dean-room-table td a {
+  display: grid;
+  place-items: center;
+  min-height: 38px;
+  padding-inline: 4px;
+  border: 1px solid currentColor;
+  border-radius: 7px;
+  color: inherit;
+  text-decoration: none;
+}
+
+.dean-room-table td a:is(:hover, :focus-visible) { background: var(--surface); }
+.dean-room-table tr:last-child :is(th, td) { border-block-end: 0; }
+
+.dean-slot-group h3 {
+  margin: 15px 0 7px;
+  color: var(--muted);
+  font-size: .9rem;
+}
+
+.dean-slot-group ul {
+  list-style: none;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 12rem), 1fr));
+  gap: 8px;
+  margin: 0;
+  padding: 0;
+}
+
+.dean-slot-card {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  padding: 10px 13px;
+  min-height: 62px;
+  height: 100%;
+  color: var(--ink);
+  background: var(--mark-bg);
+  border: 1px solid var(--line);
+  border-radius: 13px;
+  text-decoration: none;
+  font-variant-numeric: lining-nums tabular-nums;
+}
+
+.dean-slot-card:hover { border-color: var(--mark-ink); }
+.dean-slot-card strong { font-size: 1.05rem; }
+.dean-slot-card small { display: block; margin-top: 2px; color: var(--mark-ink); }
+.dean-slot-card > .rw-icon { flex-shrink: 0; color: var(--mark-ink); }
+
+.dean-slot-inputs {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 13rem), 1fr));
+  gap: 8px 12px;
+  max-width: 31rem;
+}
+.dean-slot-inputs label { min-width: 0; }
+.dean-slot-inputs input { min-width: 0; min-height: 44px; max-width: 100%; }
+[data-room-lessons] > [hidden] { display: none !important; }
+
+.dean-room-mobile { display: none; }
+
+@media (max-width: 720px) {
+  .dean-booking-occupancy a { width: 100%; text-align: center; }
+  .dean-room-agenda :is(.dean-room-scroll, .dean-room-legend) { display: none; }
+  .dean-room-mobile { display: grid; gap: 16px; }
+  .dean-room-mobile > section { border-block-start: 1px solid var(--line); padding-block-start: 10px; }
+  .dean-room-mobile h3 { font-size: 1rem; margin-block: 0 4px; }
+  .dean-room-mobile .meta { margin-block: 0 8px; }
+  .dean-room-mobile ul {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 6.75rem), 1fr));
+    gap: 6px; list-style: none; margin: 0; padding: 0;
+  }
+  .dean-room-mobile li { min-width: 0; }
+  .dean-room-mobile a {
+    display: grid; place-items: center; min-height: 44px; padding-inline: 4px;
+    text-align: center; font-weight: 750; text-decoration: none; border-radius: 8px;
+  }
+  .dean-room-mobile h3 a { display: inline-flex; justify-content: start; min-height: 40px; padding: 0; text-align: start; }
+  .dean-room-mobile [data-state="open"] a { color: var(--good); background: var(--good-bg); }
+  .dean-room-mobile [data-state="own"] a { color: var(--study-ink); background: var(--study-bg); }
+  #main[data-section="booking-slot"] form:has([data-room-lessons]) button[type="submit"],
+  #main[data-section="booking-slot"] form:has([data-room-lessons]) button:not([type]) { width: 100%; min-height: 44px; }
+}
+

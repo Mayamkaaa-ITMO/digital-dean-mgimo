@@ -1,0 +1,540 @@
+/* Railway surfaces and semantic accents. The archived appearance keeps its own tokens. */
+html[data-interface="railway"]:not([data-layout="v29"]) {
+  --on-accent: #fff;
+  --chat-outgoing: var(--layer);
+  --study-ink: #625080;
+  --study-bg: #eee7f4;
+  --inset: clamp(16px, 2.35vw, 36px);
+}
+html[data-interface="railway"][data-theme="graphite"]:not([data-layout="v29"]) {
+  color-scheme: dark;
+  --back: #101215;
+  --surface: #191c21;
+  --rail: #14171b;
+  --panel: #1c2026;
+  --layer: #23282f;
+  --ink: #f1f3f7;
+  --muted: #b3bdc9;
+  --line: #343b45;
+  --edge: #768497;
+  --accent: #a7c9ff;
+  --accent-hover: #c9ddff;
+  --on-accent: #142944;
+  --tint: #223148;
+  --active: var(--accent);
+  --lead: #25202a;
+  --lead-hover: #312738;
+  --lead-ink: #f6ecfa;
+  --lead-muted: #d1bdd5;
+  --lead-change: #ffbf9f;
+  --lead-line: #55445f;
+  --warning: #f7cb88;
+  --warning-bg: #382d21;
+  --good: #96dbb9;
+  --good-bg: #1e342c;
+  --danger: #ffaeb5;
+  --danger-bg: #3c252b;
+  --focus: #cfb3ff;
+  --study-ink: #dac4ff;
+  --study-bg: #30273f;
+  --chat-outgoing: var(--tint);
+  --assistant-card: #252230;
+  --assistant-edge: #484052;
+  --assistant-arrow: var(--study-ink);
+  --assistant-meta: #cec3db;
+}
+html[data-interface="railway"][data-theme="graphite"] .error {
+  background: var(--danger-bg); color: var(--danger); border-color: var(--danger);
+}
+html[data-interface="railway"][data-theme="graphite"] .skip {
+  background: var(--surface); color: var(--accent);
+}
+html[data-interface="railway"][data-theme="graphite"] .login {
+  --accent: inherit;
+  --tint: inherit;
+  --line: inherit;
+}
+html[data-interface="railway"][data-theme="graphite"] .rw-rail nav [aria-current] {
+  color: var(--accent); background: var(--tint);
+}
+html[data-interface="railway"][data-theme="graphite"] .rw-dock :is([aria-current], .is-current) > .rw-icon {
+  color: var(--accent); background: var(--tint);
+}
+html[data-interface="railway"][data-theme="graphite"] :is(form > button, .rw-primary-link):not(
+  .quiet, .campus-map *, .rw-action-danger *, .rw-action-attention *
+):hover:not(:disabled) {
+  background: var(--accent-hover); border-color: var(--accent-hover);
+}
+html[data-theme="graphite"] .occupancy-table [data-heat="low"] {
+  color: var(--good); background: var(--good-bg);
+}
+html[data-theme="graphite"] .occupancy-table [data-heat="medium"] {
+  color: var(--warning); background: var(--warning-bg);
+}
+html[data-theme="graphite"] .occupancy-table [data-heat="high"] {
+  color: var(--danger); background: var(--danger-bg);
+}
+html[data-theme="graphite"] .rp .rp-danger { color: var(--danger); border-color: var(--danger); }
+html[data-interface="railway"][data-theme="chalk"]:not([data-palette="blue-chalk"]) {
+  --back: #f3f7fa;
+  --surface: #fffdfa;
+  --rail: #faf9f7;
+  --panel: #eef2f4;
+  --layer: #e8eff3;
+  --ink: #312c27;
+  --muted: #5f6261;
+  --line: #d6dfe3;
+  --edge: #788087;
+  --accent: #8a402c;
+  --tint: #f5e4d9;
+  --active: #8a402c;
+  --lead: #f7efe6;
+  --lead-hover: #f1e7dc;
+  --lead-ink: #382c27;
+  --lead-muted: #785849;
+  --lead-change: #765014;
+  --lead-line: #e1c7ae;
+  --warning: #765014;
+  --warning-bg: #f8ead2;
+  --good: #506735;
+  --good-bg: #eaf0db;
+  --study-ink: #506735;
+  --study-bg: #eaf0db;
+  --focus: #28669f;
+  --chat-outgoing: #e1ebf1;
+  --assistant-card: #eee7f1;
+  --assistant-edge: #e0d4e6;
+  --assistant-arrow: #684778;
+  --assistant-meta: #614f6c;
+}
+html[data-interface="railway"]:not([data-layout="v29"]) :focus-visible { outline-color: var(--focus); }
+html[data-interface="railway"]:not([data-layout="v29"]) :is(input:not([type="file"],[type="checkbox"],[type="radio"]), select, textarea):not(.campus-map *) {
+  background: var(--surface);
+  color: var(--ink);
+}
+html[data-interface="railway"]:not([data-layout="v29"]) :is(input, textarea)::placeholder { color: var(--muted); opacity: .88; }
+html[data-interface="railway"]:not([data-layout="v29"]) :is(button:not(.quiet, .dean-chat-collapse), .rw-primary-link):not(
+  .campus-map *, .rw-action-danger *, .rw-action-attention *
+) {
+  color: var(--on-accent);
+}
+html[data-interface="railway"]:not([data-layout="v29"]) .quiet:not(.campus-map *) {
+  background: var(--surface);
+  color: var(--accent);
+  border-color: var(--line);
+}
+html[data-interface="railway"]:not([data-layout="v29"]) .quiet:not(.campus-map *):hover { background: var(--layer); }
+html[data-interface="railway"]:not([data-layout="v29"]) :is(.panel, .empty, .dean-chat) { overflow-wrap: anywhere; }
+html[data-interface="railway"]:not([data-layout="v29"]) .panel { border-color: var(--line); }
+html[data-interface="railway"]:not([data-layout="v29"]) .empty {
+  background: var(--panel);
+  color: var(--muted);
+  border: 1px solid var(--line);
+}
+html[data-interface="railway"][data-theme="graphite"]:not([data-layout="v29"]) .rw-lesson-type {
+  color: var(--ink);
+}
+html[data-interface="railway"][data-theme="graphite"]:not([data-layout="v29"]) .rw-lesson-type[data-lesson-type="lecture"] { --type-dot: #c9b7d5; }
+html[data-interface="railway"][data-theme="graphite"]:not([data-layout="v29"]) .rw-lesson-type[data-lesson-type="practice"] { --type-dot: #eed096; }
+html[data-interface="railway"][data-theme="graphite"]:not([data-layout="v29"]) .rw-lesson-type[data-lesson-type="lab"] { --type-dot: #dbc3f2; }
+
+/* The next lesson precedes the calendar strip and the mobile chat entry. */
+.dean-dashboard-layout { display: grid; grid-template-columns: minmax(0, 1fr); gap: 18px; align-items: start; }
+.dean-dashboard-layout > .dean-chat-embedded { display: none; }
+.dean-dashboard-content, .rw-day-intro, .dean-chat { min-width: 0; }
+html[data-interface="railway"]:not([data-layout="v29"]) .rw-day-intro { display: grid; min-width: 0; gap: 12px; }
+html[data-interface="railway"]:not([data-layout="v29"]) .rw-day-intro > :is(.rw-hero, .rw-date-strip) { margin: 0; }
+html[data-interface="railway"]:not([data-layout="v29"]) .rw-lead {
+  border: 1px solid var(--lead-line);
+  border-radius: 19px;
+  padding: clamp(13px, 1.6vw, 20px);
+}
+html[data-interface="railway"]:not([data-layout="v29"]) .rw-lead-time > strong {
+  font-size: clamp(26px, 3.1vw, 42px);
+  font-variant-numeric: tabular-nums;
+  line-height: 1.04;
+}
+html[data-interface="railway"]:not([data-layout="v29"]) .rw-priority-link[data-glyph="calendar"] > .rw-icon:first-child {
+  background: var(--warning-bg); color: var(--warning);
+}
+html[data-interface="railway"]:not([data-layout="v29"]) .rw-priority-link[data-glyph="file"] > .rw-icon:first-child {
+  background: var(--study-bg); color: var(--study-ink);
+}
+.dean-today-date { display: none; }
+html[data-interface="railway"]:not([data-layout="v29"]) #main[data-section="today"] h1 {
+  margin: 0 0 3px; color: var(--muted); font-size: 1rem; font-weight: 800; letter-spacing: 0;
+}
+html[data-interface="railway"]:not([data-layout="v29"]) #main[data-section="today"] .rw-page-heading .subtitle {
+  position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px;
+  overflow: hidden; clip-path: inset(50%); white-space: nowrap;
+}
+html[data-interface="railway"]:not([data-layout="v29"]) .dean-today-date {
+  display: flex; align-items: center; flex-wrap: wrap; gap: 10px;
+}
+.dean-date-number,
+.dean-date-caption strong {
+  font-family: Georgia, "Times New Roman", serif;
+  font-weight: 700; font-variant-numeric: lining-nums tabular-nums;
+}
+.dean-date-number { font-size: clamp(51px, 5vw, 68px); line-height: 1; letter-spacing: -.065em; }
+.dean-date-caption { display: grid; gap: 2px; border-inline-start: 1px solid var(--line); padding-inline-start: 10px; }
+.dean-date-caption strong { font-size: clamp(25px, 3vw, 38px); line-height: 1.08; }
+.dean-date-caption small { color: var(--muted); font-size: .83rem; }
+html[data-interface="railway"][data-theme="chalk"]:not([data-palette="blue-chalk"]) #main[data-section="today"] :is(.rw-lead > div:first-child > strong, .rw-priority h2) {
+  font-family: Georgia, "Times New Roman", serif;
+  font-weight: 700;
+}
+.dean-dashboard-shortcuts { display: grid; grid-template-columns: minmax(0, 1fr); gap: 8px; }
+.dean-dashboard-shortcuts-paired { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+.dean-shortcut-tile {
+  display: grid; grid-template-columns: minmax(0, 1fr) auto; align-content: space-between;
+  align-items: start; gap: 7px; min-height: 102px; min-width: 0;
+  padding: 10px 11px; border: 1px solid var(--line); border-radius: 15px;
+  background: var(--surface); color: var(--ink); text-decoration: none;
+}
+.dean-assistant-launcher {
+  background: var(--assistant-card, var(--surface)); border-color: var(--assistant-edge, var(--line));
+}
+.dean-shortcut-tile:hover strong { text-decoration: underline; }
+.dean-shortcut-tile > span:last-child { grid-column: 1 / -1; }
+.dean-shortcut-tile strong { display: block; font-size: .96rem; line-height: 1.2; }
+.dean-shortcut-tile small { display: block; margin-top: 3px; color: var(--muted); font-size: .8rem; line-height: 1.2; }
+.dean-assistant-launcher small { color: var(--assistant-meta, var(--muted)); }
+.dean-shortcut-arrow {
+  display: grid; place-items: center; width: 27px; height: 30px; color: var(--accent);
+}
+.dean-assistant-launcher .dean-shortcut-arrow { color: var(--assistant-arrow, var(--accent)); }
+.dean-shortcut-arrow .rw-icon { width: 17px; height: 17px; }
+.dean-map-tile-icon {
+  display: grid; place-items: center; width: 35px; height: 35px;
+  border-radius: 9px; color: var(--muted); background: var(--layer, var(--tint));
+}
+.dean-mascot { flex: none; display: block; object-fit: contain; }
+@media (min-width: 1040px) {
+  html:not([data-chat-collapsed]) .dean-dashboard-layout {
+    grid-template-columns: minmax(0, 1fr) clamp(292px, 32vw, 448px); gap: clamp(14px, 1.6vw, 24px);
+  }
+  html:not([data-chat-collapsed]) .dean-dashboard-layout > .dean-chat-embedded {
+    display: grid; grid-row: auto; position: sticky; top: 16px;
+    height: clamp(320px, calc(100dvh - 240px), 810px);
+  }
+  html:not([data-chat-collapsed]) .dean-dashboard-shortcuts { display: none; }
+  html[data-chat-collapsed] .dean-dashboard-shortcuts { max-width: 36rem; }
+}
+@media (max-width: 780px) {
+  html[data-interface="railway"]:not([data-layout="v29"]) #main[data-section="today"] { padding-top: 10px; }
+  html[data-interface="railway"]:not([data-layout="v29"]) #main[data-section="today"] .rw-page-heading { margin-bottom: 12px; }
+  html[data-interface="railway"]:not([data-layout="v29"]) .rw-lead > div:first-child { min-width: 0; }
+  html[data-interface="railway"]:not([data-layout="v29"]) .rw-lead > div:first-child > strong { overflow-wrap: anywhere; }
+}
+/* Preserve the feed, header and composer as separate regions. */
+.dean-visually-hidden,
+#main[data-section="assistant"] > h1 {
+  position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px;
+  overflow: hidden; clip-path: inset(50%); white-space: nowrap; border: 0;
+}
+.dean-chat {
+  display: grid;
+  grid-template-rows: auto minmax(0, 1fr) auto;
+  max-width: none;
+  min-height: 0;
+  background: var(--back);
+  border: 1px solid var(--line);
+  border-radius: 18px;
+}
+.dean-chat-page { max-width: 66rem; height: clamp(380px, calc(100dvh - 116px), 860px); margin-inline: auto; }
+.dean-chat-header {
+  position: relative; z-index: 2; display: flex; align-items: center; gap: 8px; min-width: 0;
+  padding: 8px 10px; background: var(--surface); border-bottom: 1px solid var(--line);
+  border-radius: 18px 18px 0 0;
+}
+.dean-chat-heading { flex: 1; min-width: 0; }
+.dean-chat-heading h2 { margin: 0; font-size: 1rem; line-height: 1.18; overflow-wrap: normal; }
+.dean-chat-heading .meta { margin: 2px 0 0; line-height: 1.15; font-size: .75rem; }
+.dean-chat-tools { display: flex; align-items: center; flex: none; gap: 2px; }
+.dean-chat-header :is(a, summary, .dean-chat-collapse:not([hidden])) {
+  display: inline-grid; place-items: center; min-width: 44px; min-height: 44px; padding: 0 5px;
+  color: var(--ink); text-decoration: none; font-weight: 750; font-size: .81rem; border-radius: 9px;
+}
+.dean-chat-header :is(a, summary, .dean-chat-collapse):hover { background: var(--layer, var(--tint)); }
+.dean-chat-header .dean-chat-collapse { background: transparent; border: 0; box-shadow: none; }
+.dean-chat-header .dean-chat-new { background: var(--tint); color: var(--accent); font-size: 1.36rem; }
+.dean-chat-header .dean-chat-expand { font-size: .76rem; }
+.dean-chat-header .dean-chat-history summary { list-style: none; padding: 0 5px; }
+.dean-chat-history summary::-webkit-details-marker { display: none; }
+.dean-chat-history-popover {
+  position: absolute; right: 8px; top: calc(100% + 4px); z-index: 3;
+  width: min(18rem, calc(100% - 16px)); max-height: 48dvh; overflow-y: auto;
+  border: 1px solid var(--line); border-radius: 12px; padding: 6px;
+  background: var(--surface); box-shadow: 0 8px 28px #10151735;
+}
+.dean-chat-history-popover ul { list-style: none; padding: 0; margin: 0; }
+.dean-chat-history-popover li + li { border-top: 1px solid var(--line); }
+.dean-chat-history-popover a { display: flex; justify-content: flex-start; padding: 7px 9px; }
+.dean-chat-history-popover a[aria-current] { color: var(--accent); background: var(--tint); }
+.dean-chat-history-popover .meta { margin: 8px; }
+.dean-chat-log {
+  min-height: 0; max-height: none; overflow-y: auto; overscroll-behavior-y: contain;
+  padding: 12px 12px 16px; scroll-padding: 12px; scrollbar-width: thin;
+}
+.dean-chat-log:focus-visible { outline-offset: -3px; }
+.dean-chat-day { display: flex; align-items: center; gap: 9px; margin: 6px 0 12px; font-size: .78rem; color: var(--muted); }
+.dean-chat-day::before, .dean-chat-day::after { content: ""; flex: 1; height: 1px; background: var(--line); }
+.dean-chat-turn { display: grid; gap: 10px; margin-bottom: 13px; padding: 0; border: 0; }
+.dean-chat-message {
+  margin: 0; min-width: 0; padding: 9px 11px;
+  color: var(--ink); background: var(--surface); border: 1px solid var(--line); border-radius: 3px 14px 14px 14px; overflow-wrap: anywhere;
+  font-size: .925rem; line-height: 1.45;
+}
+.dean-chat-message > p { margin: 0; white-space: pre-wrap; }
+.dean-chat-message[data-chat-speaker="user"] {
+  justify-self: end; width: fit-content; max-width: 88%;
+  background: var(--chat-outgoing, var(--tint)); border-color: transparent; border-radius: 14px 14px 3px 14px;
+}
+.dean-chat-answer { display: flex; align-items: flex-start; gap: 7px; }
+.dean-chat-answer > .dean-chat-message { width: fit-content; max-width: calc(100% - 33px); }
+html[data-theme="chalk"] .dean-chat-answer > .dean-chat-message {
+  border-color: transparent; background: transparent; padding: 2px 0 4px;
+}
+html[data-theme="chalk"] .dean-chat-confirmation {
+  padding: 9px 11px; border: 1px solid var(--line); border-radius: 12px; background: var(--surface);
+}
+.dean-chat-time { display: block; margin-top: 4px; color: var(--muted); font-variant-numeric: tabular-nums; text-align: end; font-size: .72rem; }
+.dean-chat-pending { margin-left: auto; opacity: .75; }
+.dean-chat-confirmation { margin: 0; padding: 0; border: 0; background: transparent; }
+.dean-chat-confirmation p { margin: 0 0 4px; }
+.dean-chat-confirmation .dean-chat-card-label { font-size: .8rem; font-weight: 800; color: var(--warning, var(--accent)); }
+.dean-chat .dean-chat-confirmation form { margin: 6px 0 0; padding: 0; }
+.dean-chat-link { display: inline-flex; align-items: center; min-height: 44px; font-weight: 800; }
+.dean-chat-welcome { width: min(100%, 24rem); text-align: center; margin: clamp(4px, 3dvh, 25px) auto 0; }
+.dean-chat-welcome img { margin-inline: auto; }
+.dean-chat-welcome h3 { margin: 5px 0 2px; font-size: 1.3rem; }
+.dean-chat-welcome p { margin: 0; color: var(--muted); font-size: .88rem; }
+.dean-chat-welcome .dean-chat-suggestions { display: grid; gap: 6px; margin-top: 12px; }
+.dean-chat-suggestions button { margin: 0; text-align: start; }
+.dean-chat .dean-chat-suggestions .quiet { min-height: 44px; font-size: .85rem; padding-inline: 9px; }
+.dean-chat-composer {
+  padding: 6px 8px max(8px, env(safe-area-inset-bottom));
+  background: var(--surface); border-top: 1px solid var(--line); border-radius: 0 0 18px 18px;
+}
+.dean-chat .dean-assistant-form {
+  display: flex; align-items: flex-end; gap: 6px; padding: 0; margin: 0;
+}
+.dean-chat .dean-assistant-form label { min-width: 0; flex: 1; width: auto; margin: 0; }
+.dean-chat .dean-assistant-form textarea {
+  display: block; width: 100%; height: 44px; min-height: 44px; max-height: min(112px, 25dvh);
+  resize: none; padding: 9px 11px; margin: 0; font-weight: 500; font-size: 16px; line-height: 1.4;
+}
+@supports (field-sizing: content) {
+  .dean-chat .dean-assistant-form textarea { field-sizing: content; height: auto; }
+}
+html[data-interface] .dean-chat .dean-assistant-form button:not([hidden]) {
+  display: grid; place-items: center; width: 44px; height: 44px; flex: none; padding: 0; margin: 0;
+  border-radius: 12px; color: var(--on-accent, #fff);
+}
+.dean-chat-retry { display: none; }
+html[data-interface] .dean-chat-status[data-chat-status][data-state="error"]:not([hidden]) ~ form button[type="submit"] { width: auto; padding-inline: 8px; }
+.dean-chat-status[data-chat-status][data-state="error"]:not([hidden]) ~ form .dean-chat-retry { display: inline; font-size: .82rem; }
+.dean-chat-status[data-chat-status][data-state="error"]:not([hidden]) ~ form button[type="submit"] svg { display: none; }
+html[data-interface] .dean-chat .dean-assistant-form .dean-dictation:not([hidden]) {
+  color: var(--ink); border: 1px solid var(--line); background: var(--surface);
+}
+.dean-dictation svg { display: block; width: 20px; height: 20px; }
+html[data-interface] .dean-chat .dean-assistant-form .dean-dictation[aria-pressed="true"] {
+  color: #9e263b; background: #ffe7eb; border-color: #e1a7b2;
+}
+html[data-interface] .dean-chat .dean-chat-status:not([hidden]) {
+  margin: 0 0 6px; padding: 5px 8px; font-size: .8rem; color: var(--muted); background: var(--layer, var(--back));
+}
+html[data-interface] .dean-chat .dean-chat-status[data-state="error"]:not([hidden]) {
+  color: var(--danger, #861c14); background: var(--danger-bg, #fff2ed);
+}
+.dean-chat [hidden] { display: none; }
+@media (max-width: 1159px) {
+  .dean-chat-embedded .dean-chat-header { flex-wrap: wrap; }
+  .dean-chat-embedded .dean-chat-tools { margin-inline-start: auto; }
+}
+@media (max-width: 780px) {
+  html[data-interface="railway"] body:not([data-responsive-shell]):has(#main[data-section="assistant"]) > :is(.ui-header, .rw-dock, .rw-rail) { display: none; }
+  html[data-interface="railway"] body[data-private] > main#main[data-section="assistant"] {
+    width: 100%; max-width: none; margin: 0; padding: 0;
+  }
+  html[data-interface="railway"] .dean-chat-page {
+    height: var(--chat-viewport, 100dvh); max-width: none; border: 0; border-radius: 0;
+  }
+  html[data-interface="railway"] .dean-chat-page :is(.dean-chat-header, .dean-chat-composer) { border-radius: 0; }
+}
+
+/* The logo, guest entry and password form share a calm surface. */
+#main[data-section="login"] { max-width: 38rem; }
+#main[data-section="login"] .dean-login {
+  max-width: none; margin: 0; border-radius: 20px; padding: clamp(15px, 3vw, 28px);
+}
+.dean-login .login-form { display: grid; gap: 8px; margin: 0; }
+.dean-login .login-form > label { margin: 0; }
+.dean-login .password-row { display: grid; grid-template-columns: minmax(0, 1fr) auto; }
+.dean-login .password-row input { width: 100%; max-width: none; }
+.dean-login .password-row:has(button[hidden]) { grid-template-columns: minmax(0, 1fr); }
+.dean-login :is(.login-form input:not([type="checkbox"]), [data-show-password], .login-form > button) { min-height: 46px; }
+.dean-login .login-form > button { width: 100%; }
+.dean-login .login-remember { align-items: flex-start; min-height: 38px; font-size: .9rem; line-height: 1.25; }
+.dean-login .login-remember input { flex: none; }
+.dean-login .login-remember small { display: block; margin-top: 2px; color: var(--muted); font-size: .78rem; }
+.dean-login .login-context { margin: 0 0 12px; color: var(--muted); font-size: .88rem; }
+.dean-login .guest-entry a { display: inline-flex; align-items: center; min-height: 44px; }
+.dean-login .dean-login-extra > summary { color: var(--muted); padding: 6px 0; font-size: .87rem; }
+.dean-login .dean-login-extra p { margin: 0 0 8px; }
+.dean-dashboard-settings {
+  display: grid; gap: 8px; grid-template-columns: repeat(auto-fit, minmax(min(100%, 180px), 1fr));
+  margin: 10px 0; padding: 12px; border: 1px solid var(--line); border-radius: 12px;
+}
+.dean-dashboard-settings label { margin: 0; min-width: 0; }
+.dean-dashboard-settings select { max-width: none; }
+.dean-profile-photo { display: flex; align-items: start; flex-wrap: wrap; gap: 14px; }
+.dean-profile-photo > :is(img, svg) {
+  width: 68px; height: 68px; object-fit: cover; border-radius: 50%;
+  border: 1px solid var(--line); background: var(--layer);
+}
+.dean-profile-photo > svg { padding: 16px; color: var(--muted); }
+.dean-profile-photo > div { min-width: 0; flex: 1 1 180px; }
+.dean-profile-upload input { width: 100%; max-width: 27rem; }
+
+.campus-map { color-scheme: light; }
+
+.dean-directory-search {
+  display: flex; align-items: end; flex-wrap: wrap; gap: 8px;
+  margin-block: 0 14px; max-width: 48rem;
+}
+.dean-directory-search label { flex: 1 1 12rem; margin: 0; min-width: 0; }
+.dean-directory-search :is(input, select) { max-width: none; }
+.dean-directory-search > a, .dean-directory-jumps > a, .dean-secondary-link {
+  display: inline-flex; align-items: center; min-height: 44px;
+}
+.dean-directory-tabs { width: fit-content; max-width: 100%; }
+.dean-directory-jumps {
+  display: flex; flex-wrap: wrap; gap: 2px 16px; margin-bottom: 8px;
+}
+.dean-booking-grid {
+  display: grid; gap: 12px;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 220px), 1fr));
+}
+.dean-booking-grid article {
+  display: flex; flex-direction: column; min-width: 0;
+  border: 1px solid var(--line); border-radius: 14px; background: var(--surface);
+}
+html[data-interface="railway"] .dean-booking-grid .rw-service-tile {
+  flex: 1; border: none; border-radius: 13px 13px 0 0;
+}
+.dean-booking-availability {
+  margin: 0; padding: 9px 14px; color: var(--muted); border-block-start: 1px solid var(--line); font-size: .84rem;
+}
+.dean-occupancy {
+  display: block; width: 100%; max-width: 36rem; height: 10px; border-radius: 4px;
+  fill: var(--layer); background: var(--layer); border: 1px solid var(--line);
+}
+.dean-occupancy .dean-occupancy-busy { fill: var(--warning); }
+.dean-occupancy-key { display: flex; flex-wrap: wrap; gap: 14px; color: var(--muted); font-size: .83rem; }
+.dean-occupancy-key span::before {
+  content: ""; display: inline-block; width: 9px; height: 9px; margin-inline-end: 5px;
+  border: 1px solid var(--line); border-radius: 2px; background: var(--layer);
+}
+.dean-occupancy-key span:last-child::before { background: var(--warning); }
+.dean-brand-short { display: none; }
+@media (max-width: 520px) {
+  html[data-interface="railway"] main[data-section="bookings"] .dean-directory-tabs {
+    display: grid; grid-template-columns: .52fr 1fr 1.2fr 1fr; width: 100%; gap: 3px;
+  }
+  html[data-interface="railway"] main[data-section="bookings"] .dean-directory-tabs a {
+    justify-content: center; min-width: 0; padding-inline: 2px; font-size: .75rem;
+  }
+}
+@media (max-width: 360px) {
+  html[data-interface="railway"] body[data-private] > .ui-header .top.wrap {
+    flex-wrap: nowrap; gap: 4px; padding-inline: 10px;
+  }
+  html[data-interface="railway"] body[data-private] .ui-identity { min-width: 0; }
+  html[data-interface="railway"] .rw-mobile-brand .dean-brand-name { display: none; }
+  html[data-interface="railway"] .rw-mobile-brand .dean-brand-short { display: inline; white-space: nowrap; }
+  html[data-interface="railway"] .rw-dock a span { white-space: nowrap; font-size: .625rem; }
+  html[data-interface="railway"] main[data-section="bookings"] .dean-directory-tabs {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+@media (max-width: 780px) and (max-height: 640px) {
+  .campus-map[data-campus-state="route"]:not([data-campus-mobile-ready]) .campus-grid {
+    grid-template-areas: "sidebar" "map" "search" "legend" "reference";
+  }
+  .campus-map[data-campus-state="route"]:not([data-campus-mobile-ready]):has(.campus-current) .campus-grid {
+    grid-template-areas: "step" "map" "settings" "search" "legend" "reference";
+    gap: 6px;
+  }
+  .campus-map[data-campus-state="route"]:not([data-campus-mobile-ready]):has(.campus-current) .campus-sidebar { display: contents; }
+  .campus-sidebar > .campus-current { grid-area: step; padding: 6px 10px; gap: 2px; }
+  .campus-sidebar > .campus-route { grid-area: settings; }
+  .campus-current .campus-route-tools a { min-height: 32px; padding-block: 3px; }
+  .campus-current .campus-step-actions { margin-top: 1px; }
+  .campus-map[data-campus-state="route"]:not([data-campus-mobile-ready]) .campus-viewport {
+    height: clamp(155px, 32svh, 205px); min-height: 0;
+  }
+}
+
+.dean-activity-list {
+  list-style: none; margin: 0; padding: 0; display: grid; gap: 12px;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 260px), 1fr));
+}
+.dean-activity-list li {
+  display: grid; align-content: start; gap: 6px; min-width: 0; padding: 12px;
+  border: 1px solid var(--line); border-radius: 13px; background: var(--surface);
+  overflow-wrap: anywhere;
+}
+.dean-activity-category { justify-self: start; color: var(--study-ink, var(--accent)); background: var(--study-bg, var(--tint)); padding: 3px 7px; border-radius: 6px; font-size: .78rem; font-weight: 800; }
+.dean-activity-list a { display: inline-flex; align-items: center; min-height: 44px; font-weight: 800; }
+.dean-activity-time { display: flex; flex-wrap: wrap; align-items: center; gap: 4px 7px; font-size: .88rem; }
+.dean-activity-list p { margin: 0; }
+
+/* Staff decisions and student correction notices. */
+.rw-staff-action-title { margin: 0 0 4px; font-size: 1rem; }
+.rw-staff-action-hint { margin: 0 0 8px; color: var(--muted); font-size: .86rem; }
+.rw-staff-actions .rw-action-attention { border-color: var(--warning, var(--line)); }
+.rw-staff-actions .rw-action-danger { border-color: var(--danger, var(--line)); }
+html[data-theme="graphite"] .rw-action-attention button:not(.quiet):hover {
+  background: var(--warning); color: var(--surface);
+}
+html[data-theme="graphite"] .rw-action-danger button:not(.quiet):hover {
+  background: var(--danger); color: var(--surface);
+}
+.rw-request-reason { margin: 12px 0; border-inline-start: 3px solid var(--warning, var(--accent)); background: var(--warning-bg, var(--tint)); padding: 11px 13px; border-radius: 9px; }
+.rw-request-reason p { margin-block: 3px 0; white-space: pre-wrap; overflow-wrap: anywhere; }
+.rw-request-reason a { min-height: 44px; display: inline-flex; align-items: center; }
+.rw-more-title { display: flex; justify-content: space-between; align-items: center; gap: 8px; }
+.rw-more-title h2 { margin: 0; }
+.rw-more-dismiss { min-height: 44px; min-width: 44px; margin: 0; padding: 6px 9px; }
+.rw-more-dismiss[hidden] { display: none; }
+html[data-interface] .dean-tour-anchor { scroll-margin-block: 14px; }
+@media (prefers-reduced-motion: reduce) {
+  .dean-chat *, .dean-tour *, .rw-more-sheet * { scroll-behavior: auto; transition: none; }
+}
+
+#main .lesson-route-card {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 10px 14px;
+  background: var(--tint);
+}
+.lesson-route-card h2 { margin: 0; font-size: 1.05rem; }
+.lesson-route-card p { margin: 2px 0 0; overflow-wrap: anywhere; }
+.lesson-route-icon {
+  display: grid;
+  place-items: center;
+  width: 42px;
+  aspect-ratio: 1;
+  border-radius: 12px;
+  background: var(--surface);
+  color: var(--accent);
+}
+.lesson-route-icon svg { width: 22px; height: 22px; }
+@media (max-width: 460px) {
+  #main .lesson-route-card { grid-template-columns: auto minmax(0, 1fr); }
+  .lesson-route-card a { grid-column: 1 / -1; justify-content: center; }
+}

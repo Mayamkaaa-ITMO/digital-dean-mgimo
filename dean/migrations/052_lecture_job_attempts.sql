@@ -1,0 +1,1 @@
+ALTER TABLE lecture_analysis_job ADD COLUMN attempts INTEGER NOT NULL DEFAULT 0 CHECK(attempts BETWEEN 0 AND 2);

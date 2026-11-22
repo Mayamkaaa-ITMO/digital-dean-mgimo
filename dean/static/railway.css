@@ -1,0 +1,680 @@
+html[data-interface="railway"] {
+  --ink: #17171a;
+  --muted: #575760;
+  --surface: #fff;
+  --back: #fff;
+  --rail: #f7f7f8;
+  --layer: #f4f4f6;
+  --panel: #f8f8fa;
+  --line: #e9e9ee;
+  --edge: #85858e;
+  --accent: #1d506f;
+  --tint: #e8f2f8;
+  --active: #17171a;
+  --lead: #17171a;
+  --lead-hover: #28282d;
+  --lead-ink: #fff;
+  --lead-muted: #d5d5dc;
+  --lead-change: #ffbd99;
+  --lead-line: #727279;
+  --warning: #84370e;
+  --warning-bg: #fff1e7;
+  --good: #395c17;
+  --good-bg: #eef5e6;
+  --danger: #891f27;
+  --danger-bg: #fff0ef;
+  --focus: #285ca5;
+  --aside-width: 208px;
+  --inset: clamp(16px, 3vw, 44px);
+  --dock-height: 67px;
+  font: 16px/1.45 Nunito, system-ui, sans-serif;
+}
+html[data-interface="railway"][data-theme="chalk"] {
+  --ink: #142f51;
+  --muted: #405779;
+  --rail: #f2f6fc;
+  --layer: #edf3fa;
+  --panel: #f7fafd;
+  --line: #dfe8f2;
+  --edge: #6b819e;
+  --accent: #28578f;
+  --tint: #e5effb;
+  --active: #28578f;
+  --lead: #dfecfb;
+  --lead-hover: #d6e6f8;
+  --lead-ink: #142f51;
+  --lead-muted: #405779;
+  --lead-change: #85380e;
+  --lead-line: #aac5e6;
+}
+
+html[data-interface="railway"] .legacy-only,
+html[data-interface="original"] .rw-only,
+html:not([data-layout="v29"]) .rw-v29-only,
+html[data-layout="v29"] .rw-v29-alternate,
+html:not([data-appearance-ready]) .appearance-picker { display: none; }
+html[data-interface="original"] [data-open-in-original] > summary { display: none; }
+.rw-icon { flex: none; vertical-align: -.18em; }
+.ui-tools { display: flex; align-items: center; gap: 6px 12px; }
+.appearance-picker { position: relative; color: var(--ink); }
+html[data-interface="railway"] .rw-notification-button { display: none; }
+html[data-interface="railway"] .rw-notification-dot {
+  position: absolute; inset: 8px 8px auto auto; width: 8px; height: 8px;
+  border-radius: 100%; background: var(--accent);
+}
+.appearance-picker summary {
+  display: flex; align-items: center; gap: 6px; min-height: 44px; width: max-content;
+  padding-inline: 9px; border-radius: 10px; font-size: 14px; font-weight: 700; cursor: pointer; list-style: none;
+}
+.appearance-picker summary::-webkit-details-marker, .rw-more summary::-webkit-details-marker { display: none; }
+.appearance-picker summary:is(:hover, :focus-visible), .appearance-picker[open] summary { background: var(--tint); }
+.appearance-picker fieldset {
+  position: absolute; z-index: 31; right: 0; top: 45px; width: max-content; max-width: calc(100vw - 24px);
+  margin: 0; padding: 8px; border: 1px solid var(--line); border-radius: 14px;
+  background: var(--surface); box-shadow: 0 12px 32px #1522351d;
+}
+.appearance-picker legend {
+  float: left; width: 100%; padding: 4px 8px; color: var(--muted); font-size: 13px; font-weight: 700;
+}
+.appearance-picker label {
+  display: flex; align-items: center; gap: 9px; padding-inline: 9px; min-height: 44px;
+  border-radius: 8px; cursor: pointer; font-size: 15px;
+}
+.appearance-picker label:hover, .appearance-picker label:has(:checked) { background: var(--tint); }
+.appearance-picker input { appearance: auto; width: 17px; min-height: 17px; margin: 0; accent-color: var(--accent); }
+html[data-interface="original"] body.rp .ui-header {
+  background: transparent; border: 0;
+}
+html[data-interface="original"] .rp .ui-header :is(.ui-identity, .account-actions) { display: none; }
+html[data-interface="original"] .rp .ui-header .top {
+  width: min(100% - 2rem, 716px); justify-content: flex-end; padding: 4px 0 0;
+}
+html[data-interface="original"]:not([data-appearance-ready]) .rp .ui-header { display: none; }
+
+html[data-interface="railway"] body:not([hidden]) { min-height: 100vh; }
+html[data-interface="railway"] .ui-header {
+  position: relative; z-index: 20; min-width: 0; border-bottom: 1px solid var(--line); background: var(--surface);
+}
+html[data-interface="railway"] .top.wrap {
+  width: 100%; padding: 7px var(--inset); min-height: 63px; gap: 4px 12px;
+}
+html[data-interface="railway"] .top .brand { font-size: 0; line-height: 1; }
+html[data-interface="railway"] .top .brand span {
+  margin: 0; font-size: 14px; line-height: 1.35; color: var(--ink); white-space: normal;
+}
+html[data-interface="railway"] body:not([data-private]) .top .brand { display: none; }
+html[data-interface="railway"] .context { font-size: 13px; line-height: 1.3; }
+html[data-interface="railway"] .ui-mobile-context, html[data-interface="railway"] .ui-profile-icon { display: none; }
+html[data-interface="railway"] .rw-brand {
+  display: inline-flex; align-items: center; gap: 9px; min-height: 34px;
+  font-weight: 850; color: var(--ink); text-decoration: none; line-height: 1.2;
+}
+html[data-interface="railway"] .rw-brand .rw-icon { color: var(--accent); width: 23px; height: 23px; }
+html[data-interface="railway"] .rw-guest-link {
+  display: inline-flex; align-items: center; gap: 6px; min-height: 44px; font-weight: 750; font-size: 14px;
+}
+html[data-interface="railway"] .ui-tools .account-actions { display: flex; align-items: center; gap: 6px 12px; }
+html[data-interface="railway"] .ui-tools .account-actions a { display: inline-flex; align-items: center; min-height: 44px; }
+html[data-interface="railway"] .account-actions a { font-weight: 750; font-size: 14px; }
+html[data-interface="railway"] .logout button {
+  color: var(--accent); background: var(--surface); border-color: var(--edge); font-size: 14px; padding-inline: 10px;
+}
+html[data-interface="railway"] .logout button:hover { background: var(--tint); }
+html[data-interface="railway"] :focus-visible { outline: 3px solid var(--focus); outline-offset: 3px; }
+html[data-interface="railway"] .skip:focus { z-index: 50; }
+html[data-interface="railway"] main#main {
+  width: 100%; min-width: 0; max-width: 1440px; margin-inline: auto;
+  padding: clamp(23px, 3.3vw, 42px) var(--inset) 36px;
+}
+html[data-interface="railway"] main#main:focus:not(:focus-visible) { outline: none; }
+html[data-interface="railway"] main#main :is(img, svg) { max-width: 100%; }
+html[data-interface="railway"] main#main > :is(section, div, nav, form, article, p, ul, dl) { scroll-margin-top: 12px; }
+html[data-interface="railway"] h1 {
+  max-width: 31ch; font-size: clamp(30px, 3.5vw, 48px); letter-spacing: -.035em; line-height: 1.08; font-weight: 820;
+  text-wrap: pretty;
+}
+html[data-interface="railway"] h2 { font-size: clamp(19px, 1.55vw, 23px); line-height: 1.25; letter-spacing: -.016em; font-weight: 800; }
+html[data-interface="railway"] .subtitle { margin: 7px 0 20px; font-size: 15px; }
+html[data-interface="railway"] .meta { font-size: 14px; }
+html[data-interface="railway"] .panel { background: var(--surface); border-radius: 17px; padding: 16px 18px; }
+html[data-interface="railway"] .panel-head { margin-bottom: 9px; gap: 6px 14px; }
+html[data-interface="railway"] .panel-head a { font-weight: 750; }
+html[data-interface="railway"] .grid { gap: 12px 16px; }
+html[data-interface="railway"] :is(.grid, .panel, .rows > li, .timeline > li, .facts > div) > * { min-width: 0; }
+html[data-interface="railway"] .rows li { padding-block: 11px; }
+html[data-interface="railway"] .rows a { font-weight: 750; }
+html[data-interface="railway"] .rows .meta { margin-block: 3px 1px; }
+html[data-interface="railway"] .toolbar { gap: 6px 12px; justify-content: flex-start; }
+html[data-interface="railway"] .toolbar > a, html[data-interface="railway"] .back > a {
+  display: inline-flex; align-items: center; min-height: 44px; padding-inline: 10px; font-weight: 750;
+}
+html[data-interface="railway"] .back > a { padding-inline: 0; }
+html[data-interface="railway"] .switcher a { border-radius: 9px; font-weight: 750; }
+html[data-interface="railway"] main .switcher [aria-current="page"] { background: var(--active); color: var(--surface); }
+html[data-interface="railway"] .empty { background: var(--panel); padding: 12px 14px; border-radius: 10px; }
+html[data-interface="railway"] [role="alert"]:not([hidden]) {
+  border-left: 3px solid var(--danger); border-radius: 7px; color: var(--danger); background: var(--danger-bg);
+  padding: 11px 13px; margin-block: 8px;
+}
+html[data-interface="railway"] [role="status"]:not([hidden]) {
+  color: var(--good); background: var(--good-bg); padding: 9px 12px; border-radius: 7px;
+}
+html[data-interface="railway"] details:not(.appearance-picker):not(.rw-more) > summary { cursor: pointer; min-height: 44px; }
+html[data-interface="railway"] main summary { padding-block: 10px; font-weight: 750; }
+html[data-interface="railway"] .tag { font-size: 13px; border-radius: 6px; font-weight: 800; }
+html[data-interface="railway"] .tag[data-tone="attention"] { color: var(--warning); background: var(--warning-bg); }
+html[data-interface="railway"] .tag[data-tone="good"] { color: var(--good); background: var(--good-bg); }
+html[data-interface="railway"] .tag[data-tone="error"] { color: var(--danger); background: var(--danger-bg); }
+html[data-interface="railway"] .tag[data-tone="neutral"] { color: var(--muted); background: var(--layer); }
+html[data-interface="railway"] .rw-source { background: var(--panel); }
+html[data-interface="railway"] .rw-jump a { display: inline-flex; align-items: center; min-height: 44px; font-weight: 800; }
+html[data-interface="railway"] .rw-primary-link {
+  display: inline-flex; align-items: center; min-height: 44px; padding: 6px 13px; border-radius: 9px;
+  color: var(--surface); background: var(--accent); text-decoration: none; font-weight: 800;
+}
+html[data-interface="railway"] [data-section="guest"] h1 + p { margin-top: 16px; max-width: 52ch; }
+html[data-interface="railway"] [data-section="university-group"] .switcher { margin-block: 12px 0; }
+html[data-interface="railway"] .notices [data-unread="true"] > div { padding-inline-start: 11px; border-inline-start: 3px solid var(--accent); }
+
+html[data-interface="railway"] :is(input, select, textarea, button) { font-size: 16px; }
+html[data-interface="railway"] form label { font-weight: 750; }
+html[data-interface="railway"] form :is(input, select, textarea) { border-color: var(--edge); border-radius: 9px; }
+html[data-interface="railway"] .check input { width: 18px; min-width: 18px; min-height: 18px; accent-color: var(--accent); }
+html[data-interface="railway"] .check { min-height: 44px; }
+html[data-interface="railway"] form button { border-radius: 9px; font-weight: 800; padding-inline: 14px; }
+html[data-interface="railway"] form button:not(.quiet):hover { background: var(--active); }
+html[data-interface="railway"] form .quiet { border-color: var(--edge); }
+html[data-interface="railway"] .inline { gap: 9px 12px; }
+html[data-interface="railway"] .inline label { min-width: min(100%, 10rem); max-width: 100%; }
+html[data-interface="railway"] .inline :is(input, select) { max-width: min(100%, 34rem); }
+html[data-interface="railway"] .panel table { display: block; max-width: 100%; overflow-x: auto; border-collapse: collapse; }
+html[data-interface="railway"] .panel :is(th, td) { padding: 8px; border-bottom: 1px solid var(--line); text-align: start; }
+html[data-interface="railway"] .rw-form-panel { max-width: 50rem; }
+html[data-interface="railway"] #request-data :is(button:not([formaction]), input[type="file"]) {
+  background: var(--layer); color: var(--accent); border-color: var(--edge);
+}
+html[data-interface="railway"] .rw-staff-actions > form {
+  margin: 0; padding: 12px; align-content: start; border: 1px solid var(--line); border-radius: 10px;
+}
+html[data-interface="railway"] .rw-action-danger button { color: var(--danger); border-color: var(--danger); background: var(--danger-bg); }
+html[data-interface="railway"] .rw-action-attention button { color: var(--warning); border-color: var(--warning); background: var(--warning-bg); }
+html[data-interface="railway"] :is(.rw-action-danger, .rw-action-attention) button:not(.quiet):hover { color: var(--surface); }
+html[data-interface="railway"] .rw-callout, html[data-interface="railway"] .rw-urgent {
+  background: var(--warning-bg); border-color: var(--warning-bg); border-inline-start: 3px solid var(--warning);
+}
+html[data-interface="railway"] .rw-callout { margin-block: 11px; border-radius: 8px; padding: 12px; }
+html[data-interface="railway"] :is(.rw-callout, .rw-urgent) a { color: var(--warning); font-weight: 850; }
+html[data-interface="railway"] .rw-callout a { display: inline-flex; align-items: center; min-height: 44px; }
+html[data-interface="railway"] .rw-urgent .panel-head { margin-bottom: 2px; }
+html[data-interface="railway"] .rw-urgent .panel-head a { display: inline-flex; align-items: center; min-height: 44px; }
+html[data-interface="railway"] .rw-urgent h2 { font-size: 19px; }
+
+html[data-interface="railway"] .rw-login-grid { display: grid; gap: 20px; }
+html[data-interface="railway"] .login {
+  --accent: inherit; --line: inherit; --tint: inherit;
+  margin: 0; max-width: none; padding: clamp(16px, 2.5vw, 28px); border-radius: 20px;
+}
+html[data-interface="railway"] .login .login-remember input { width: 18px; min-height: 18px; }
+html[data-interface="railway"] .login h2 { font-size: 20px; }
+html[data-interface="railway"] .login .guest-entry { border-top: 1px solid var(--line); margin-top: 13px; padding-top: 5px; }
+html[data-interface="railway"] .login form > button:not(.quiet):hover { background: var(--active); }
+html[data-interface="railway"] .rw-sign-in-note { display: none; }
+html[data-interface="railway"] .rw-date-strip {
+  display: grid; grid-template-columns: repeat(7, minmax(0, 1fr)); gap: 5px; margin: 12px 0;
+}
+html[data-interface="railway"] .rw-date-strip a {
+  display: grid; place-content: center; gap: 1px; text-align: center; min-height: 54px; border-radius: 14px;
+  background: var(--layer); color: var(--ink); text-decoration: none; font-weight: 850; line-height: 1.15;
+}
+html[data-interface="railway"] .rw-date-strip a span { font-size: 13px; color: var(--muted); }
+html[data-interface="railway"] .rw-date-parts { display: contents; }
+html[data-interface="railway"] .rw-date-strip a time { font-size: 18px; font-variant-numeric: tabular-nums; }
+html[data-interface="railway"] .rw-date-strip .rw-actual-day:not([aria-current]) { box-shadow: inset 0 0 0 1px var(--edge); }
+html[data-interface="railway"] .rw-date-strip a:hover { background: var(--tint); }
+html[data-interface="railway"] .rw-date-strip a[aria-current] { background: var(--active); color: var(--surface); }
+html[data-interface="railway"] .rw-date-strip a[aria-current] span { color: inherit; }
+@media (max-width: 350px) {
+  html[data-interface="railway"] .rw-date-strip {
+    grid-template-columns: repeat(7, minmax(44px, 1fr));
+    overflow-x: auto;
+  }
+}
+html[data-interface="railway"] .rw-lead {
+  display: grid; grid-template-columns: minmax(0, 1fr) auto; align-items: center; gap: 12px;
+  border-radius: 22px; background: var(--lead); color: var(--lead-ink); padding: 17px clamp(14px, 2.8vw, 26px);
+  text-decoration: none;
+}
+html[data-interface="railway"] .rw-lead:hover { background: var(--lead-hover); }
+html[data-interface="railway"] .rw-lead > div { display: grid; gap: 4px; min-width: 0; }
+html[data-interface="railway"] .rw-lead strong { font-size: clamp(20px, 2vw, 27px); font-weight: 820; line-height: 1.12; }
+html[data-interface="railway"] .rw-lead :is(span, small) { font-size: 14px; color: var(--lead-muted); }
+html[data-interface="railway"] .rw-lead-meta { display: flex; flex-wrap: wrap; gap: 2px 9px; }
+html[data-interface="railway"] .rw-lead .rw-lesson-type { color: var(--lead-ink); }
+html[data-interface="railway"] .rw-lead .rw-lead-change { color: var(--lead-change); font-weight: 800; }
+html[data-interface="railway"] .rw-lead .rw-lead-time {
+  padding-inline-start: 10px; border-inline-start: 1px solid var(--lead-line); justify-items: end; white-space: nowrap;
+  font-variant-numeric: tabular-nums;
+}
+html[data-interface="railway"] .rw-lead-time .rw-icon { width: 18px; height: 18px; margin-top: 5px; }
+html[data-interface="railway"] .rw-priority { margin-top: 14px; border-top: 1px solid var(--line); padding-top: 12px; }
+html[data-interface="railway"] .rw-priority h2 { margin-bottom: 6px; }
+html[data-interface="railway"] .rw-priority-link {
+  display: grid; align-items: center; grid-template-columns: 34px minmax(0, 1fr) auto; gap: 8px;
+  min-height: 59px; padding: 4px 2px; color: var(--ink); text-decoration: none;
+}
+html[data-interface="railway"] .rw-priority-link:hover strong { text-decoration: underline; }
+html[data-interface="railway"] .rw-priority-link > .rw-icon:first-child {
+  background: var(--tint); color: var(--accent); box-sizing: content-box; padding: 8px; border-radius: 10px; width: 17px; height: 17px;
+}
+html[data-interface="railway"] .rw-priority-link span { display: grid; min-width: 0; line-height: 1.25; }
+html[data-interface="railway"] .rw-priority-link small { font-size: 14px; color: var(--muted); }
+html[data-interface="railway"] .rw-priority-link + .rw-priority-link { border-top: 1px solid var(--line); }
+html[data-interface="railway"] .rw-today-actions {
+  display: flex; flex-wrap: wrap; gap: 4px 6px;
+}
+html[data-interface="railway"] .rw-today-actions a {
+  display: inline-flex; align-items: center; min-height: 44px; background: var(--tint);
+  padding-inline: 10px; border-radius: 8px; text-decoration: none; font-size: 14px; font-weight: 800;
+}
+html[data-interface="railway"] .rw-period-tabs { background: var(--layer); padding: 3px; border-radius: 13px; }
+html[data-interface="railway"] .rw-calendar-tools {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  align-items: stretch;
+  gap: 6px;
+}
+html[data-interface="railway"] .rw-calendar-tools > .switcher {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  margin: 0;
+  gap: 3px;
+}
+html[data-interface="railway"] .rw-calendar-tools > .legacy-only { display: none; }
+html[data-interface="railway"] .rw-calendar-tools > .rw-period-tabs { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+html[data-interface="railway"] .rw-calendar-tools a {
+  display: grid;
+  place-content: center;
+  min-height: 44px;
+  min-width: 0;
+  padding: 3px 4px;
+  border-radius: 9px;
+  font: 750 14px/18px Nunito, system-ui, sans-serif;
+  text-align: center;
+}
+.rw-calendar-empty-day {
+  display: flex; flex-wrap: wrap; align-items: center; gap: 2px 8px;
+  padding: 4px 0; font-size: .875rem;
+}
+.rw-calendar-empty-day a { display: inline-flex; align-items: center; min-height: 44px; }
+.rw-calendar-empty-day span { color: var(--muted); }
+@media (min-width: 46rem) {
+  html[data-interface="railway"] .rw-calendar-tools { grid-template-columns: 1.3fr 1fr; }
+}
+html[data-interface="railway"] .rw-calendar-date { margin-top: 12px; }
+html[data-interface="railway"] .rw-calendar-panel {
+  display: grid; grid-template-columns: minmax(0, 1fr) auto;
+  align-items: start; gap: 2px 6px; margin-bottom: 6px;
+}
+html[data-interface="railway"] .rw-calendar-modes {
+  display: flex; flex-wrap: wrap; align-items: center; gap: 0 12px;
+}
+html[data-interface="railway"] .rw-calendar-modes a,
+html[data-interface="railway"] .rw-active-filters a {
+  display: inline-flex; align-items: center; min-height: 44px; font-size: 14px; font-weight: 750;
+}
+html[data-interface="railway"] .rw-calendar-menu { margin: 0; }
+html[data-interface="railway"] .rw-calendar-menu > summary {
+  min-height: 44px; padding: 10px 2px; color: var(--accent); font-size: 14px; font-weight: 800;
+}
+html[data-interface="railway"] .rw-calendar-menu[open] {
+  grid-column: 1 / -1; padding-bottom: 9px; border-top: 1px solid var(--line);
+}
+@media (max-width: 37rem) {
+  html[data-interface="railway"] .rw-calendar-panel {
+    grid-template-columns: minmax(0, 1fr) minmax(100px, .73fr);
+  }
+  html[data-interface="railway"] .rw-calendar-modes { gap: 0 9px; }
+  html[data-interface="railway"] .rw-calendar-menu > summary { padding-block: 4px; line-height: 1.3; }
+}
+html[data-interface="railway"] .rw-calendar-days[data-view="month"] .panel { padding: 12px; }
+html[data-interface="railway"] .rw-calendar-days[data-view="month"] h2 { font-size: 17px; }
+html[data-interface="railway"] .lessons li {
+  display: grid; grid-template-columns: clamp(63px, 14vw, 118px) minmax(0, 1fr); gap: 10px;
+  align-items: stretch; padding-block: 10px; border-top-color: var(--line);
+}
+html[data-interface="railway"] .lessons li > div { position: relative; border-inline-start: 2px solid var(--line); padding-inline-start: 12px; }
+html[data-interface="railway"] .lessons li > div::before {
+  content: ""; display: block; position: absolute; inset-inline-start: -5px; top: .46em;
+  width: 8px; height: 8px; border: 2px solid var(--accent); background: var(--surface); border-radius: 50%;
+}
+html[data-interface="railway"] .lessons :is([data-event="task"], [data-event="booking"], [data-event="event"]) > div::before {
+  border-radius: 2px; border-color: var(--warning);
+}
+html[data-interface="railway"] .lessons li time { font-size: 15px; font-weight: 800; line-height: 1.25; }
+html[data-interface="railway"] .lessons li time small { display: block; font-size: 13px; font-weight: 650; }
+html[data-interface="railway"] .lessons li .meta { font-size: 14px; }
+html[data-interface="railway"] .rw-study-links { margin-top: 13px; }
+
+html[data-interface="railway"] .rw-service-tiles {
+  display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 9px; margin-top: 16px;
+}
+html[data-interface="railway"] .rw-service-tile {
+  display: grid; align-content: start; gap: 3px; position: relative; min-height: 142px;
+  padding: 14px; border-radius: 15px; background: var(--layer); color: var(--ink); text-decoration: none;
+}
+html[data-interface="railway"] .rw-service-tile strong { font-size: clamp(17px, 1.65vw, 23px); line-height: 1.18; font-weight: 900; }
+html[data-interface="railway"] .rw-service-tile > span:not([class]) { color: var(--muted); font-size: 14px; line-height: 1.27; }
+html[data-interface="railway"] .rw-service-primary { grid-column: 1 / -1; background: var(--lead); color: var(--lead-ink); }
+html[data-interface="railway"] .rw-service-primary > span:not([class]) { color: var(--lead-muted); }
+html[data-interface="railway"] .rw-service-tile:hover { background: var(--tint); }
+html[data-interface="railway"] .rw-service-primary:hover { background: var(--lead-hover); }
+html[data-interface="railway"] .rw-tile-icon { margin-bottom: 4px; }
+html[data-interface="railway"] .rw-tile-arrow { position: absolute; right: 12px; top: 14px; }
+html[data-interface="railway"] .rw-service-groups { display: grid; gap: 16px; margin-top: 18px; }
+html[data-interface="railway"] .rw-service-group { min-width: 0; border-top: 1px solid var(--line); padding-top: 13px; }
+html[data-interface="railway"] .rw-service-group ul { list-style: none; padding: 0; margin: 4px 0 0; }
+html[data-interface="railway"] .rw-service-group li { position: relative; border-bottom: 1px solid var(--line); }
+html[data-interface="railway"] .rw-service-group li a {
+  display: flex; align-items: center; min-height: 47px; padding-inline-end: 31px;
+  color: var(--ink); font-weight: 750; text-decoration: none;
+}
+html[data-interface="railway"] .rw-service-group li a:hover { color: var(--accent); text-decoration: underline; }
+html[data-interface="railway"] .rw-service-group li .rw-icon {
+  position: absolute; inset-inline-end: 6px; top: calc(50% - 9px); pointer-events: none; color: var(--accent);
+}
+html[data-interface="railway"] .rw-campus-photo {
+  display: block; height: 96px; width: 100%; margin-top: 8px; border-radius: 9px; object-fit: cover;
+  object-position: 50% 58%; background: var(--layer);
+}
+
+html[data-interface="railway"] .rp {
+  --rp-ink: var(--ink);
+  --rp-muted: var(--muted);
+  --rp-tint: var(--layer);
+  --rp-axis: var(--line);
+  --rp-white: var(--surface);
+  --rp-pad: var(--inset);
+}
+html[data-interface="railway"] .rp .rp-wrap > :is(.rp-head, .rp-pills, .rp-now, .rp-divider, .rp-timeline, .rp-other) {
+  max-width: 54rem;
+}
+html[data-interface="railway"] .rp :is(.rp-now, .rp-detail, .rp-preview, .rp-group-info) {
+  color: var(--lead-ink); background: var(--lead); box-shadow: none; border-radius: 22px;
+}
+html[data-interface="railway"] .rp :is(.rp-now .rp-kicker, .rp-now .rp-room, .rp-detail .rp-muted) { color: var(--lead-muted); }
+html[data-interface="railway"] .rp .rp-now:hover { background: var(--lead-hover); }
+html[data-interface="railway"] .rp :is(.rp-now-title, .rp-detail h1) { font-size: clamp(22px, 2.55vw, 34px); }
+html[data-interface="railway"] .rp .rp-pill[aria-current], html[data-interface="railway"] .rp .rp-choice[aria-current] {
+  color: var(--surface); background: var(--active);
+}
+html[data-interface="railway"] .rp .rp-lesson-meta { font-size: 14px; }
+html[data-interface="railway"] .rp .rp-timer { flex-shrink: 0; }
+html[data-interface="railway"][data-theme="chalk"] .rp :is(.rp-timer, .rp-detail) { --rp-white: var(--lead-ink); }
+html[data-interface="railway"][data-theme="chalk"] .rp .rp-ring-track { stroke: var(--lead-line); }
+html[data-interface="railway"][data-theme="chalk"] .rp .rp-ring-value { stroke: var(--accent); }
+html[data-interface="railway"][data-theme="chalk"] .rp .rp-timer span { color: var(--lead-ink); }
+html[data-interface="railway"] .rp .rp-links a { min-height: 44px; display: inline-flex; align-items: center; }
+html[data-interface="railway"] .rp .rp-pill { min-height: 44px; }
+html[data-interface="railway"] .rp :is(.rp-links, .rp-pills) { scroll-margin: 8px; }
+html[data-interface="railway"] .rp .rp-sheet { max-height: min(760px, 83dvh); }
+
+html[data-interface="railway"] .rw-rail { display: none; }
+html[data-interface="railway"] .rw-rail > .rw-brand { padding-inline: 7px; }
+html[data-interface="railway"] .rw-rail nav { display: grid; gap: 11px; }
+html[data-interface="railway"] .rw-rail nav > div + div { border-top: 1px solid var(--line); padding-top: 10px; }
+html[data-interface="railway"] .rw-rail nav a {
+  display: flex; gap: 9px; align-items: center; min-height: 44px; padding: 7px 10px; border-radius: 9px;
+  color: var(--muted); font-size: 15px; font-weight: 800; text-decoration: none;
+}
+html[data-interface="railway"] .rw-rail nav a:hover { color: var(--ink); background: var(--tint); }
+html[data-interface="railway"] .rw-rail nav [aria-current] { color: var(--surface); background: var(--active); }
+html[data-interface="railway"] .rw-rail nav [aria-current="location"] { color: var(--ink); background: var(--tint); }
+html[data-interface="railway"] .rw-rail .rw-icon { width: 17px; height: 17px; }
+html[data-interface="railway"] .rw-rail .rw-brand .rw-icon { width: 23px; height: 23px; }
+html[data-interface="railway"] .rw-role { margin: auto 7px 0; font-size: 13px; color: var(--muted); }
+html[data-interface="railway"] .rw-dock {
+  position: fixed; z-index: 15; inset-inline: 0; bottom: 0;
+  display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); padding: 3px 2px env(safe-area-inset-bottom);
+  min-height: var(--dock-height); background: var(--surface); border-top: 1px solid var(--line);
+}
+html[data-interface="railway"] .rw-dock > a, html[data-interface="railway"] .rw-more > summary {
+  display: grid; align-content: center; justify-items: center; text-align: center; gap: 3px; min-height: 59px;
+  font-size: 12px; line-height: 1.15; font-weight: 800; color: var(--muted); background: transparent;
+  text-decoration: none; cursor: pointer;
+}
+html[data-interface="railway"] .rw-dock > a .rw-icon, html[data-interface="railway"] .rw-more > summary .rw-icon {
+  box-sizing: content-box; padding: 4px 10px; border-radius: 14px;
+}
+html[data-interface="railway"] .rw-dock :is([aria-current], .is-current, .rw-more[open] > summary) { color: var(--ink); }
+html[data-interface="railway"] .rw-dock :is([aria-current], .is-current, .rw-more[open] > summary) > .rw-icon {
+  color: var(--surface); background: var(--active);
+}
+html[data-interface="railway"] .rw-dock :focus-visible { outline-offset: -3px; }
+html[data-interface="railway"] .rw-more-sheet {
+  position: fixed; inset-inline: 8px; bottom: calc(var(--dock-height) + env(safe-area-inset-bottom));
+  max-height: min(60dvh, 430px); overflow-y: auto; padding: 15px;
+  border: 1px solid var(--line); border-radius: 20px 20px 12px 12px; background: var(--surface); box-shadow: 0 10px 37px #15223525;
+}
+html[data-interface="railway"] .rw-more-sheet > div { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 6px; margin-top: 10px; }
+html[data-interface="railway"] .rw-more-sheet a {
+  display: flex; gap: 7px; align-items: center; min-height: 53px; padding: 6px 9px;
+  font-size: 14px; font-weight: 800; color: var(--ink); background: var(--layer); border-radius: 9px; text-decoration: none;
+}
+html[data-interface="railway"] .rw-more-sheet a:nth-child(-n+2) { background: var(--tint); }
+html[data-interface="railway"] .rw-more-sheet a:hover { text-decoration: underline; }
+html[data-interface="railway"] .rw-more-sheet .rw-icon { width: 17px; height: 17px; color: var(--accent); }
+html[data-interface="railway"] body[data-private] > main#main {
+  padding-bottom: calc(var(--dock-height) + 28px + env(safe-area-inset-bottom));
+}
+html[data-interface="railway"] { scroll-padding-bottom: calc(var(--dock-height) + 17px + env(safe-area-inset-bottom)); }
+
+@media (max-width: 640px) {
+  .appearance-picker summary { padding-inline: 8px; justify-content: center; min-width: 44px; }
+  .appearance-picker summary > span { display: none; }
+  .appearance-picker fieldset {
+    position: fixed; top: 73px; right: 12px; max-height: min(58dvh, 320px); overflow-y: auto;
+  }
+  html[data-interface="railway"] .top.wrap { gap: 2px 8px; padding-block: 7px; min-height: 66px; }
+  html[data-interface="railway"] .top .ui-tools { gap: 2px; }
+  html[data-interface="railway"] .ui-tools .account-actions { flex-wrap: nowrap; gap: 4px; }
+  html[data-interface="railway"] .account-actions .logout button { padding-inline: 8px; }
+  html[data-interface="railway"] .ui-profile { justify-content: center; min-width: 44px; }
+  html[data-interface="railway"] .rw-notification-button {
+    position: relative; display: grid; min-width: 44px; min-height: 44px; place-items: center;
+    color: var(--ink); border-radius: 10px;
+  }
+  html[data-interface="railway"] .rw-notification-button:hover { background: var(--tint); }
+  html[data-interface="railway"] .ui-profile > span:first-child, html[data-interface="railway"] .ui-long-context,
+  html[data-interface="railway"] .ui-identity .brand { display: none; }
+  html[data-interface="railway"] .ui-profile-icon, html[data-interface="railway"] .ui-mobile-context { display: inline; }
+  html[data-interface="railway"] .ui-identity { flex: 1; }
+  html[data-interface="railway"] .rw-brand { font-size: 13px; gap: 6px; }
+  html[data-interface="railway"] .rw-mobile-brand .rw-brand { display: flex; width: fit-content; }
+  html[data-interface="railway"] .rw-brand .rw-icon { width: 20px; height: 20px; }
+  html[data-interface="railway"] .ui-identity .context { font-size: 12px; }
+  html[data-interface="railway"] .panel { padding: 13px; }
+  html[data-interface="railway"] .rw-calendar-tools { gap: 4px; }
+  html[data-interface="railway"] .rw-date-strip { gap: 3px; }
+  html[data-interface="railway"] .rw-date-strip a { border-radius: 9px; }
+  html[data-interface="railway"] .rw-service-primary { min-height: 112px; }
+  html[data-interface="railway"] .rw-tile-arrow .rw-icon { width: 16px; height: 16px; }
+  html[data-interface="railway"] .lessons li { grid-template-columns: 62px minmax(0, 1fr); }
+  html[data-interface="railway"] .rw-staff-actions { grid-template-columns: minmax(0, 1fr); }
+  html[data-interface="railway"] .rp .rp-now { padding: 17px 16px; }
+}
+
+@media (min-width: 720px) {
+  html[data-interface="railway"] [data-section="login"] { max-width: 1060px; }
+  html[data-interface="railway"] .rw-login-grid { grid-template-columns: minmax(300px, 1fr) minmax(230px, 1fr); gap: 26px; margin-top: 16px; }
+  html[data-interface="railway"] .rw-sign-in-note {
+    display: grid; grid-template-rows: minmax(185px, 1fr) auto; min-width: 0;
+    background: var(--lead); color: var(--lead-ink); border-radius: 20px; overflow: hidden;
+  }
+  html[data-interface="railway"] .rw-sign-in-note img { width: 100%; height: 100%; min-height: 0; max-height: 360px; object-fit: cover; }
+  html[data-interface="railway"] .rw-sign-in-note div { padding: 16px 20px; }
+  html[data-interface="railway"] .rw-sign-in-note p { color: var(--lead-muted); }
+  html[data-interface="railway"] :is(.rw-service-groups, .rw-request-grid, .rw-staff-grid, .rw-directory-grid, .rw-calendar-days[data-view="week"]) {
+    display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0 16px; align-items: start;
+  }
+  html[data-interface="railway"] .rw-calendar-days[data-view="month"] {
+    display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 0 11px;
+  }
+  html[data-interface="railway"] .rw-service-tiles { grid-template-columns: 1.2fr 1fr 1fr; }
+  html[data-interface="railway"] .rw-service-primary { grid-column: auto; }
+  html[data-interface="railway"] .rw-today-grid {
+    display: grid; grid-template-columns: minmax(0, 1.65fr) minmax(235px, 1fr); gap: 4px 25px; align-items: start;
+  }
+  html[data-interface="railway"] .rw-today-grid:has(.rw-priorities:empty):not(:has(.rw-next-actions)) {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  html[data-interface="railway"] .rw-priorities { grid-area: 1 / 2; }
+  html[data-interface="railway"] .rw-priorities:empty { display: none; }
+  html[data-interface="railway"] .rw-day-overview { grid-area: 2 / 1; }
+  html[data-interface="railway"] .rw-next-actions { grid-area: 2 / 2; }
+  html[data-interface="railway"] .rw-today-grid:has(.rw-priorities:empty) .rw-next-actions { grid-row: 1; }
+  html[data-interface="railway"] .rw-jump { display: none; }
+}
+
+@media (min-width: 1000px) {
+  html[data-interface="railway"] body[data-private]:not([hidden]) {
+    padding-inline-start: var(--aside-width);
+  }
+  html[data-interface="railway"] body[data-private] > main#main { padding-bottom: 42px; }
+  html[data-interface="railway"] body[data-private] .rw-mobile-brand { display: none; }
+  html[data-interface="railway"] .rw-dock, html[data-interface="railway"] body:not([data-private]) .rw-rail { display: none; }
+  html[data-interface="railway"] .rw-rail {
+    position: fixed; inset: 0 auto 0 0; width: var(--aside-width);
+    display: flex; flex-direction: column; gap: 16px; overflow: auto;
+    background: var(--rail); border-inline-end: 1px solid var(--line); padding: 16px 12px;
+  }
+  html[data-interface="railway"] .rw-calendar-days[data-view="month"] { grid-template-columns: repeat(7, minmax(0, 1fr)); }
+  html[data-interface="railway"] { scroll-padding-bottom: 20px; }
+}
+@media (min-width: 1240px) {
+  html[data-interface="railway"] .rw-service-groups { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  html[data-interface="railway"] .rw-calendar-days[data-view="week"] { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .appearance-picker[open] fieldset, .rw-more[open] .rw-more-sheet { animation: rw-enter 150ms ease-out; }
+  html[data-interface="railway"] :is(.rw-lead, .rw-date-strip a, .rw-service-tile, .rw-dock .rw-icon) {
+    transition: background-color 140ms ease-out, color 140ms ease-out;
+  }
+  @keyframes rw-enter { from { opacity: .7; transform: translateY(3px); } to { opacity: 1; transform: translateY(0); } }
+}
+
+.rw-today-side { display: contents; }
+.rw-agenda-list { list-style: none; margin: 0; padding: 0; }
+.rw-agenda-item + .rw-agenda-item { border-top: 1px solid var(--line); }
+.rw-agenda-item > a {
+  display: grid; grid-template-columns: 68px minmax(0, 1fr) 16px; gap: 4px 9px; align-items: start;
+  min-height: 52px; padding: 8px 4px; color: var(--ink); text-decoration: none; border-radius: 8px;
+}
+.rw-agenda-item > a:hover { background: var(--layer); }
+.rw-agenda-item > a:focus-visible { outline-offset: -2px; }
+.rw-agenda-item time { grid-row: span 2; font-variant-numeric: tabular-nums; font-weight: 800; }
+.rw-agenda-item time small { display: block; font-weight: 650; color: var(--muted); }
+.rw-agenda-subject, .rw-agenda-room { min-width: 0; overflow-wrap: anywhere; }
+.rw-agenda-subject { display: grid; border-inline-start: 2px solid var(--line); padding-inline-start: 10px; line-height: 1.3; }
+.rw-agenda-room { grid-area: 2 / 2; padding-inline-start: 12px; color: var(--muted); font-size: 14px; line-height: 1.35; }
+.rw-agenda-room span { display: block; }
+.rw-agenda-item .rw-icon { width: 16px; height: 16px; align-self: center; }
+.rw-agenda-change { color: var(--warning); font-weight: 750; }
+.rw-lesson-type { font-size: 13px; font-weight: 800; color: var(--muted); }
+.rw-lesson-type::before {
+  content: ""; display: inline-block; width: 7px; height: 7px; margin-inline-end: 7px;
+  border-radius: 50%; background: var(--type-dot, #778494); vertical-align: .1em;
+}
+.rw-lesson-type[data-lesson-type="lecture"] { --type-dot: #0b8da4; color: #006879; }
+.rw-lesson-type[data-lesson-type="practice"] { --type-dot: #e3641b; color: #963b11; }
+.rw-lesson-type[data-lesson-type="lab"] { --type-dot: #d53667; color: #a3224e; }
+
+/* v29 restores the dashboard composition while keeping the current links and schedule. */
+html[data-layout="v29"] { --aside-width: 224px; --rail: #f6f6f8; --panel: #f7f7f9; }
+html[data-layout="v29"] [data-section="today"] .rw-page-heading,
+html[data-layout="v29"] .rw-day-heading {
+  display: flex; align-items: center; justify-content: space-between; gap: 8px 12px;
+}
+html[data-layout="v29"] .rw-day-heading a {
+  display: inline-flex; align-items: center; min-height: 44px;
+  color: var(--accent); font-size: 14px; font-weight: 800; text-decoration: none;
+}
+html[data-layout="v29"] .rw-day-heading a:hover { text-decoration: underline; }
+html[data-layout="v29"] :is(.rw-v29-clock, .rw-v29-search, .rw-v29-context) { display: none; }
+html[data-layout="v29"] .rw-day-intro .rw-date-strip {
+  display: flex; gap: 6px; margin: 6px 0 12px; overflow-x: auto; scrollbar-width: thin;
+}
+html[data-layout="v29"] .rw-day-intro .rw-date-strip a {
+  flex: 0 0 auto; display: inline-flex; align-items: center; min-width: 44px; min-height: 44px;
+  padding: 0 12px; border-radius: 999px; white-space: nowrap;
+}
+html[data-layout="v29"] .rw-day-intro .rw-date-strip .rw-date-parts { display: none; }
+html[data-layout="v29"] .rw-day-intro .rw-date-strip a:focus-visible { outline-offset: -3px; }
+html[data-layout="v29"] .rw-day-intro .rw-date-strip a .rw-v29-only { font-size: 14px; }
+html[data-layout="v29"] .rw-lead { border-radius: 27px; }
+html[data-layout="v29"] .rw-agenda { margin-block: 6px 0; padding: 0; border: 0; background: transparent; }
+html[data-layout="v29"] .rw-agenda .panel-head { display: none; }
+html[data-layout="v29"] .rw-agenda-item + .rw-agenda-item { border: 0; }
+html[data-layout="v29"] .rw-agenda-item strong { font-weight: 850; }
+html[data-layout="v29"] .rw-agenda-gap {
+  display: grid; grid-template-columns: 72px minmax(0, 1fr); gap: 11px; align-items: center;
+  padding: 3px 4px; color: var(--muted); font-size: 13px; font-weight: 650;
+}
+html[data-layout="v29"] .rw-agenda-gap span:first-child { text-align: center; }
+html[data-layout="v29"] .rw-v29-priorities {
+  padding: 10px 14px; margin-block: 12px 0; border: 1px solid var(--line); border-radius: 20px; background: var(--panel);
+}
+html[data-layout="v29"] .rw-v29-priorities .rw-priority-link { min-height: 57px; padding-block: 9px; }
+html[data-layout="v29"] .rw-ready-label {
+  margin: 1px 0 0; padding-top: 7px; border-top: 1px solid var(--line); color: var(--good); font-size: 15px;
+}
+html[data-layout="v29"] .rw-v29-priorities [data-glyph="file"] > .rw-icon:first-child {
+  background: var(--good-bg); color: var(--good);
+}
+html[data-layout="v29"] .rw-v29-priorities [data-tone="attention"] > .rw-icon:first-child {
+  background: var(--warning-bg); color: var(--warning);
+}
+html[data-layout="v29"] .rw-v29-exam,
+html[data-layout="v29"] .rw-today-updates { margin-block: 14px 0; padding: 8px 0; border: 0; background: transparent; }
+html[data-layout="v29"] :is(.rw-v29-exam, .rw-today-updates) .panel-head { border-bottom: 1px solid var(--line); padding-bottom: 7px; }
+html[data-layout="v29"] .rw-v29-exam a { font-weight: 800; }
+html[data-layout="v29"] .rw-today-actions { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1px 8px; }
+html[data-layout="v29"] .rw-today-actions a { background: transparent; padding: 4px 0; }
+html[data-layout="v29"] .rw-today-actions a:hover { text-decoration: underline; }
+
+@media (min-width: 1000px) {
+  html[data-layout="v29"] :has(.rw-v29-context) > .ui-identity > :is(.brand, .context) { display: none; }
+  html[data-layout="v29"] .rw-v29-context { display: flex; flex-wrap: wrap; align-items: center; gap: 9px; font-weight: 800; }
+  html[data-layout="v29"] .rw-v29-search {
+    display: inline-flex; align-items: center; gap: 8px; min-height: 44px; padding: 0 12px;
+    color: var(--ink); text-decoration: none; border: 1px solid var(--line); border-radius: 10px; font-weight: 750;
+  }
+  html[data-layout="v29"] .rw-rail nav a[href="/search"] { display: none; }
+  html[data-layout="v29"] .rw-notification-button {
+    position: relative; display: grid; place-items: center; min-width: 44px; min-height: 44px; color: var(--ink);
+  }
+  html[data-layout="v29"] .rw-rail nav a[href="/notifications"] { display: none; }
+  html[data-layout="v29"] [data-section="today"] .rw-page-heading h1 { font-size: clamp(38px, 3.3vw, 48px); }
+  html[data-layout="v29"] .rw-v29-clock { display: flex; align-items: center; gap: 14px; text-align: end; }
+  html[data-layout="v29"] .rw-v29-clock time { display: block; font-weight: 850; }
+  html[data-layout="v29"] .rw-v29-clock small { color: var(--muted); }
+  html[data-layout="v29"] .rw-v29-clock a {
+    display: grid; place-items: center; min-width: 44px; min-height: 44px;
+    color: var(--ink); border: 1px solid var(--line); border-radius: 10px;
+  }
+  html[data-layout="v29"] .rw-today-grid {
+    grid-template-columns: minmax(0, 2.04fr) minmax(250px, 1fr); gap: 6px 30px;
+  }
+  html[data-layout="v29"] .rw-today-side { display: block; grid-area: 1 / 2 / span 3; min-width: 0; }
+  html[data-layout="v29"] .rw-today-updates { grid-area: 3 / 1; min-width: 0; }
+  html[data-layout="v29"] .rw-v29-priorities { margin-top: 0; }
+  html[data-layout="v29"] .rw-lead { padding: 20px 24px; }
+  html[data-layout="v29"] .rw-lead .rw-lead-time { padding-inline-start: 14px; border: 0; }
+  html[data-layout="v29"] .rw-lead-time strong { font-size: clamp(32px, 3.1vw, 42px); }
+  html[data-layout="v29"] .rw-lead-time .rw-icon { display: none; }
+  html[data-layout="v29"] .rw-agenda-item > a {
+    grid-template-columns: 71px minmax(0, 1.25fr) minmax(0, 1fr) 16px; gap: 10px; padding-block: 10px;
+  }
+  html[data-layout="v29"] .rw-agenda-item time { grid-row: auto; text-align: center; }
+  html[data-layout="v29"] .rw-agenda-room { grid-area: auto; padding-inline-start: 0; }
+}

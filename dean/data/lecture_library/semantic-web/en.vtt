@@ -1,0 +1,308 @@
+WEBVTT
+
+00:00:00.560 --> 00:00:03.440
+ This is a quick introduction to the semantic web.
+
+00:00:03.440 --> 00:00:07.120
+ Over the next couple of minutes I'll outline one of the toughest problems the web is facing
+
+00:00:07.120 --> 00:00:08.120
+ today.
+
+00:00:08.120 --> 00:00:11.960
+ I'll also explain what's being done about it and how it's going to affect you.
+
+00:00:11.960 --> 00:00:15.520
+ You don't need to be a web developer or blogger to understand any of the concepts in this
+
+00:00:15.520 --> 00:00:16.720
+ short intro.
+
+00:00:16.720 --> 00:00:21.120
+ If you can open a web browser, then you can understand the semantic web.
+
+00:00:21.120 --> 00:00:26.920
+ So before going any further, it's important to know what the word semantics actually means.
+
+00:00:26.920 --> 00:00:28.920
+ Semantics is related to syntax.
+
+00:00:28.920 --> 00:00:33.260
+ In most languages, syntax is how you say something, whereas semantics is the meaning
+
+00:00:33.260 --> 00:00:34.600
+ behind what you said.
+
+00:00:34.600 --> 00:00:38.380
+ Let's take the phrase "I love technology" as an example.
+
+00:00:38.380 --> 00:00:42.480
+ The syntax is all of the letters, words, and punctuation in the sentence.
+
+00:00:42.480 --> 00:00:45.820
+ The semantics is what the sentence actually means.
+
+00:00:45.820 --> 00:00:50.360
+ In this case, it means that you enjoy learning about and using new technology.
+
+00:00:50.360 --> 00:00:54.400
+ Now if we were to change the sentence using a different symbol for the word "love", we
+
+00:00:54.400 --> 00:00:56.500
+ have changed the syntax of the sentence.
+
+00:00:56.500 --> 00:01:00.180
+ However, note that the semantics of the sentence is still the same.
+
+00:01:00.180 --> 00:01:04.440
+ When you write "I heart technology", it still means that you enjoy learning about and using
+
+00:01:04.440 --> 00:01:05.860
+ new technology.
+
+00:01:05.860 --> 00:01:11.400
+ When we talk about syntax and semantics, what we are really talking about is communication.
+
+00:01:11.400 --> 00:01:15.180
+ When you want to communicate with somebody else, you use your voice to do so.
+
+00:01:15.180 --> 00:01:19.120
+ The internet created a standard way for computers to communicate with one another.
+
+00:01:19.120 --> 00:01:22.860
+ In other words, it gave a voice to computers so that they may talk to each other and exchange
+
+00:01:22.860 --> 00:01:24.200
+ information.
+
+00:01:24.200 --> 00:01:28.720
+ However, much like a parrot can mimic human sounds without understanding them, computers
+
+00:01:28.720 --> 00:01:31.620
+ merely mimic human information to one another.
+
+00:01:31.620 --> 00:01:36.060
+ So while the internet enables computers to talk to one another, it was not designed to teach
+
+00:01:36.060 --> 00:01:40.760
+ them what the information actually means.
+
+00:01:40.760 --> 00:01:44.880
+ When the web came along, it created a very quick and easy way for us to retrieve and view
+
+00:01:44.880 --> 00:01:45.880
+ information.
+
+00:01:45.880 --> 00:01:49.340
+ The web is a huge document storage and retrieval system.
+
+00:01:49.340 --> 00:01:53.100
+ When you put a website address into your browser, it sends a request to the website.
+
+00:01:53.100 --> 00:01:56.800
+ The request basically states that you would like the document located at the address that
+
+00:01:56.800 --> 00:01:58.020
+ you gave it.
+
+00:01:58.020 --> 00:02:01.600
+ The website retrieves the document and sends it back to your web browser.
+
+00:02:01.600 --> 00:02:04.760
+ This document is written in a language called HTML.
+
+00:02:04.760 --> 00:02:09.040
+ The HTML language defines a syntax that computers can understand.
+
+00:02:09.040 --> 00:02:12.520
+ It tells the computer how to display the document to you.
+
+00:02:12.520 --> 00:02:16.540
+ So the two really neat things that the web did is create a way to get any document on
+
+00:02:16.540 --> 00:02:22.400
+ the internet, and it also created a syntax called HTML that is used to display the document
+
+00:02:22.400 --> 00:02:24.480
+ for you.
+
+00:02:24.480 --> 00:02:25.840
+ So what's the big deal?
+
+00:02:25.840 --> 00:02:28.400
+ We have the internet that lets us talk to each other.
+
+00:02:28.400 --> 00:02:32.120
+ We have the web that lets us store and retrieve any document on the internet.
+
+00:02:32.120 --> 00:02:36.280
+ And we have search engines which can find just about any website that we'd want.
+
+00:02:36.280 --> 00:02:40.240
+ The web is already pretty good, so how are we going to make it any better?
+
+00:02:40.240 --> 00:02:42.700
+ The answer lies in semantics.
+
+00:02:42.700 --> 00:02:46.800
+ Remember, computers today just blindly retrieve and show us information.
+
+00:02:46.800 --> 00:02:48.240
+ That's the problem.
+
+00:02:48.240 --> 00:02:52.360
+ Computers don't understand the meaning behind the web pages that they're showing us.
+
+00:02:52.360 --> 00:02:56.440
+ While they may understand the syntax, the semantics are lost on them.
+
+00:02:56.440 --> 00:03:00.780
+ Now if we could get computers to recognize what's in a web page, they could learn what we're
+
+00:03:00.780 --> 00:03:02.080
+ interested in.
+
+00:03:02.080 --> 00:03:05.560
+ If they know that, then they can help us get what we want.
+
+00:03:05.560 --> 00:03:09.980
+ They would change from passively helping us to actively helping us.
+
+00:03:09.980 --> 00:03:12.820
+ This is really what the semantic web is all about.
+
+00:03:12.820 --> 00:03:16.340
+ It helps computers understand the meaning behind a web page.
+
+00:03:16.340 --> 00:03:21.720
+ The web of today is about documents, whereas the semantic web is about things.
+
+00:03:21.720 --> 00:03:29.480
+ When I say things, I mean anything: people, places, events, music, movies, organizations,
+
+00:03:29.480 --> 00:03:32.460
+ and just about any concept that you can think of.
+
+00:03:32.460 --> 00:03:37.680
+ The semantic web is not only about pointing these things out to a computer, but also about
+
+00:03:37.680 --> 00:03:41.720
+ letting computers know how these things are related to each other.
+
+00:03:41.720 --> 00:03:45.600
+ There are several promising technologies that are in use today that can embed semantics in
+
+00:03:45.600 --> 00:03:46.880
+ HTML documents.
+
+00:03:46.880 --> 00:03:50.880
+ Two of the more popular ways are called microformats and RDFa.
+
+00:03:50.880 --> 00:03:55.300
+ So the semantic web stuff isn't about something that is going to happen in the future.
+
+00:03:55.300 --> 00:03:59.520
+ It's about something that is happening today.
+
+00:03:59.520 --> 00:04:04.560
+ Things get really exciting when we start to explore the possibilities of the semantic web.
+
+00:04:04.560 --> 00:04:09.400
+ Once your computer can understand what a person, a place, and an event is, it can start helping
+
+00:04:09.400 --> 00:04:11.400
+ you interact with those things.
+
+00:04:11.400 --> 00:04:16.620
+ For example, if a birthday party is marked up as an event with a date and a place, you can
+
+00:04:16.620 --> 00:04:19.960
+ tell your computer to save the date in your calendar.
+
+00:04:19.960 --> 00:04:22.820
+ Another example is in the world of music blogs.
+
+00:04:22.820 --> 00:04:27.540
+ Music blogs usually list songs and album reviews on their front page.
+
+00:04:27.540 --> 00:04:32.460
+ If the blog marked up the songs and the artists using semantic technology, you could tell your
+
+00:04:32.460 --> 00:04:37.140
+ browser to find all of the songs on the page, or search the internet for other albums by the
+
+00:04:37.140 --> 00:04:39.040
+ same artist.
+
+00:04:39.040 --> 00:04:43.280
+ Search engines would also become a great deal more accurate than they are today.
+
+00:04:43.280 --> 00:04:47.660
+ When you search, you could say that you're searching for a person, a place, or a particular
+
+00:04:47.660 --> 00:04:48.660
+ song.
+
+00:04:48.660 --> 00:04:52.800
+ A search engine could then refer you to a website with far more accuracy because it wouldn't
+
+00:04:52.800 --> 00:04:56.580
+ have to just depend on keywords in web pages anymore.
+
+00:04:56.580 --> 00:05:00.480
+ It could also depend on the semantics in that web page.
+
+00:05:00.480 --> 00:05:05.120
+ So the semantic web holds a great deal of promise in making our lives easier by helping
+
+00:05:05.120 --> 00:05:09.860
+ computers help us get what we want.
+
+00:05:09.860 --> 00:05:13.540
+ If you'd like to find out more about the semantic web, there are a couple of websites that are
+
+00:05:13.540 --> 00:05:15.120
+ good starting points.
+
+00:05:15.120 --> 00:05:18.640
+ If you'd like to know what all of this looks like in a web browser, check out the operator
+
+00:05:18.640 --> 00:05:21.780
+ plugin for the Firefox web browser.
+
+00:05:21.780 --> 00:05:25.760
+ There's also a group of people on the web called the microformats community that are working
+
+00:05:25.760 --> 00:05:29.020
+ on spreading the idea of the semantic web.
+
+00:05:29.020 --> 00:05:33.920
+ Last but not least, the semantic web is also a major focus of the World Wide Web Consortium.
+
+00:05:33.920 --> 00:05:38.660
+ They are the people that are working on HTML and RDFa and many of the other technologies
+
+00:05:38.660 --> 00:05:44.240
+ that power the semantic web today and into the future.
+
+00:05:44.240 --> 00:05:48.120
+ This entire video and all of the source material used to make it is available under a Creative
+
+00:05:48.120 --> 00:05:50.400
+ Commons Attribution-ShareAlike license.
+
+00:05:50.400 --> 00:05:55.160
+ That means that you can remix and distribute copies of this video over the web or via any
+
+00:05:55.160 --> 00:05:56.400
+ peer-to-peer network.
+
+00:05:56.400 --> 00:06:00.460
+ I hope that you've learned a bit more about web semantics and why it's an important part
+
+00:06:00.460 --> 00:06:01.860
+ of the web's future.
+
+00:06:01.860 --> 00:06:05.160
+ If you found this introduction helpful, please share it with your friends.
+

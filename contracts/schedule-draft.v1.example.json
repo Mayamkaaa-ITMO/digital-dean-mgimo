@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "source": {
+    "id": "demo-recognition-01",
+    "kind": "synthetic_table",
+    "captured_at": "2026-11-17T09:00:00Z",
+    "url": null
+  },
+  "scope": {
+    "university_id": "spbstu-demo",
+    "group_id": "demo-ai",
+    "period_id": "demo-2026-08",
+    "timezone": "Europe/Moscow"
+  },
+  "events": [
+    {
+      "event_key": "row-2",
+      "source_event_id": null,
+      "subject": "Базы данных",
+      "kind": "Лекция",
+      "local_start": "2026-11-19T13:00:00",
+      "local_end": null,
+      "room": null,
+      "teacher": null
+    }
+  ],
+  "warnings": [
+    {
+      "code": "missing_end",
+      "event_key": "row-2",
+      "field": "local_end",
+      "message": "В источнике есть только начало. Требуется уточнение."
+    }
+  ],
+  "field_provenance": {
+    "row-2": {
+      "subject": {
+        "source_id": "demo-recognition-01",
+        "locator": "B2",
+        "method": "table_cell"
+      },
+      "local_start": {
+        "source_id": "demo-recognition-01",
+        "locator": "A2,C2",
+        "method": "combined_cells"
+      }
+    }
+  }
+}

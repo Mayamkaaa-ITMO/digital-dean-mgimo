@@ -1,0 +1,148 @@
+{
+  "source_id": "tusur-timetable",
+  "institution_id": "tusur",
+  "name": "ТУСУР",
+  "zone": "Asia/Tomsk",
+  "origin": "https://timetable.tusur.ru",
+  "directory_title": "Список факультетов ТУСУРа",
+  "robots": "https://timetable.tusur.ru/robots.txt",
+  "live_enabled": false,
+  "observed_at": "2026-11-17",
+  "academic_year": "2026/27",
+  "term": "Осенний семестр",
+  "groups": {
+    "fvs/516-1": {
+      "label": "516-1",
+      "department": "Факультет вычислительных систем",
+      "catalog": "/faculties/fvs",
+      "path": "/faculties/fvs/groups/516-1",
+      "weeks": {
+        "2026-11-16": {
+          "id": "850",
+          "number": 12,
+          "parity": "чётная"
+        },
+        "2026-11-23": {
+          "id": "851",
+          "number": 13,
+          "parity": "нечётная"
+        }
+      }
+    },
+    "fvs/526-1": {
+      "label": "526-1",
+      "department": "Факультет вычислительных систем",
+      "catalog": "/faculties/fvs",
+      "path": "/faculties/fvs/groups/526-1",
+      "weeks": {
+        "2026-11-16": {
+          "id": "850",
+          "number": 12,
+          "parity": "чётная"
+        },
+        "2026-11-23": {
+          "id": "851",
+          "number": 13,
+          "parity": "нечётная"
+        }
+      }
+    },
+    "fsu/426-3": {
+      "label": "426-3",
+      "department": "Факультет систем управления",
+      "catalog": "/faculties/fsu",
+      "path": "/faculties/fsu/groups/426-3",
+      "weeks": {
+        "2026-11-16": {
+          "id": "850",
+          "number": 12,
+          "parity": "чётная"
+        },
+        "2026-11-23": {
+          "id": "851",
+          "number": 13,
+          "parity": "нечётная"
+        }
+      }
+    }
+  },
+  "services": [
+    {
+      "id": "library",
+      "label": "Библиотека ТУСУРа",
+      "url": "https://lib.tusur.ru/ru/kontakty",
+      "address": "Томск, ул. Красноармейская, 146 (УЛК)"
+    },
+    {
+      "id": "programs",
+      "label": "Образовательные программы",
+      "url": "https://edu.study.tusur.ru/opops"
+    },
+    {
+      "id": "calendar",
+      "label": "Рабочий учебный график 2026/27",
+      "url": "https://regulations.tusur.ru/#/documents/344"
+    }
+  ],
+  "buildings": {
+    "f": {
+      "name": "Корпус ФЭТ",
+      "path": "/buildings/f",
+      "address": "Томск, ул. Вершинина, 74",
+      "source_url": "https://tusur.ru/ru/studentam/uchebnye-i-drugie-korpusa"
+    },
+    "gk": {
+      "name": "Главный корпус",
+      "address": "Томск, пр. Ленина, 40",
+      "path": "/buildings/gk",
+      "source_url": "https://tusur.ru/ru/studentam/uchebnye-i-drugie-korpusa"
+    },
+    "rk": {
+      "name": "Радиотехнический корпус",
+      "address": "Томск, ул. Вершинина, 47",
+      "path": "/buildings/rk",
+      "source_url": "https://tusur.ru/ru/studentam/uchebnye-i-drugie-korpusa"
+    }
+  },
+  "bell_schedule": {
+    "url": "https://timetable.tusur.ru/",
+    "read_date": "2026-11-18",
+    "slots": [
+      {
+        "number": 1,
+        "start": "08:50",
+        "end": "10:25"
+      },
+      {
+        "number": 2,
+        "start": "10:40",
+        "end": "12:15"
+      },
+      {
+        "number": 3,
+        "start": "13:15",
+        "end": "14:50"
+      },
+      {
+        "number": 4,
+        "start": "15:00",
+        "end": "16:35"
+      },
+      {
+        "number": 5,
+        "start": "16:45",
+        "end": "18:20"
+      },
+      {
+        "number": 6,
+        "start": "18:30",
+        "end": "20:05"
+      },
+      {
+        "number": 7,
+        "start": "20:15",
+        "end": "21:50"
+      }
+    ]
+  }
+}

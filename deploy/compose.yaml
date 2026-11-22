@@ -1,0 +1,133 @@
+name: mgimo-dean
+
+x-dean: &dean
+  image: mgimo-dean:product
+  build:
+    context: ..
+    dockerfile: deploy/Dockerfile
+    args:
+      DEAN_INSTALL_FIELD: ${DEAN_INSTALL_FIELD:-1}
+  environment: &dean-env
+    DEAN_DB: /var/lib/dean/dean.sqlite3
+    DEAN_DOMAIN: ${DEAN_DOMAIN:?Укажи DEAN_DOMAIN в deploy/.env}
+    DEAN_PUBLIC_ORIGIN: https://${DEAN_DOMAIN:?Укажи DEAN_DOMAIN в deploy/.env}
+    DEAN_TRUST_PROXY: "1"
+    DEAN_SECURE_COOKIES: "1"
+    DEAN_PRODUCT: "1"
+    DEAN_BROWSER_DEMO: "0"
+    DEAN_LECTURE_LIBRARY_DIR: /var/lib/dean/lectures
+    DEAN_LECTURE_WORKER: "1"
+    DEAN_LECTURE_IMPORT_HOSTS: ${DEAN_LECTURE_IMPORT_HOSTS-interactive-examples.mdn.mozilla.net,media.w3.org,upload.wikimedia.org}
+    DEAN_LECTURE_PUBLIC_LINKS: ${DEAN_LECTURE_PUBLIC_LINKS:-1}
+    DEAN_CAMPUS_LAB: "1"
+    DEAN_EXT_EVENTS: "1"
+    DEAN_EXT_PHOTO_IMPORT: "1"
+    DEAN_EXT_LECTURE_STUDIO: "1"
+    DEAN_EXT_CAMPUS_DIRECTORY: "1"
+    DEAN_EXT_CAMPUS_PAY: ${DEAN_EXT_CAMPUS_PAY:-0}
+    DEAN_EXT_ROOM_OCCUPANCY: ${DEAN_EXT_ROOM_OCCUPANCY:-1}
+    DEAN_ROOM_OCCUPANCY_CAMERA: ${DEAN_ROOM_OCCUPANCY_CAMERA:-0}
+    DEAN_FIELD_REMOTE: ${DEAN_FIELD_REMOTE:-1}
+    DEAN_PASSKEYS: ${DEAN_PASSKEYS:-1}
+    DEAN_AI_PROVIDER: ${DEAN_AI_PROVIDER:-}
+    DEEPSEEK_API_KEY: ${DEEPSEEK_API_KEY:-}
+    OPENROUTER_API_KEY: ${OPENROUTER_API_KEY:-}
+    DEAN_AI_API_KEY: ${DEAN_AI_API_KEY:-}
+    DEAN_DEEPSEEK_CHAT_MODEL: ${DEAN_DEEPSEEK_CHAT_MODEL:-deepseek-flash}
+    DEAN_OPENROUTER_CHAT_MODEL: ${DEAN_OPENROUTER_CHAT_MODEL:-}
+    DEAN_OPENROUTER_VISION_MODEL: ${DEAN_OPENROUTER_VISION_MODEL:-}
+    DEAN_ROUTERAI_CHAT_MODEL: ${DEAN_ROUTERAI_CHAT_MODEL:-}
+    DEAN_AI_DAILY_LIMIT: ${DEAN_AI_DAILY_LIMIT:-100}
+    DEAN_AI_TOTAL_LIMIT: ${DEAN_AI_TOTAL_LIMIT:-300}
+    DEAN_PRIVACY_REQUIRE_CONSENT: ${DEAN_PRIVACY_REQUIRE_CONSENT:-0}
+    DEAN_PRIVACY_OPERATOR: ${DEAN_PRIVACY_OPERATOR:-}
+    DEAN_PRIVACY_ADDRESS: ${DEAN_PRIVACY_ADDRESS:-}
+    DEAN_PRIVACY_EMAIL: ${DEAN_PRIVACY_EMAIL:-}
+    DEAN_PRIVACY_AUTH_BASIS: ${DEAN_PRIVACY_AUTH_BASIS:-}
+    DEAN_PRIVACY_RETENTION: ${DEAN_PRIVACY_RETENTION:-}
+    DEAN_PRIVACY_PROCESSORS: ${DEAN_PRIVACY_PROCESSORS:-}
+    DEAN_PRIVACY_TRANSFER: ${DEAN_PRIVACY_TRANSFER:-}
+    DEAN_YANDEX_CLIENT_ID: ${DEAN_YANDEX_CLIENT_ID:-}
+    DEAN_YANDEX_CLIENT_SECRET: ${DEAN_YANDEX_CLIENT_SECRET:-}
+    DEAN_VK_CLIENT_ID: ${DEAN_VK_CLIENT_ID:-}
+    DEAN_MAX_BOT_USERNAME: ${DEAN_MAX_BOT_USERNAME:-}
+    DEAN_MAX_BOT_TOKEN: ${DEAN_MAX_BOT_TOKEN:-}
+    DEAN_TELEGRAM_MODE: ${DEAN_TELEGRAM_MODE:-off}
+    DEAN_TELEGRAM_BOT_USERNAME: ${DEAN_TELEGRAM_BOT_USERNAME:-}
+    DEAN_TELEGRAM_BOT_TOKEN: ${DEAN_TELEGRAM_BOT_TOKEN:-}
+    DEAN_TELEGRAM_ALLOWED_CHAT_IDS: ${DEAN_TELEGRAM_ALLOWED_CHAT_IDS:-}
+    DEAN_TELEGRAM_PUBLIC: ${DEAN_TELEGRAM_PUBLIC:-0}
+    DEAN_TELEGRAM_APP_URL: https://${DEAN_DOMAIN}
+  volumes:
+    - dean-data:/var/lib/dean
+  networks: [backend]
+  init: true
+  stop_grace_period: 30s
+  restart: unless-stopped
+
+services:
+  app:
+    <<: *dean
+    healthcheck:
+      test: ["CMD","python","deploy/check_http.py"]
+      interval: 15s
+      timeout: 5s
+      retries: 5
+      start_period: 20s
+
+  lecture-worker:
+    <<: *dean
+    command: ["python","-m","scripts.lecture_worker"]
+    depends_on:
+      app:
+        condition: service_healthy
+
+  reminders:
+    <<: *dean
+    command: ["sh","-ec","while :; do python -m dean jobs; sleep 60; done"]
+    depends_on:
+      app:
+        condition: service_healthy
+
+  telegram:
+    <<: *dean
+    profiles: [telegram]
+    command: ["python","-m","dean","telegram"]
+    environment:
+      <<: *dean-env
+      DEAN_TELEGRAM_HEARTBEAT: /tmp/dean-telegram.ok
+    healthcheck:
+      test: ["CMD", "python", "-c", "import os, time, sys; path = '/tmp/dean-telegram.ok'; sys.exit(0 if os.path.isfile(path) and time.time() - os.path.getmtime(path) < 90 else 1)"]
+      interval: 8s
+      timeout: 3s
+      retries: 5
+      start_period: 45s
+    depends_on:
+      app:
+        condition: service_healthy
+
+  caddy:
+    image: caddy:2-alpine
+    environment:
+      DEAN_DOMAIN: ${DEAN_DOMAIN:?Укажи DEAN_DOMAIN в deploy/.env}
+    depends_on:
+      app:
+        condition: service_healthy
+    ports:
+      - "80:80"
+      - "443:443"
+    networks: [frontend, backend]
+    volumes:
+      - ./Caddyfile:/etc/caddy/Caddyfile:ro
+      - caddy-data:/data
+      - caddy-config:/config
+    restart: unless-stopped
+
+networks:
+  frontend: {}
+  backend: {}
+
+volumes:
+  dean-data: {}
+  caddy-data: {}
+  caddy-config: {}

@@ -1,0 +1,53 @@
+.dean-notice-categories {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 14px 0 8px;
+}
+
+.dean-notice-categories a {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  padding: 6px 14px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: var(--surface);
+  text-decoration: none;
+  font-weight: 750;
+}
+
+.dean-notice-categories a:hover,
+.dean-notice-categories [aria-current="page"] {
+  border-color: var(--accent);
+  background: var(--tint);
+}
+
+.dean-notice-filter { margin: 0 0 14px; }
+.dean-notice-filter summary,
+main[data-section="notifications"] details.panel summary {
+  min-height: 44px;
+  align-content: center;
+  cursor: pointer;
+  font-weight: 750;
+}
+
+#notification-feed > .panel-head { flex-wrap: wrap; }
+#notification-feed .notices > li[data-unread="true"] {
+  padding-inline: 12px;
+  border-radius: 12px;
+  background: var(--layer);
+}
+
+#notification-feed .notices > li > div { min-width: 0; overflow-wrap: anywhere; }
+#notification-feed .notices > li form,
+#notification-feed > .panel-head form { margin: 0; }
+
+.dean-notice-pages { display: grid; grid-template-columns: 1fr auto 1fr; align-items: center; gap: 8px; margin-top: 16px; }
+.dean-notice-pages span { grid-column: 2; grid-row: 1; }
+.dean-notice-pages a { grid-row: 1; align-content: center; min-height: 44px; font-weight: 800; }
+.dean-notice-pages [rel="prev"] { grid-column: 1; justify-self: start; }
+.dean-notice-pages [rel="next"] { grid-column: 3; justify-self: end; }
+
+#staff-announcement-compose textarea { min-height: 122px; }
+#staff-announcement-history .rows a { font-weight: 800; }

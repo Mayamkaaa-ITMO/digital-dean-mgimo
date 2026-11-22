@@ -1,0 +1,11 @@
+.git
+**/__pycache__
+.runtime
+.env
+**/.env
+**/*.key
+**/*.pem
+**/*.sqlite*
+archives
+deploy/site.json
+deploy/lecture-packs

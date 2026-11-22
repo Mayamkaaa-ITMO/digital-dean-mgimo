@@ -1,0 +1,521 @@
+.dean-schedule-workspace { min-width: 0; container: dean-schedule / inline-size; }
+
+.dean-schedule-controls {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  grid-template-areas: "paging paging" "views actions";
+  align-items: center;
+  gap: 8px;
+  margin-block: 0 12px;
+}
+.dean-schedule-paging {
+  grid-area: paging;
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 4px;
+  min-width: 0;
+}
+.dean-schedule-controls > .switcher {
+  grid-area: views;
+  margin: 0;
+  min-width: 0;
+}
+.dean-schedule-paging > a, .dean-schedule-actions > summary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 44px;
+  padding: 0 10px;
+  border: 1px solid var(--line);
+  border-radius: 9px;
+  color: var(--ink);
+  background: var(--surface);
+  font-size: .86rem;
+  font-weight: 800;
+  text-decoration: none;
+}
+.dean-schedule-paging > a:hover, .dean-schedule-actions > summary:hover,
+.dean-schedule-actions[open] > summary {
+  background: var(--layer);
+}
+.dean-schedule-paging > a { flex: none; white-space: nowrap; }
+.dean-schedule-paging .dean-schedule-arrow {
+  min-width: 44px;
+  padding: 0;
+}
+.dean-schedule-period {
+  margin-inline-start: 6px;
+  font-size: .95rem;
+  line-height: 1.2;
+}
+.dean-schedule-actions {
+  grid-area: actions;
+  position: relative;
+  margin: 0;
+}
+.dean-schedule-actions > summary { list-style: none; }
+.dean-schedule-actions > summary::-webkit-details-marker { display: none; }
+.dean-schedule-actions-body {
+  position: absolute;
+  z-index: 6;
+  inset: calc(100% + 6px) 0 auto auto;
+  width: min(28rem, calc(100vw - var(--inset, 16px) * 2));
+  max-height: min(60dvh, 36rem);
+  overflow: auto;
+  padding: 12px;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  box-shadow: 0 8px 22px #14121824;
+}
+.dean-schedule-import-tools { display: flex; justify-content: end; margin-block: 0 12px; }
+.dean-schedule-photo {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  min-height: 44px;
+  padding: 7px 11px;
+  border: 1px solid var(--line);
+  border-radius: 9px;
+  background: var(--surface);
+  color: var(--ink);
+  font-size: .86rem;
+  font-weight: 750;
+  text-decoration: none;
+}
+.dean-schedule-photo:hover { background: var(--layer); border-color: var(--edge); }
+.dean-schedule-photo .rw-icon { width: 17px; height: 17px; flex: 0 0 17px; }
+.dean-schedule-tools {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 4px;
+}
+.dean-schedule-tools a {
+  display: flex;
+  align-items: center;
+  min-height: 44px;
+  padding: 6px 8px;
+  border-radius: 6px;
+  line-height: 1.25;
+}
+.dean-schedule-tools a:hover { background: var(--layer); }
+#main[data-section="schedule"] :is(.rw-calendar-date, form[action="/schedule/filters"]) {
+  display: flex;
+  align-items: end;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-block: 8px 0;
+  padding-block-start: 8px;
+  border-block-start: 1px solid var(--line);
+}
+#main[data-section="schedule"] :is(.rw-calendar-date, form[action="/schedule/filters"]) label {
+  flex: 1 1 11.25rem;
+  min-width: 0;
+  margin: 0;
+}
+#main[data-section="schedule"] form[action="/schedule/filters"] label { flex-basis: 100%; }
+#main[data-section="schedule"] .rw-date-strip {
+  margin-block: 0 12px;
+  grid-template-columns: repeat(7, minmax(0, 1fr));
+  overflow: visible;
+}
+#main[data-section="schedule"] .rw-date-strip a { min-width: 0; }
+.rw-date-strip [data-scheduled] { position: relative; padding-bottom: 10px; }
+.rw-date-strip [data-scheduled]::after {
+  content: "";
+  position: absolute;
+  inset: auto calc(50% - 2px) 4px auto;
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background: currentColor;
+}
+#main[data-section="schedule"] .dean-schedule-feed,
+.dean-schedule-later {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 12px;
+}
+.dean-schedule-later { margin-block-start: 12px; }
+.dean-schedule-later > a {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  justify-self: start;
+}
+.dean-schedule-axis, .dean-schedule-day-short, .dean-schedule-all-day:empty { display: none; }
+.dean-schedule-day, .dean-schedule-month-cell {
+  min-width: 0;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 14px;
+}
+.dean-schedule-day-head { padding: 12px 14px 10px; }
+.dean-schedule-day-head h2 {
+  margin: 0;
+  font-size: clamp(1.22rem, 2.5vw, 1.62rem);
+  font-weight: 850;
+  line-height: 1.18;
+}
+.dean-schedule-day-head h2 a { color: var(--ink); text-decoration: none; }
+.dean-schedule-day-head h2 a:hover { text-decoration: underline; }
+.dean-schedule-day-head p {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  margin: 4px 0 0;
+  color: var(--muted);
+  font-size: .84rem;
+}
+.dean-schedule-day-head p span {
+  padding: 2px 7px;
+  background: var(--layer);
+  border-radius: 6px;
+  font-weight: 800;
+}
+.dean-schedule-day[data-focused] .dean-schedule-day-head { background: var(--panel); border-radius: 13px 13px 0 0; }
+.dean-schedule-day-empty { margin: 0; padding: 0 14px 12px; font-size: .86rem; color: var(--muted); }
+.dean-schedule-events, .dean-schedule-all-day { margin: 0; padding: 0 14px; list-style: none; }
+.dean-schedule-entry a {
+  display: grid;
+  grid-template-columns: 54px minmax(0, 1fr) 16px;
+  align-items: start;
+  gap: 8px;
+  min-height: 44px;
+  padding: 11px 0;
+  color: var(--ink);
+  text-decoration: none;
+  border-block-start: 1px solid var(--line);
+}
+.dean-schedule-entry a:hover strong { text-decoration: underline; }
+.dean-schedule-entry a > .rw-icon { width: 16px; height: 16px; margin-top: 2px; color: var(--muted); }
+.dean-schedule-time, .dean-schedule-item, .dean-schedule-meta { min-width: 0; display: grid; gap: 2px; }
+.dean-schedule-time { line-height: 1.15; font-variant-numeric: tabular-nums; }
+.dean-schedule-time time { color: var(--muted); font-size: .75rem; overflow-wrap: anywhere; }
+.dean-schedule-time time:first-child { color: var(--ink); font-size: .99rem; font-weight: 850; }
+.dean-schedule-item > strong { overflow-wrap: anywhere; font-size: 1rem; line-height: 1.22; }
+.dean-schedule-badges { display: flex; align-items: center; flex-wrap: wrap; gap: 4px; }
+.dean-schedule-entry {
+  --type-ink: var(--muted);
+  --type-fill: var(--layer);
+  --type-edge: var(--edge);
+}
+.dean-schedule-entry:has([data-lesson-type="lecture"]) { --type-ink: #425b78; --type-fill: #e8eff6; --type-edge: #7090ae; }
+.dean-schedule-entry:has([data-lesson-type="practice"]) { --type-ink: #75460e; --type-fill: #f7ead6; --type-edge: #b58347; }
+.dean-schedule-entry:has([data-lesson-type="lab"]) { --type-ink: #654877; --type-fill: #f0e9f4; --type-edge: #9374a3; }
+html[data-theme="graphite"]:not([data-layout="v29"]) .dean-schedule-entry:has([data-lesson-type="lecture"]) {
+  --type-ink: #c8d5e6; --type-fill: #3e4955; --type-edge: #8ba0bb;
+}
+html[data-theme="graphite"]:not([data-layout="v29"]) .dean-schedule-entry:has([data-lesson-type="practice"]) {
+  --type-ink: #ebd2af; --type-fill: #54483b; --type-edge: #bb9b6c;
+}
+html[data-theme="graphite"]:not([data-layout="v29"]) .dean-schedule-entry:has([data-lesson-type="lab"]) {
+  --type-ink: #e1d0ed; --type-fill: #504658; --type-edge: #ad92ba;
+}
+#main .dean-schedule-entry .rw-lesson-type, .dean-schedule-note {
+  padding: 1px 6px;
+  border-radius: 5px;
+  background: var(--type-fill);
+  color: var(--type-ink);
+  font-size: .72rem;
+  font-weight: 800;
+  line-height: 1.4;
+}
+.dean-schedule-entry .rw-lesson-type::before { display: none; }
+.dean-schedule-badges .dean-schedule-note { background: var(--warning-bg); color: var(--warning); }
+.dean-schedule-meta {
+  color: var(--muted);
+  font-size: .82rem;
+  line-height: 1.25;
+  overflow-wrap: anywhere;
+}
+.dean-schedule-meta > span { display: flex; align-items: flex-start; gap: 5px; }
+.dean-schedule-place .dean-schedule-place-compact { display: none; }
+.dean-schedule-meta .rw-icon { width: 14px; height: 14px; flex: 0 0 14px; }
+.dean-schedule-gap {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 2px;
+  color: var(--muted);
+  font-size: .78rem;
+  font-variant-numeric: tabular-nums;
+}
+.dean-schedule-gap::after { content: ""; flex: 1 1 auto; border-top: 1px dashed var(--line); }
+#main[data-section="schedule"] .dean-schedule-feed[data-view="month"] {
+  grid-template-columns: repeat(7, minmax(0, 1fr));
+  gap: 4px;
+}
+.dean-schedule-month-weekday { text-align: center; color: var(--muted); font-size: .85rem; font-weight: 800; }
+.dean-schedule-month-legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px 12px;
+  margin: 0 0 12px;
+  padding: 0;
+  list-style: none;
+  color: var(--muted);
+  font-size: .8rem;
+}
+.dean-schedule-month-legend li { display: inline-flex; align-items: center; gap: 5px; }
+.dean-schedule-month-legend li::before {
+  content: "";
+  width: 8px;
+  height: 8px;
+  border: 1px solid var(--month-mark, var(--edge));
+  border-radius: var(--month-shape, 50%);
+  background: var(--month-mark, var(--surface));
+}
+.dean-schedule-month-legend [data-day-tone="unavailable"]::before { border-style: dashed; }
+:is(.dean-schedule-month-cell, .dean-schedule-month-legend li)[data-day-tone="lessons"] {
+  --month-mark: #315b9f;
+  --month-fill: color-mix(in srgb, #517fce 17%, var(--surface));
+  --month-border: color-mix(in srgb, #517fce 42%, var(--line));
+}
+:is(.dean-schedule-month-cell, .dean-schedule-month-legend li)[data-day-tone="events"] {
+  --month-mark: #79518f;
+  --month-fill: color-mix(in srgb, #a778ba 14%, var(--surface));
+  --month-border: color-mix(in srgb, #a778ba 36%, var(--line));
+  --month-shape: 2px;
+}
+.dean-schedule-month-cell {
+  display: grid;
+  align-content: start;
+  gap: 2px;
+  min-height: 48px;
+  padding: 6px;
+  border-radius: 8px;
+  border-color: var(--month-border, var(--line));
+  background: var(--month-fill, var(--surface));
+  color: var(--ink);
+  text-decoration: none;
+}
+.dean-schedule-month-cell:hover { border-color: var(--accent); }
+.dean-schedule-month-cell[data-focused] { box-shadow: inset 0 0 0 1px var(--edge); }
+.dean-schedule-month-cell[data-today] time { color: var(--surface); background: var(--accent); }
+.dean-schedule-month-cell[data-unavailable] { border-style: dashed; }
+.dean-schedule-month-cell:focus-visible { outline-offset: -3px; }
+.dean-schedule-month-cell time { font-size: .96rem; font-variant-numeric: tabular-nums; font-weight: 850; }
+.dean-schedule-month-cell time { justify-self: start; min-width: 22px; padding: 0 3px; text-align: center; border-radius: 5px; }
+.dean-schedule-month-cell span { color: var(--muted); font-size: .78rem; }
+@container dean-schedule (max-width: 620px) {
+  html[data-interface="railway"] #main[data-section="schedule"] .rw-period-tabs {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 3px;
+  }
+  html[data-interface="railway"] #main[data-section="schedule"] .rw-period-tabs a {
+    justify-content: center;
+    min-width: 0;
+    padding-inline: 2px;
+    font-size: .765rem;
+  }
+  .dean-schedule-import-tools { justify-content: start; }
+  .dean-schedule-actions > summary { padding-inline: 6px; font-size: .78rem; }
+  .dean-schedule-month-cell span { display: none; }
+  .dean-schedule-month-cell[data-scheduled]::after {
+    content: "";
+    width: 5px;
+    height: 5px;
+    margin-inline-start: 8px;
+    border-radius: var(--month-shape, 50%);
+    background: var(--month-mark, var(--accent));
+  }
+}
+@container dean-schedule (max-width: 335px) {
+  .dean-schedule-controls {
+    grid-template-columns: minmax(0, 1fr);
+    grid-template-areas: "paging" "views" "actions";
+  }
+  .dean-schedule-actions:not([open]) { justify-self: end; }
+  .dean-schedule-actions[open] > summary { width: fit-content; margin-inline-start: auto; }
+  .dean-schedule-actions-body {
+    position: static;
+    width: 100%;
+    max-height: none;
+    margin-top: 8px;
+    box-shadow: none;
+  }
+  .dean-schedule-actions-body select { font-size: .9rem; }
+}
+@container dean-schedule (min-width: 780px) {
+  .dean-schedule-controls {
+    grid-template-columns: minmax(0, 1fr) auto auto;
+    grid-template-areas: "paging views actions";
+  }
+  .dean-schedule-feed[data-view="day"], .dean-schedule-feed[data-view="list"], .dean-schedule-later {
+    max-width: 53rem;
+  }
+  #main[data-section="schedule"] .dean-schedule-feed[data-view="day"] { max-width: none; }
+  [data-view="day"] .dean-schedule-entry a {
+    grid-template-columns: 72px minmax(0, 1fr) 16px;
+    align-items: center;
+    min-height: 64px;
+  }
+  [data-view="day"] .dean-schedule-item {
+    grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr);
+    grid-template-rows: auto auto;
+    align-items: center;
+    column-gap: 20px;
+  }
+  [data-view="day"] .dean-schedule-item > strong { grid-column: 1; grid-row: 2; }
+  [data-view="day"] .dean-schedule-meta { grid-column: 2; grid-row: 1 / span 2; }
+}
+@supports (grid-template-rows: subgrid) {
+  @container dean-schedule (min-width: 700px) {
+    .dean-schedule-table-scroll { overflow-x: auto; border-radius: 14px; }
+    html[data-interface="railway"] #main[data-section="schedule"] .dean-schedule-feed[data-timetable-ready] {
+      --hour: 68px;
+      --minute: calc(var(--hour) / 60);
+      grid-template-columns: 42px repeat(7, minmax(0, 1fr));
+      grid-template-rows: auto auto auto;
+      gap: 0;
+      overflow: hidden;
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      background: var(--surface);
+    }
+    .dean-schedule-feed[data-timetable-ready] { min-width: var(--schedule-table-min, 0); }
+    #main[data-section="schedule"]:has(.dean-schedule-feed[data-timetable-ready]) .rw-date-strip { display: none; }
+    [data-timetable-ready] .dean-schedule-axis {
+      grid-area: 3 / 1;
+      display: grid;
+      grid-auto-rows: var(--hour);
+      text-align: center;
+      color: var(--muted);
+      font-size: .76rem;
+      font-variant-numeric: tabular-nums;
+    }
+    [data-timetable-ready] .dean-schedule-axis span { border-top: 1px solid var(--line); padding-top: 3px; }
+    [data-timetable-ready] .dean-schedule-day {
+      grid-row: 1 / span 3;
+      display: grid;
+      grid-template-rows: subgrid;
+      border: 0;
+      border-inline-start: 1px solid var(--line);
+      border-radius: 0;
+      background: transparent;
+    }
+    [data-timetable-ready] .dean-schedule-day[data-focused] { background: var(--panel); }
+    [data-timetable-ready] .dean-schedule-day-head {
+      grid-row: 1;
+      min-height: 52px;
+      padding: 8px 4px;
+      text-align: center;
+      border-top: 2px solid transparent;
+    }
+    [data-timetable-ready] .dean-schedule-day[data-today] .dean-schedule-day-head { border-top-color: var(--accent); }
+    [data-timetable-ready] .dean-schedule-day-head h2 { font-size: .87rem; }
+    [data-timetable-ready] .dean-schedule-day-head p { justify-content: center; margin-top: 2px; }
+    [data-timetable-ready] .dean-schedule-day-head p span { padding: 0; background: none; font-size: .72rem; }
+    [data-timetable-ready] .dean-schedule-day-short { display: inline; }
+    [data-timetable-ready] :is(.dean-schedule-day-full, .dean-schedule-day-head time, .dean-schedule-day-empty) { display: none; }
+    [data-timetable-ready] .dean-schedule-all-day {
+      grid-row: 2;
+      display: grid;
+      align-content: start;
+      gap: 3px;
+      padding: 0 3px 3px;
+    }
+    [data-timetable-ready] .dean-schedule-all-day:empty { padding: 0; }
+    [data-timetable-ready] .dean-schedule-day-track {
+      grid-row: 3;
+      position: relative;
+      min-height: calc(var(--schedule-hours) * var(--hour));
+      background: repeating-linear-gradient(to bottom, var(--line) 0 1px, transparent 1px var(--hour));
+    }
+    [data-timetable-ready] .dean-schedule-events { padding: 0; }
+    [data-timetable-ready] .dean-schedule-entry[data-schedule-position] {
+      position: absolute;
+      inset-block-start: calc(var(--start) * var(--minute) + 2px);
+      inset-inline-start: calc(var(--lane) * 100% / var(--lanes) + 2px);
+      height: calc(var(--duration) * var(--minute) - 4px);
+      width: calc(100% / var(--lanes) - 4px);
+    }
+    [data-timetable-ready] .dean-schedule-entry a {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr);
+      grid-template-areas: "time" "lesson" "meta";
+      grid-template-rows: auto minmax(0, auto) auto;
+      align-content: start;
+      gap: 2px;
+      height: 100%;
+      min-height: 24px;
+      padding: 3px;
+      border: 1px solid var(--line);
+      border-inline-start: 2px solid var(--type-edge);
+      border-radius: 6px;
+      background: var(--type-fill);
+      overflow: hidden;
+    }
+    [data-timetable-ready] .dean-schedule-entry a:hover { border-color: var(--type-edge); }
+    [data-timetable-ready] .dean-schedule-entry a:focus-visible { outline-offset: -2px; }
+    [data-timetable-ready] .dean-schedule-time time:first-child { font-size: .72rem; white-space: nowrap; }
+    [data-timetable-ready] .dean-schedule-time { grid-area: time; }
+    [data-timetable-ready] .dean-schedule-item > strong {
+      grid-area: lesson; font-size: .75rem; line-height: 1.16; overflow-wrap: normal;
+      display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 4; overflow: hidden;
+    }
+    [data-timetable-ready] .dean-schedule-meta { grid-area: meta; font-size: .71rem; }
+    [data-timetable-ready] .dean-schedule-meta > span { min-width: 0; }
+    [data-timetable-ready] .dean-schedule-place .dean-schedule-place-compact {
+      display: block;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+    [data-timetable-ready] .dean-schedule-item { display: contents; }
+    [data-timetable-ready] :is(.dean-schedule-badges, .dean-schedule-gap, .dean-schedule-time time + time,
+                              .dean-schedule-teacher, .dean-schedule-place-full, .rw-icon) {
+      display: none;
+    }
+    [data-timetable-ready] .dean-schedule-entry[data-short-slot] .dean-schedule-meta { display: none; }
+    [data-timetable-ready] .dean-schedule-entry[data-short-slot] .dean-schedule-item > strong { -webkit-line-clamp: 2; }
+  }
+}
+html[data-interface="original"] .dean-schedule-axis { display: none; }
+html[data-interface="original"] .dean-schedule-actions-body { position: static; }
+
+html[data-theme="raspay"] .dean-schedule-controls {
+  grid-template-areas: "heading actions" "paging views";
+}
+.dean-schedule-heading { grid-area: heading; }
+#main[data-section="schedule"] .dean-schedule-heading h1 { font-size: clamp(1.85rem, 2.8vw, 2.375rem); }
+.dean-schedule-heading p { margin: 5px 0 0; color: var(--muted); font-size: .9rem; }
+.dean-schedule-actions { align-self: start; justify-self: end; }
+.dean-schedule-actions > summary { width: 44px; padding: 0; }
+.dean-schedule-context { color: var(--muted); font-size: .83rem; margin-bottom: 4px; }
+.dean-schedule-gap span:first-child { display: flex; align-items: center; gap: 7px; }
+.dean-schedule-gap .rw-icon { width: 15px; height: 15px; }
+@media (max-width: 780px) {
+  #main[data-section="schedule"] .dean-schedule-heading h1 { font-size: clamp(1.9rem, 8vw, 2.125rem); }
+  html[data-theme="raspay"] .dean-schedule-controls {
+    grid-template-columns: minmax(0, 1fr) auto;
+    grid-template-areas: "heading actions" "paging paging" "views views";
+    margin-bottom: 12px;
+  }
+  html[data-interface="railway"][data-theme="raspay"] #main[data-section="schedule"] .dean-schedule-controls > .rw-period-tabs {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 3px;
+  }
+  .dean-schedule-controls > .rw-period-tabs a { justify-content: center; }
+  .dean-schedule-period {
+    flex: 1;
+    min-width: min(7rem, 100%);
+    text-wrap: balance;
+  }
+  .dean-schedule-actions[open] > summary { width: 44px; }
+  .dean-schedule-actions-body {
+    position: absolute;
+    width: min(28rem, calc(100vw - var(--inset, 16px) * 2));
+    max-height: min(60dvh, 32rem);
+    margin-top: 0;
+    box-shadow: 0 8px 22px #14121824;
+  }
+  .dean-schedule-actions-body select { font-size: 1rem; }
+  html[data-theme="raspay"] #main[data-section="schedule"] .rw-date-strip { gap: 4px; margin-bottom: 16px; }
+  html[data-theme="raspay"] #main[data-section="schedule"] .rw-date-strip a { min-height: 44px; }
+}

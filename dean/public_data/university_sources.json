@@ -1,0 +1,410 @@
+[
+  {
+    "source_id": "spbpu-ruz",
+    "institution_id": "spbpu",
+    "name": "СПбПУ",
+    "zone": "Europe/Moscow",
+    "origin": "https://ruz.spbstu.ru",
+    "schedule_url": "https://ruz.spbstu.ru/",
+    "academic_year": "2026/27",
+    "term": "Осенний семестр",
+    "observed_at": "2026-11-17",
+    "live_enabled": false,
+    "sample_file": "spbpu_schedule_sample.json",
+    "groups": {
+      "125/45492": {
+        "label": "5140201/50302",
+        "department": "Институт компьютерных наук и кибербезопасности",
+        "path": "/faculty/125/groups/45492",
+        "weeks": {
+          "2026-11-16": {
+            "url": "https://ruz.spbstu.ru/faculty/125/groups/45492?date=2026-11-16",
+            "days": [
+              1,
+              2,
+              3,
+              6
+            ],
+            "parity": "чётная"
+          },
+          "2026-11-23": {
+            "url": "https://ruz.spbstu.ru/faculty/125/groups/45492?date=2026-11-23",
+            "days": [
+              1,
+              2,
+              3,
+              6
+            ],
+            "parity": "нечётная"
+          }
+        }
+      }
+    },
+    "room_cards": {
+      "research-a108": {
+        "label": "Научно-исследовательский корпус, ауд. А1.08",
+        "url": "https://ruz.spbstu.ru/places/69/1769"
+      },
+      "building4-309-2": {
+        "label": "4-й учебный корпус, ауд. 309-2",
+        "url": "https://ruz.spbstu.ru/places/19/2058"
+      },
+      "building11-143": {
+        "label": "11-й учебный корпус, ауд. 143",
+        "url": "https://ruz.spbstu.ru/faculty/125/groups/45492?date=2026-11-16"
+      },
+      "building11-330": {
+        "label": "11-й учебный корпус, ауд. 330",
+        "url": "https://ruz.spbstu.ru/faculty/125/groups/45492?date=2026-11-16"
+      }
+    },
+    "services": [
+      {
+        "id": "programs",
+        "label": "Образовательные программы",
+        "url": "https://www.spbstu.ru/sveden/education/list-educational-programs/"
+      },
+      {
+        "id": "academic-calendar",
+        "label": "График учебного процесса",
+        "url": "https://www.spbstu.ru/students/schedule/schedule-educational-process/"
+      }
+    ]
+  },
+  {
+    "source_id": "susu-timetable",
+    "institution_id": "susu",
+    "name": "ЮУрГУ",
+    "zone": "Asia/Yekaterinburg",
+    "origin": "https://www.susu.ru",
+    "schedule_url": "https://www.susu.ru/ru/lessons?language=en",
+    "academic_year": "2026/27",
+    "term": "Первый семестр",
+    "observed_at": "2026-11-17",
+    "live_enabled": false,
+    "sample_file": "susu_schedule_sample.json",
+    "groups": {
+      "ke-102": {
+        "label": "КЭ-102",
+        "department": "Высшая школа электроники и компьютерных наук",
+        "path": "/ru/lessons/ke-102?language=en",
+        "weeks": {
+          "2026-11-16": {
+            "url": "https://www.susu.ru/ru/lessons/ke-102?language=en",
+            "days": [
+              1,
+              2,
+              3,
+              4,
+              5,
+              6
+            ],
+            "source_updated_at": "2026-11-17"
+          },
+          "2026-11-23": {
+            "url": "https://www.susu.ru/ru/lessons/ke-102?language=en",
+            "days": [
+              1,
+              2,
+              3,
+              4,
+              5,
+              6
+            ],
+            "source_updated_at": "2026-11-17"
+          }
+        }
+      },
+      "ke-105": {
+        "label": "КЭ-105",
+        "department": "Высшая школа электроники и компьютерных наук",
+        "path": "/ru/lessons/ke-105?language=en",
+        "weeks": {
+          "2026-11-16": {
+            "url": "https://www.susu.ru/ru/lessons/ke-105?language=en",
+            "days": [
+              1,
+              2,
+              3,
+              4,
+              5,
+              6
+            ]
+          },
+          "2026-11-23": {
+            "url": "https://www.susu.ru/ru/lessons/ke-105?language=en",
+            "days": [
+              1,
+              2,
+              3,
+              4,
+              5
+            ]
+          }
+        }
+      }
+    },
+    "services": [
+      {
+        "id": "main-building",
+        "label": "Главный учебный корпус",
+        "address": "Челябинск, проспект Ленина, 76",
+        "url": "https://www.susu.ru/ru/university/official/basic"
+      },
+      {
+        "id": "library",
+        "label": "Научная библиотека",
+        "address": "Челябинск, проспект Ленина, 87",
+        "url": "https://www.susu.ru/ru/departments/auxiliaries/library"
+      },
+      {
+        "id": "programs",
+        "label": "Образовательные программы",
+        "url": "https://abit.susu.ru/education-program/"
+      }
+    ],
+    "room_cards": {
+      "susu-434-3b": {
+        "label": "434/3б",
+        "detail": "Обозначение из календаря КЭ-102. Адрес аудитории в использованной сетке не указан.",
+        "url": "https://www.susu.ru/ru/lessons/ke-102?language=en"
+      }
+    }
+  },
+  {
+    "source_id": "nspu-reference",
+    "institution_id": "nspu",
+    "name": "НГПУ (Новосибирск)",
+    "zone": "Asia/Novosibirsk",
+    "origin": "https://schedule.nspu.ru",
+    "schedule_url": "https://schedule.nspu.ru/",
+    "academic_year": "",
+    "term": "Учебные недели по источнику",
+    "observed_at": "2026-11-17",
+    "live_enabled": false,
+    "groups": {
+      "3333": {
+        "label": "3.108.2.26",
+        "department": "ИИГСО",
+        "path": "/group_shedule.php?id=3333",
+        "weeks": {},
+        "pattern": [
+          {
+            "day": "Вторник",
+            "start": "08:30",
+            "end": "10:00",
+            "subject": "История России (с древнейших времен до конца XVII в.)"
+          },
+          {
+            "day": "Вторник",
+            "start": "10:10",
+            "end": "11:40",
+            "subject": "Возрастная анатомия, физиология и культура здоровья"
+          },
+          {
+            "day": "Вторник",
+            "start": "12:10",
+            "end": "13:40",
+            "subject": "Основы российской государственности"
+          },
+          {
+            "day": "Среда",
+            "start": "08:30",
+            "end": "10:00",
+            "subject": "Основы медицинских знаний"
+          },
+          {
+            "day": "Четверг",
+            "start": "14:10",
+            "end": "15:40",
+            "subject": "История Древнего мира"
+          },
+          {
+            "day": "Пятница",
+            "start": "08:30",
+            "end": "10:00",
+            "subject": "Вспомогательные исторические дисциплины"
+          }
+        ]
+      }
+    },
+    "room_cards": {
+      "room313": {
+        "label": "Аудитория 313",
+        "detail": "Корпус 1, блок 1 (ИИГСО-ФП) · 3 этаж · 50 мест · 59,1 м²",
+        "url": "https://schedule.nspu.ru/room_shedule.php?id=102&nextweek=1"
+      }
+    },
+    "services": [
+      {
+        "id": "building-address",
+        "label": "Основные сведения НГПУ",
+        "address": "Новосибирск, ул. Вилюйская, 28",
+        "url": "https://nspu.ru/sveden/common/"
+      },
+      {
+        "id": "rooms",
+        "label": "Каталог аудиторий",
+        "url": "https://schedule.nspu.ru/room_index.php"
+      },
+      {
+        "id": "library",
+        "label": "Электронные ресурсы библиотеки",
+        "url": "https://lib.nspu.ru/elektronnye-resursy/"
+      }
+    ]
+  },
+  {
+    "source_id": "guap-reference",
+    "institution_id": "guap",
+    "name": "ГУАП",
+    "zone": "Europe/Moscow",
+    "origin": "https://guap.ru",
+    "schedule_url": "https://guap.ru/rasp",
+    "academic_year": "2026/27",
+    "term": "Осенний семестр",
+    "observed_at": "2026-11-17",
+    "live_enabled": false,
+    "groups": {
+      "7906": {
+        "label": "и6м52к",
+        "department": "",
+        "path": "/RASP?gr=7906",
+        "weeks": {},
+        "source_updated_at": "2026-08-31",
+        "pattern": [
+          {
+            "day": "Понедельник",
+            "start": "11:10",
+            "end": "12:40",
+            "subject": "Основы российской государственности",
+            "kind": "Практическое занятие",
+            "room": "33-06 (Гастелло 15)",
+            "rule": "▲",
+            "room_ref": "guap-gastello"
+          },
+          {
+            "day": "Вторник",
+            "start": "13:00",
+            "end": "14:30",
+            "subject": "Основы российской государственности",
+            "kind": "Практическое занятие",
+            "room": "с-34 (Гастелло 15)",
+            "rule": "▼",
+            "room_ref": "guap-gastello"
+          },
+          {
+            "day": "Вторник",
+            "start": "15:10",
+            "end": "16:40",
+            "subject": "Физическая культура",
+            "kind": "Лекция",
+            "room": "32-01 (Гастелло 15)",
+            "rule": "▼",
+            "room_ref": "guap-gastello"
+          },
+          {
+            "day": "Вторник",
+            "start": "17:00",
+            "end": "18:30",
+            "subject": "Физическая культура",
+            "kind": "Практическое занятие",
+            "room": "спортзал (Ленсовета 14)",
+            "rule": "▲",
+            "room_ref": "guap-lensoveta"
+          },
+          {
+            "day": "Вторник",
+            "start": "18:40",
+            "end": "20:10",
+            "subject": "Физика",
+            "kind": "Лабораторное занятие",
+            "room": "31-04б (Гастелло 15)",
+            "rule": "▼",
+            "room_ref": "guap-gastello"
+          },
+          {
+            "day": "Среда",
+            "start": "09:30",
+            "end": "11:00",
+            "subject": "Физика",
+            "kind": "Лекция",
+            "room": "33-06 (Гастелло 15)",
+            "rule": "▼",
+            "room_ref": "guap-gastello"
+          },
+          {
+            "day": "Среда",
+            "start": "11:10",
+            "end": "12:40",
+            "subject": "Математика. Аналитическая геометрия и линейная алгебра",
+            "kind": "Лекция",
+            "room": "13-15 (Гастелло 15)",
+            "rule": "▲",
+            "room_ref": "guap-gastello"
+          },
+          {
+            "day": "Среда",
+            "start": "13:00",
+            "end": "14:30",
+            "subject": "Математика. Аналитическая геометрия и линейная алгебра",
+            "kind": "Лекция",
+            "room": "33-06 (Гастелло 15)",
+            "rule": "▲",
+            "room_ref": "guap-gastello"
+          },
+          {
+            "day": "Среда",
+            "start": "13:00",
+            "end": "14:30",
+            "subject": "Физика",
+            "kind": "Лекция",
+            "room": "13-09 (Гастелло 15)",
+            "rule": "▼",
+            "room_ref": "guap-gastello"
+          },
+          {
+            "day": "Четверг",
+            "start": "11:10",
+            "end": "12:40",
+            "subject": "Математика. Аналитическая геометрия и линейная алгебра",
+            "kind": "Практическое занятие",
+            "room": "12-04 (Гастелло 15)",
+            "rule": "▲",
+            "room_ref": "guap-gastello"
+          }
+        ]
+      }
+    },
+    "services": [
+      {
+        "id": "classroom-address",
+        "label": "Учебный корпус на Гастелло",
+        "address": "Санкт-Петербург, ул. Гастелло, 15",
+        "url": "https://guap.ru/c/it/service/maps"
+      },
+      {
+        "id": "housing",
+        "label": "Порядок предоставления места в общежитии",
+        "url": "https://guap.ru/dom"
+      },
+      {
+        "id": "programs",
+        "label": "Образовательные программы",
+        "url": "https://guap.ru/sveden/education/tab1"
+      }
+    ],
+    "room_cards": {
+      "guap-gastello": {
+        "label": "Учебный корпус на Гастелло",
+        "detail": "Санкт-Петербург, ул. Гастелло, 15",
+        "url": "https://guap.ru/c/it/service/maps"
+      },
+      "guap-lensoveta": {
+        "label": "Учебный корпус на Ленсовета",
+        "detail": "Санкт-Петербург, ул. Ленсовета, 14",
+        "url": "https://guap.ru/c/it/service/maps"
+      }
+    }
+  }
+]

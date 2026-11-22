@@ -1,0 +1,23 @@
+@media (min-width: 1000px) {
+  html { scrollbar-gutter: stable; }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  :is(.rw-rail nav a, .rw-dock .rw-icon, .dean-header-assistant, .dean-chat-tools a,
+      .dean-chat-history > summary, .dean-assistant-form button) {
+    transition: background-color 120ms ease-out, color 120ms ease-out, border-color 120ms ease-out;
+  }
+
+  .dean-chat-history[open] .dean-chat-history-popover {
+    animation: dean-chat-reveal 140ms ease-out;
+  }
+
+  .dean-chat-turn[data-chat-new-turn] .dean-chat-answer {
+    animation: dean-chat-reveal 160ms ease-out;
+  }
+
+  @keyframes dean-chat-reveal {
+    from { opacity: .7; translate: 0 3px; }
+    to { opacity: 1; translate: 0 0; }
+  }
+}

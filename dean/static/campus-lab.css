@@ -1,0 +1,183 @@
+.lab-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,15rem),1fr));gap:1rem;margin-block:1rem}
+.lab-card{display:grid;align-content:start;gap:.55rem;padding:1rem;border:1px solid currentColor;border-radius:.8rem;color:inherit}
+.lab-card strong{font-size:1.15rem}.lab-card span{font-weight:400}.lab-card:focus-visible{outline:3px solid currentColor}
+.lab-controls{display:flex;gap:.4rem;flex-wrap:wrap}
+.lab-recording{width:100%;max-width:48rem;max-height:58vh;background:#202327;border-radius:.5rem}.lab-prose{white-space:pre-wrap;overflow-wrap:anywhere}
+
+#main[data-section="campus-occupancy"] {
+  --occupancy-low: #64c5a5;
+  --occupancy-medium: #e6b062;
+  --occupancy-high: #f5899b;
+  --occupancy-empty: #a0a2ab;
+  --occupancy-plan: #1b1c20;
+}
+.occupancy-demo-note {
+  max-width: 65ch;
+  color: var(--muted);
+}
+.occupancy-demo-note strong {
+  color: var(--ink);
+  margin-inline-end: .45rem;
+}
+.occupancy-busiest {
+  border-inline-start: 3px solid var(--occupancy-high);
+  padding: .45rem .75rem;
+}
+.occupancy-busiest a { font-weight: 750; }
+#door-flow h2, #occupancy-history h2 { margin-block-end: .35rem; }
+#door-flow > p { color: var(--muted); margin-block-start: 0; }
+.occupancy-legend {
+  display: flex;
+  gap: .45rem 1rem;
+  flex-wrap: wrap;
+  padding: 0;
+  list-style: none;
+  font-size: .875rem;
+  color: var(--muted);
+}
+.occupancy-legend li { display: flex; gap: .4rem; align-items: center; }
+.occupancy-legend li::before {
+  content: "";
+  inline-size: .65rem;
+  block-size: .65rem;
+  border-radius: 50%;
+  background: var(--occupancy-tone);
+}
+#door-flow [data-level="low"] { --occupancy-tone: var(--occupancy-low); }
+#door-flow [data-level="medium"] { --occupancy-tone: var(--occupancy-medium); }
+#door-flow [data-level="high"] { --occupancy-tone: var(--occupancy-high); }
+#door-flow [data-level="empty"] { --occupancy-tone: var(--occupancy-empty); }
+.occupancy-room-grid { grid-template-columns: repeat(auto-fit, minmax(min(100%, 14rem), 1fr)); }
+.lab-heat {
+  display: grid;
+  align-content: start;
+  gap: .8rem;
+  min-width: 0;
+  padding: 1rem;
+  border: 1px solid var(--line);
+  border-radius: .875rem;
+  background: var(--surface);
+}
+.lab-heat :is(h3, p, dl, dd) { margin: 0; }
+.occupancy-room-heading { display: flex; justify-content: space-between; align-items: start; gap: .8rem; }
+.occupancy-room-heading h3 { font-size: 1.25rem; line-height: 1.25; }
+.occupancy-room-heading p, .occupancy-room-seats dt, .occupancy-room-meta { color: var(--muted); font-size: .875rem; }
+.occupancy-room-heading strong {
+  padding: .2rem .55rem;
+  border-radius: .375rem;
+  color: #17181d;
+  background: var(--occupancy-tone);
+  font-size: .875rem;
+  font-variant-numeric: tabular-nums;
+}
+.occupancy-room-seats { display: grid; grid-template-columns: 1fr 1fr; gap: .5rem; }
+.occupancy-room-seats dd { font-size: 1.125rem; font-weight: 700; font-variant-numeric: tabular-nums; }
+.occupancy-room-meta { display: grid; gap: .25rem; }
+.lab-heat meter { width: 100%; block-size: .5rem; border: 0; background: none; }
+.lab-heat meter::-webkit-meter-bar { border: 0; border-radius: .25rem; background: var(--line); }
+.lab-heat meter::-webkit-meter-optimum-value { border-radius: .25rem; background: var(--occupancy-tone); }
+.lab-heat meter::-moz-meter-bar { border-radius: .25rem; background: var(--occupancy-tone); }
+.lab-heat > a { justify-self: start; }
+.occupancy-room-actions { display: flex; flex-wrap: wrap; gap: .45rem; }
+#main[data-section="campus-occupancy"] > .dean-secondary-action { margin-block-end: .8rem; }
+.lab-heat summary { cursor: pointer; }
+.lab-heat details .lab-controls { margin-block-start: .65rem; }
+.lab-floor { width: 100%; height: 8.5rem; background: var(--occupancy-plan); border-radius: .5rem; }
+.lab-other-room { fill: #393b42; }
+.lab-walls { fill: none; stroke: #80838f; stroke-width: 1.5; }
+.lab-active-room { fill: var(--occupancy-tone); }
+.lab-floor text { fill: #15171b; font: 750 18px system-ui; text-anchor: middle; dominant-baseline: middle; }
+.occupancy-zones { padding: .65rem; border-radius: .6rem; background: var(--occupancy-plan); }
+.occupancy-zones > p {
+  margin-block-end: .5rem;
+  padding-block-end: .35rem;
+  border-block-end: 1px solid #454651;
+  color: #c6c8d5;
+  text-align: center;
+  font-size: .78rem;
+}
+.occupancy-zones ol {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: .35rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.occupancy-zones li {
+  display: grid;
+  place-items: center;
+  min-height: 1.85rem;
+  border: 1px solid color-mix(in srgb, var(--occupancy-tone) 55%, transparent);
+  border-radius: .3rem;
+  color: var(--occupancy-tone);
+  background: color-mix(in srgb, var(--occupancy-tone) 16%, transparent);
+  font-weight: 750;
+  font-variant-numeric: tabular-nums;
+}
+.occupancy-zones li[data-level="empty"] { border-color: #454651; background: transparent; }
+@media (prefers-reduced-motion: no-preference) {
+  .lab-active-room { transition: fill 220ms ease; }
+  .occupancy-room-heading strong { transition: background-color 220ms ease; }
+  .occupancy-zones li { transition: background-color 180ms ease, border-color 180ms ease, color 180ms ease; }
+}
+
+html[data-interface="railway"] .panel .occupancy-table table {
+  display: table;
+  width: max-content;
+  min-width: 100%;
+  max-width: none;
+  overflow: visible;
+}
+.occupancy-table th {
+  white-space: nowrap;
+  overflow-wrap: normal;
+}
+.occupancy-table caption {
+  padding-inline: 8px;
+  text-align: start;
+}
+#occupancy-history .occupancy-table [data-heat] {
+  color: #15171b;
+  background: var(--history-tone);
+}
+#occupancy-history [data-heat="low"] { --history-tone: var(--occupancy-low); }
+#occupancy-history [data-heat="medium"] { --history-tone: var(--occupancy-medium); }
+#occupancy-history [data-heat="high"] { --history-tone: var(--occupancy-high); }
+#occupancy-history [data-heat="empty"] { --history-tone: var(--occupancy-empty); }
+.occupancy-history-details { margin-block-start: .9rem; }
+.occupancy-history-details summary { cursor: pointer; }
+.occupancy-history-details li { display: grid; gap: .25rem; }
+.occupancy-history-details li span { color: var(--muted); }
+#main :is([data-view-status], [data-publish-status], [data-terminal-result], [data-nfc-status], [data-location]):empty {
+  margin: 0;
+  padding: 0;
+}
+:is([data-nfc-pay], [data-lecture-publisher]) > :is([data-nfc-read], [data-nfc-sim], [data-broadcast], [data-pause]) {
+  margin-block-end: 6px;
+}
+@media (max-width: 480px) {
+  :is(#staff-queue, #main[data-section="activities"]) > form.inline {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+  }
+  :is(#staff-queue, #main[data-section="activities"]) > form.inline label { width: 100%; }
+}
+
+.lab-camera{margin-block:1rem}.lab-camera summary{font-weight:700;cursor:pointer}
+.lab-camera-view{position:relative;max-width:32rem}.lab-camera-view video{display:block;width:100%;height:auto}
+.lab-camera-view::after{content:"";position:absolute;inset:0 auto 0 50%;border-left:3px dashed #e5ac35;pointer-events:none}
+
+.field-preview{position:relative;max-width:44rem;background:#162228;border-radius:.55rem;overflow:hidden;margin:1rem 0}
+.field-preview video,.field-preview canvas{display:block;width:100%;height:auto}
+.field-preview video:not([src]):not(.field-playing){display:none}
+.field-preview canvas{position:absolute;inset:0;height:100%;pointer-events:none}
+.field-stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(7.5rem,1fr));gap:.65rem;margin:1rem 0}
+.field-stats div{padding:1rem;border:1px solid currentColor;border-radius:.6rem}
+.field-stats dd{margin:0;font-size:2rem;font-weight:750;font-variant-numeric:tabular-nums}
+[data-field-session] progress{width:min(100%,34rem);height:1rem;accent-color:#347657}
+[data-uncertain]:not([hidden]){border-inline-start:4px solid #ae5900;padding:.7rem}
+[data-field-setup] details{padding:.75rem 0}
+.field-heat{display:flex;flex-wrap:wrap;gap:.45rem;list-style:none;padding:0;font-variant-numeric:tabular-nums}
+.field-heat li{border:1px solid;padding:.4rem .6rem;border-radius:.35rem}
+.field-cool{color:#15452c;background:#e3f3e4}.field-warm{color:#674300;background:#ffedbd}.field-hot{color:#7d2520;background:#fbdad4}

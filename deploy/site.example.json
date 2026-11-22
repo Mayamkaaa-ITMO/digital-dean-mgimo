@@ -1,0 +1,10 @@
+{
+  "university": {"id": "university-site", "name": "Название вуза", "timezone": "Europe/Moscow"},
+  "periods": [{"id": "autumn-2026", "label": "Осенний семестр 2026", "from": "2026-09-01", "to": "2027-01-31"}],
+  "programs": [{"id": "informatics", "faculty": "Факультет", "name": "Информатика"}],
+  "groups": [{"id": "group-01", "name": "Группа 01", "program": "informatics", "year": 1}],
+  "subjects": [{"id": "computer-science", "name": "Информатика"}],
+  "services": [{"id": "consultation", "name": "Консультация деканата", "description": "Учебный вопрос сотруднику деканата", "hint": "Кратко опиши вопрос."}],
+  "contacts": [],
+  "lessons": []
+}

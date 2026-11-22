@@ -1,0 +1,34 @@
+{$DEAN_DOMAIN} {
+    encode zstd gzip
+    @lecture_upload {
+        method POST
+        path /lectures/import/upload
+    }
+    @avatar_upload {
+        method POST
+        path /profile/photo
+    }
+    @ordinary_request {
+        not {
+            method POST
+            path /lectures/import/upload /profile/photo
+        }
+    }
+    request_body @lecture_upload {
+        max_size 68157440
+    }
+    request_body @avatar_upload {
+        max_size 21MiB
+    }
+    request_body @ordinary_request {
+        max_size 3MB
+    }
+    reverse_proxy app:8000 {
+        header_up X-Real-IP {http.request.remote.host}
+        header_up X-Forwarded-Proto https
+    }
+    handle_errors 413 {
+        header Content-Type "text/html; charset=utf-8"
+        respond "<!doctype html><html lang=ru><meta charset=utf-8><title>Файл слишком большой</title><h1>Файл слишком большой</h1><p>Вернись к форме и выбери файл поменьше.</p><p><a href=/profile>Профиль</a> · <a href=/calendar/import/photo>Фото расписания</a> · <a href=/lectures/import>Импорт лекции</a></p>" 413
+    }
+}

@@ -1,0 +1,65 @@
+.dean-providers {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 13rem), 1fr));
+  align-items: stretch;
+  gap: 8px;
+}
+.dean-providers form { margin: 0; }
+.dean-provider.quiet {
+  display: flex; align-items: center; gap: 9px; min-height: 46px; width: 100%;
+  justify-content: flex-start; padding: 7px 10px; margin: 0; text-align: left; line-height: 1.2;
+}
+.dean-provider-mark {
+  display: grid; place-items: center; flex: 0 0 29px; width: 29px; height: 29px;
+  border-radius: 7px; background: #176bed; color: #fff; font-size: .9rem; font-weight: 900;
+}
+.dean-provider[data-provider="yandex"] .dean-provider-mark { background: #d92924; }
+.dean-login .login-divider {
+  display: flex; align-items: center; gap: 12px; margin-block: 14px 9px;
+}
+.dean-login .login-divider::before, .dean-login .login-divider::after {
+  content: ""; flex: 1; height: 1px; background: var(--line);
+}
+.dean-login-social > .meta { margin: 9px 0 0; }
+.dean-login-key { margin-block: 8px; }
+.access-profile .dean-provider { width: fit-content; max-width: 100%; }
+
+.dean-tour, .dean-first-access {
+  position: fixed; z-index: 100;
+  box-sizing: border-box;
+  max-width: calc(100% - 24px); max-height: min(calc(100dvh - 24px), 510px);
+  overflow: auto;
+  width: 360px; padding: 16px; border: 1px solid var(--line); border-radius: 14px;
+  background: var(--surface); color: var(--ink); box-shadow: 0 8px 24px #10283d25;
+}
+.dean-tour { inset: var(--tour-top, auto) auto var(--tour-bottom, auto) var(--tour-left, 12px); margin: 0; }
+.dean-tour:not(:modal) { --tour-bottom: 12px; }
+.dean-first-access { inset: 0; margin: auto; }
+.dean-tour::backdrop, .dean-first-access::backdrop { background: #10243633; }
+.dean-tour progress { display: block; width: 100%; height: 4px; margin: 4px 0 12px; accent-color: var(--accent); }
+.dean-tour h2, .dean-first-access h2 { margin: 0 0 5px; font-size: 1.23rem; line-height: 1.25; }
+.dean-tour h2:focus, .dean-first-access h2:focus { outline: none; }
+.dean-tour > p, .dean-first-access > p { margin: 0 0 8px; line-height: 1.38; }
+.dean-tour > .meta { font-weight: 800; }
+.dean-tour a { display: inline-flex; align-items: center; min-height: 44px; }
+.dean-tour-actions { display: flex; align-items: center; justify-content: space-between; gap: 8px; flex-wrap: wrap; }
+.dean-tour-actions form { margin: 0; }
+.dean-tour-actions .toolbar { margin: 0 0 0 auto; gap: 8px; }
+.dean-tour button, .dean-first-access button { min-height: 44px; }
+.dean-tour-anchor { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 5px; }
+.dean-first-access > form { margin: 12px 0 0; }
+
+@media (min-width: 1040px) {
+  html[data-interface="railway"] .dean-dashboard-content :is(.rw-today-grid, .rw-staff-grid) {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  html[data-interface="railway"] .dean-dashboard-content .rw-today-grid > * { grid-area: auto; }
+  html[data-interface="railway"] .dean-dashboard-content .rw-today-side { display: block; min-width: 0; }
+}
+@media (max-width: 780px) {
+  .dean-tour {
+    inset: auto 10px calc(8px + env(safe-area-inset-bottom));
+    width: auto; max-width: 510px; max-height: 46dvh; margin-inline: auto; padding: 12px 14px;
+  }
+  html[data-interface="railway"] .dean-tour { bottom: calc(var(--dock-height, 64px) + 8px + env(safe-area-inset-bottom)); }
+}

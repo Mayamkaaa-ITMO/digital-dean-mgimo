@@ -1,0 +1,33 @@
+.account-actions { display: flex; flex-wrap: wrap; align-items: center; gap: .25rem .75rem; }
+.account-actions a { display: inline-flex; align-items: center; min-height: 44px; }
+.login {
+  --accent: #1947b8;
+  --tint: #ecf1ff;
+  --line: #d9e0ea;
+  max-width: 27rem;
+}
+.login :focus-visible { outline-color: #1947b8; }
+.login-form h2 { font-size: 1rem; }
+.login-form > button, .login-max > button, .other-login button { width: 100%; }
+.login-form button, .login input, .login summary, .login-remember, .access-panel button {
+  min-height: 44px;
+}
+.password-row { display: flex; gap: .5rem; }
+.password-row input { min-width: 0; flex: 1; font-size: 1rem; }
+.password-row button { flex: none; padding: .45rem .7rem; }
+.password-row button[hidden] { display: none; }
+.login form > button:not(.quiet):hover { background: #133d9f; }
+.login .login-remember input { width: 1rem; min-height: 1rem; }
+.login-divider { text-align: center; margin: .5rem 0; color: var(--muted); }
+.login button:disabled { opacity: .78; cursor: default; }
+.login .guest-entry a { display: inline-flex; align-items: center; min-height: 44px; }
+.other-login summary { cursor: pointer; padding-block: .55rem; }
+.other-login button + button { margin-top: .5rem; }
+.auth-pin { font-variant-numeric: tabular-nums; letter-spacing: .2em; font-size: 1.6rem; }
+.access-profile .rows li { display: block; }
+.access-profile .rows form { margin-block: .5rem; }
+@media (max-width: 38rem) {
+  .login { padding: .875rem; }
+  main.wrap:has(.login) { padding-top: 1rem; }
+  .nav a { padding-inline: .5rem; }
+}
